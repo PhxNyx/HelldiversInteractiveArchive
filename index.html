@@ -739,6 +739,32 @@ button.wbIt{cursor:pointer}button.wbIt:hover{background:#ffe81f1c;border-color:v
 .xpTiles small{display:block;margin-top:6px;font-family:var(--m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
 @media(max-width:640px){.xpTiles{grid-template-columns:1fr}.xpTiles>div{padding:10px}}
 
+/* ---------- LOADOUT BUILDER: stats table, operator card ---------- */
+.blArm{margin-bottom:16px}
+.blArm .ax{max-width:520px}
+.blTabW{overflow-x:auto}
+.blTab{width:100%;border-collapse:collapse;font-family:var(--m);font-size:12.5px}
+.blTab th{text-align:left;color:var(--cy);letter-spacing:.14em;text-transform:uppercase;font-weight:400;font-size:11px;padding:8px 10px;border-bottom:2px solid var(--y)}
+.blTab td{padding:9px 10px;border-bottom:1px solid #ffffff14;vertical-align:top;color:#cfe0ea}
+.blTab td:first-child{color:var(--cy);letter-spacing:.1em;text-transform:uppercase;font-size:11px;white-space:nowrap}
+.blTab td b{font-family:var(--h);font-weight:400;font-size:16px;letter-spacing:.05em;color:#fff;text-transform:uppercase}
+.blTab .st{display:inline-block;margin:0 14px 4px 0;white-space:nowrap;color:var(--y)}
+.blTab .st i{font-style:normal;color:var(--mut);margin-right:6px;letter-spacing:.06em;text-transform:uppercase;font-size:11px}
+.fl select{display:block;width:100%;margin-top:6px;background:#000a;border:2px solid var(--line);color:var(--y);padding:10px 12px;font-family:var(--m);font-size:16px;outline:none}
+.fl select:focus{border-color:var(--y)}
+.fl select option,.fl select optgroup{background:#0b1118;color:#e7edf3}
+@media(max-width:640px){.blTab thead{display:none}.blTab,.blTab tbody,.blTab tr,.blTab td{display:block;width:100%}.blTab tr{border-bottom:1px solid var(--line);padding:8px 0}.blTab td{border:0;padding:3px 0}.blTab .st{white-space:normal}}
+/* ---------- HOME: live war counters ---------- */
+.wsPanel{margin:22px 0 8px}
+.wsHead{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+.wsGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:14px}
+.wsT{border:1px solid var(--line);background:#0009;padding:12px 14px;text-align:center;min-width:0}
+.wsT small{display:block;font-family:var(--m);font-size:11px;color:var(--mut);letter-spacing:.15em;text-transform:uppercase}
+.wsT b{display:block;font-family:var(--h);font-weight:400;font-size:clamp(24px,3vw,32px);color:var(--y);letter-spacing:.05em;margin:4px 0 2px;overflow-wrap:anywhere}
+.wsT em{display:block;font-style:normal;font-family:var(--m);font-size:11px;color:var(--mut);letter-spacing:.08em;min-height:14px}
+.wsT.bug{border-top:3px solid #ffa94d}.wsT.bot{border-top:3px solid var(--rd)}.wsT.ill{border-top:3px solid #c27bff}
+@media(max-width:640px){.stats{gap:10px}.stats .stat{min-width:0;flex:1 1 calc(50% - 10px);padding:12px 8px}.stat b{font-size:28px}.wsGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.wsT{padding:10px 8px}}
+
 /* ---------- MOBILE ADAPTATION (phones and small tablets only; desktop untouched) ---------- */
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 @media(max-width:900px){
@@ -1041,15 +1067,21 @@ function hub(){
     <h1 class="rv b">HELLDIVERS<span>Democracy Archive</span></h1>
     <p class="lead rv" style="margin-top:18px">The story of Helldivers, explained with all the clarity propaganda allows. Browse, click and let High Command guide you: you are in excellent hands. Whose, it does not matter.</p>
     <button class="btn rv" data-go="storia">Start the briefing</button> <button class="btn ghost rv" id="dailyBtn">Daily intel</button>
-    <div class="stats">
-      <div class="stat rv"><b id="stA">…</b><span>Wiki articles</span></div>
-      <div class="stat rv"><b id="stI">…</b><span>Images and files</span></div>
-      <div class="stat rv"><b id="stU">…</b><span>Active users</span></div>
+    <div class="stats" id="hubStats">
+      <div class="stat rv"><b id="stOn">…</b><span>Helldivers online</span></div>
+      <div class="stat rv"><b id="stWon">…</b><span>Missions won</span></div>
+      <div class="stat rv"><b id="stRate">…</b><span>Mission success rate</span></div>
+      <div class="stat rv"><b id="stLost">…</b><span>Helldivers lost</span></div>
+      <div class="stat rv"><b id="stPl">…</b><span>Planets in play</span></div>
     </div>
     <div class="panel hubMO moCard rv" id="hubMO">${loadingHTML}</div>
   </section>
   <div class="ticker"><div>${tkHTML()}</div></div>
-  <div class="wrap"><div class="notice rv"><b>CITIZEN NOTICE</b><span>${esc(pick(NOTICES))}</span></div><p class="kicker rv">Available sections</p><h2 class="sec rv b">Choose your mission</h2><div class="cards">${cards}</div>
+  <div class="wrap"><div class="notice rv"><b>CITIZEN NOTICE</b><span>${esc(pick(NOTICES))}</span></div>
+  <div class="panel wsPanel rv" id="wsBox"><div class="wsHead"><span class="kicker">▌ Galactic war · live counters</span><span class="moLive off" id="wsLive">● …</span></div>
+   <div class="wsGrid" id="wsGrid"><div class="wsT bug"><small>Terminids killed</small><b id="wsBug">…</b><em></em></div><div class="wsT bot"><small>Automatons destroyed</small><b id="wsBot">…</b><em></em></div><div class="wsT ill"><small>Illuminate killed</small><b id="wsIll">…</b><em></em></div><div class="wsT "><small>Friendly fire kills</small><b id="wsFF">…</b><em></em></div><div class="wsT "><small>On active fronts</small><b id="wsFr">…</b><em></em></div><div class="wsT bug"><small>vs Terminids</small><b id="wsvB">…</b><em id="wsvBs"></em></div><div class="wsT ill"><small>vs Illuminates</small><b id="wsvI">…</b><em id="wsvIs"></em></div><div class="wsT bot"><small>vs Automatons</small><b id="wsvA">…</b><em id="wsvAs"></em></div></div>
+   <div class="attr">Source: Helldivers war API (helldiverstrainingmanual.com), the same feed as the <a target="_blank" rel="noopener" href="${MO_TRACKER}">Prop Builds live tracker ↗</a>. Refreshed every 5 minutes while this page is open<span id="wsUp"></span>.</div></div>
+  <p class="kicker rv">Available sections</p><h2 class="sec rv b">Choose your mission</h2><div class="cards">${cards}</div>
   <div class="panel rv" style="margin-top:40px"><span class="kicker">Wiki update log · live</span><div class="logBox" id="logBox"></div></div></div>`;
 }
 hub.init=()=>{
@@ -1058,7 +1090,7 @@ hub.init=()=>{
   const lb=$('#logBox');if(lb)lb.onclick=ev=>{const b=ev.target.closest('[data-open]');if(b)openPage(b.dataset.open)};
   drawLog();
   moCard('#hubMO',true);
-  loadStats();
+  wsLoad();
 };
 
 /* ---------- WIKI (live data) ---------- */
@@ -1067,7 +1099,7 @@ const wlink=t=>WIKI+'/wiki/'+encodeURIComponent(String(t).replace(/ /g,'_')).rep
 const LS={
  get(k){try{return JSON.parse(localStorage.getItem('hdw:'+k))}catch(e){return null}},
  set(k,v){const j=JSON.stringify(v);try{localStorage.setItem('hdw:'+k,j)}catch(e){try{this.clear();localStorage.setItem('hdw:'+k,j)}catch(_){}}},
- clear(){try{Object.keys(localStorage).filter(x=>x.startsWith('hdw:')&&!/^hdw:(save|id|bl)$/.test(x)).forEach(x=>localStorage.removeItem(x))}catch(e){}}
+ clear(){try{Object.keys(localStorage).filter(x=>x.startsWith('hdw:')&&!/^hdw:(save|id|bl|bc|xpc)$/.test(x)).forEach(x=>localStorage.removeItem(x))}catch(e){}}
 };
 const mem=new Map();
 let wikiState='idle';
@@ -2731,17 +2763,20 @@ function radarSVG(v){
 }
 async function blEvaluate(){
   const box=$('#blEval');if(!box||!BL)return;
-  const tok=++blTok,sel=BL.filter(s=>s.val);
-  if(!sel.length){box.innerHTML='';return}
+  const tok=++blTok,sel=BL.filter(s=>s.val&&!GEARK.includes(s.k));
+  if(!sel.length){BL_EV=null;box.innerHTML='';return}
   let pages=[];
   try{pages=await Promise.all(sel.map(s=>getPage(s.val).catch(()=>null)))}catch(e){}
   if(tok!==blTok||!$('#blEval'))return;
   const raw={at:0,cc:0,dem:0,sus:0,rng:0};
   sel.forEach((s,i)=>{const r=evalItem(s.val,pages[i]);Object.keys(raw).forEach(k=>raw[k]+=r[k])});
+  {const ga=BL.find(s=>s.k==='arm'&&s.val),gs=ga&&gearStat(ga.val);
+   if(gs){if(gs.armor!=null)raw.sus+=gs.armor>=150?1.6:gs.armor>=100?.9:gs.armor>=75?.4:0;if(gs.passive){const r=evalItem(gs.passive,null);Object.keys(raw).forEach(k=>raw[k]+=r[k])}}}
   const W=FAC_W[blFac]||{},v={};
   AXES.forEach(([k])=>v[k]=Math.min(10,raw[k]*(W[k]||1)*1.1));
   const vals=AXES.map(a=>v[a[0]]),avg=vals.reduce((a,b)=>a+b,0)/vals.length,bonus=Math.min(...vals)>=3?.6:0,score=Math.min(10,avg+bonus);
   const grade=score>=8?'S':score>=6.5?'A':score>=5?'B':score>=3.5?'C':'D';
+  BL_EV={v:Object.assign({},v),score,grade,fac:blFac};
   const names=BL.map(s=>s.val).join(' ');
   const tips=[];
   AXES.forEach(([k,l])=>{if(v[k]<3){const alt=shuf(STRAT.map(x=>x.w).filter(n=>EVAL_TAGS.some(([re,w])=>w[k]&&re.test(n)))).slice(0,2);tips.push(['w',`Low ${l.toLowerCase()} (${v[k].toFixed(1)}/10).${alt.length?' Consider: '+alt.join(', ')+'.':''}`])}});
@@ -2758,7 +2793,8 @@ async function blEvaluate(){
 function blSlots(){
   const all=blGroups?[...new Set(Object.values(blGroups).flat())]:[];
   const mk=(k,label,re)=>{let pool=[];Object.entries(blGroups||{}).forEach(([g,l])=>{if(re.test(g))pool.push(...l)});pool=[...new Set(pool)];if(!pool.length)pool=all.length?all:ARMI_Q.slice();return {k,label,pool,val:'',lock:false}};
-  const s=[mk('pri','Primary weapon',/primary/i),mk('sec','Secondary weapon',/secondary|sidearm/i),mk('thr','Throwable',/throw|grenade/i),
+  const gd=gearData(),gp=(k,label,pool)=>({k,label,pool,val:'',lock:false});
+  const s=[gp('arm','Armor',gd.armor.map(x=>x.n)),gp('hel','Helmet',gd.helmets),gp('cap','Cape',gd.capes),mk('pri','Primary weapon',/primary/i),mk('sec','Secondary weapon',/secondary|sidearm/i),mk('thr','Throwable',/throw|grenade/i),
     ...[1,2,3,4].map(n=>({k:'st'+n,label:'Stratagem '+n,pool:STRAT.map(x=>x.w),val:'',lock:false}))];
   blExtra.forEach(x=>s.push({k:x.k,label:x.label,pool:x.pool,val:'',lock:false}));
   return s;
@@ -2773,18 +2809,19 @@ function blCard(i){
 }
 async function blFill(i){
   const s=BL[i],tok=s.tok=(s.tok||0)+1;if(!s.val||!$('#blI'+i))return;
+  if(GEARK.includes(s.k)){$('#blI'+i).innerHTML=gearImgTag(s.k,s.val,s.k==='arm'?gearStat(s.val):null);return}
   try{const p=await getPage(s.val);if(s.tok!==tok||!$('#blI'+i))return;$('#blI'+i).innerHTML=p.missing?'':wimg(p.img)}catch(e){}
 }
 function blOne(i){const el=$('#blGrid .blS[data-i="'+i+'"]');if(el){el.outerHTML=blCard(i);blFill(i)}}
 let blEvTm=null;
-function blQueueEval(){clearTimeout(blEvTm);blEvTm=setTimeout(blEvaluate,350)}
+function blQueueEval(){clearTimeout(blEvTm);blEvTm=setTimeout(()=>{blEvaluate();blStats()},350)}
 function blSpin(i,final){
   const s=BL[i];let n=0;
   const iv=setInterval(()=>{
     n++;const h=$('#blGrid .blS[data-i="'+i+'"] h4');
     if(cur!=='builder'){clearInterval(iv);return}
     if(h)h.textContent=pick(s.pool);
-    if(n>=8+i*3){clearInterval(iv);s.val=final;blOne(i);blSave();blQueueEval()}
+    if(n>=8+Math.min(i,8)*3){clearInterval(iv);s.val=final;blOne(i);blSave();blQueueEval()}
   },60);
 }
 function blPickFor(i,taken){
@@ -2801,28 +2838,40 @@ function blRoll(){
 function builder(){
   return `<div class="wrap"><p class="kicker rv">Loadout assignment</p>
   <h2 class="sec rv b">Loadout Builder<small>// pick it yourself or let the Ministry roll it, then read the evaluation</small></h2>
-  <p class="lead rv">Weapons and stratagems come from the wiki database. Choose every slot by hand with the selector, or roll a random loadout, lock your favourites and re-roll the rest. The evaluation panel rates the build against each front.</p>
-  <div class="blTop rv"><button class="btn" id="blRoll">⟳ Randomize loadout</button><button class="btn ghost" id="blCopy">Copy loadout</button><button class="btn ghost" id="blLockAll">Lock / unlock all</button><button class="btn ghost" id="blPrac" data-go="strat">Practice the codes</button></div>
+  <p class="lead rv">Armor, helmets, capes, weapons and stratagems come from the wiki database. Choose every slot by hand with the selector, or roll a random loadout, lock your favourites and re-roll the rest. The evaluation panel rates the build against each front.</p>
+  <div class="blTop rv"><button class="btn" id="blRoll">⟳ Randomize loadout</button><button class="btn ghost" id="blCopy">Copy loadout</button><button class="btn ghost" data-bx>⬇ Export PNG</button><button class="btn ghost" id="blLockAll">Lock / unlock all</button><button class="btn ghost" id="blPrac" data-go="strat">Practice the codes</button></div>
   <div class="iro rv" id="blTwist"></div>
   <div class="panel rv" style="margin-top:18px"><span class="kicker">Loadout evaluation</span><div id="blEval">${loadingHTML}</div></div>
-  <div class="blGrid" id="blGrid">${loadingHTML}</div></div>`;
+  <div class="blGrid" id="blGrid">${loadingHTML}</div>
+  <div class="panel rv" style="margin-top:24px"><span class="kicker">Loadout stats</span><div id="blStats" style="margin-top:10px">${loadingHTML}</div></div>
+  <p class="kicker rv" style="margin-top:44px">Operator card</p>
+  <p class="lead rv" style="font-size:15px">Print your Service Record with any title on the wiki, rank or Warbond, and a level that does not depend on it. It goes into the exported image together with the loadout.</p>
+  <div class="idGrid"><div class="panel rv l"><span class="kicker">Card editor</span>
+    <label class="fl">Callsign<input id="bcName" maxlength="18" autocomplete="off" placeholder="CITIZEN"></label>
+    <label class="fl">Title<select id="bcTitle"></select></label>
+    <label class="fl">Level (independent of the title)<input id="bcLv" type="number" min="1" max="300" value="1"></label>
+    <div class="ctl"><button class="btn ghost sm" id="bcCamp">Use my campaign level</button><button class="btn ghost sm" id="bcAuto">Title of my level</button><button class="btn ghost sm" id="bcRnd">Random callsign</button></div>
+    <div class="ctl" style="margin-top:18px"><button class="btn" data-bx>⬇ Export image (PNG)</button></div>
+    <div class="attr">One PNG with your card, the whole loadout, its numbers and the evaluation.</div></div>
+   <div class="rv r" id="bcOut"></div></div></div>`;
 }
 builder.init=async()=>{
   if(!blGroups){try{blGroups=await getWeapons()}catch(e){blGroups={}}}
+  if(!GEAR){try{GEAR=await getGear()}catch(e){GEAR=null}}
   if(!blExtra.length){
-    const defs=[['bo','Booster','Category:Boosters'],['ar','Armor passive','Category:Armor Passives']];
+    const defs=[['bo','Booster','Category:Boosters'],...(gearData().armor.some(a=>a.passive)?[]:[['ar','Armor passive','Category:Armor Passives']])];
     for(const [k,label,cat] of defs){
       try{const l=(await getList(cat)).filter(t=>!/^(boosters?|armor.*)$/i.test(t));if(l.length>=3)blExtra.push({k,label,pool:l})}catch(e){}
     }
   }
   if(cur!=='builder')return;
-  if(!BL||BL.length!==3+4+blExtra.length){
+  if(!BL||BL.length!==3+3+4+blExtra.length){
     BL=blSlots();const sv=LS.get('bl');
     if(sv&&sv.length===BL.length)sv.forEach((x,i)=>{if(x&&x.v&&BL[i].pool.includes(x.v)){BL[i].val=x.v;BL[i].lock=!!x.l}});
   }
   $('#blGrid').innerHTML=BL.map((s,i)=>blCard(i)).join('');
   BL.forEach((s,i)=>blFill(i));
-  if(BL.some(s=>!s.val))blRoll();else blEvaluate();
+  if(BL.some(s=>!s.val))blRoll();else{blEvaluate();blStats()}
   $('#blRoll').onclick=blRoll;
   $('#blLockAll').onclick=()=>{const v=!BL.every(s=>s.lock);BL.forEach((s,i)=>{s.lock=v;blOne(i)});blSave()};
   $('#blCopy').onclick=()=>{
@@ -2839,9 +2888,395 @@ builder.init=async()=>{
     const i=+c.dataset.i,s=BL[i];
     if(a.dataset.a==='lock'){s.lock=!s.lock;blOne(i);blSave()}
     else if(a.dataset.a==='roll'){if(s.lock){toast('That slot is locked');return}const taken=new Set(BL.filter((x,j)=>j!==i&&x.k.startsWith('st')).map(x=>x.val));blSpin(i,blPickFor(i,taken))}
-    else if(a.dataset.a==='open'&&s.val)openPage(s.val);
+    else if(a.dataset.a==='open'&&s.val){if(GEARK.includes(s.k))gearDossier(s.k,s.val);else openPage(s.val)}
   };
+  bcInit();$$('[data-bx]').forEach(b=>b.onclick=bcExport);
 };
+
+
+/* ---------- GEAR: armor, helmets and capes (Helldivers Wiki on wiki.gg) ---------- */
+const GEARK=['arm','hel','cap'];
+const GEAR_BAD=/^(armor|armors|helmets?|capes?|armor passives?|light armor|medium armor|heavy armor|armor icons)$/i;
+/* names verified on the wiki; used only if the wiki cannot be reached at all */
+const GEAR_FB={
+ armor:[['SC-37 Legionnaire','Light'],['SC-34 Infiltrator','Light'],['SC-30 Trailblazer Scout','Light'],['CE-74 Breaker','Light'],['B-01 Tactical','Medium'],['TR-7 Ambassador of the Brand','Medium'],['TR-9 Cavalier of Democracy','Medium'],['DP-53 Savior of the Free','Medium']],
+ helmets:['A-35 Recon','A-9 Helljumper','AC-1 Dutiful','AC-2 Obedient','AD-11 Livewire','AD-26 Bleeding Edge','AD-49 Apollonian','AF-02 Haz-Master','AF-50 Noxious Ranger','AF-52 Lockdown','AF-91 Field Chemist','B-01 Tactical','B-08 Light Gunner'],
+ capes:['Against the Tyrant Cloud','Agent of Oblivion','Badge of Order','Bastion of Integrity','Blazing Samaritan','Botslayer','Boundary Banker','Camo Cloak',"City Fighter's Resolve","Cloak of Posterity's Gratitude",'Conductor of Brilliance','Cover of Darkness']
+};
+let GEAR=null;
+const ggAbs=u=>!u?'':u.startsWith('//')?'https:'+u:u.startsWith('/')?GG+u:u;
+const ggNum=v=>{const m=String(v==null?'':v).replace(/,/g,'').match(/\d+(\.\d+)?/);return m?+m[0]:null};
+const ggHtml=d=>d&&d.parse?(typeof d.parse.text==='string'?d.parse.text:d.parse.text['*']):null;
+function getGear(){
+  return cached('gear1',12*3600e3,async()=>{
+    const cat=async c=>{try{const d=await ggApi({action:'query',list:'categorymembers',cmtitle:'Category:'+c,cmlimit:'500',cmnamespace:'0'});return ((d.query&&d.query.categorymembers)||[]).map(x=>x.title).filter(t=>!GEAR_BAD.test(t))}catch(e){return []}};
+    const [L,M,H,he,ca]=await Promise.all(['Light Armor','Medium Armor','Heavy Armor','Helmets','Capes'].map(cat));
+    /* one request gives the stats of every body armor: the tables of the Armor page */
+    const st=new Map();
+    try{
+      const html=ggHtml(await ggApi({...PARSE,page:'Armor'}));
+      if(html){
+        const doc=new DOMParser().parseFromString(html,'text/html');
+        doc.querySelectorAll('table').forEach(tb=>{
+          const trs=[...tb.querySelectorAll('tr')];
+          const hr=trs.find(tr=>tr.querySelector('th')&&/speed/i.test(tr.textContent)&&/stamina/i.test(tr.textContent));
+          if(!hr)return;
+          const Hd=[...hr.children].map(c=>clean(c.textContent).toLowerCase());
+          const ix=re=>Hd.findIndex(h=>re.test(h));
+          let iN=ix(/^name|^armor name|^set/);const iA=ix(/^armor|rating/),iS=ix(/speed/),iT=ix(/stamina/),iP=ix(/passive/),iC=ix(/cost/),iR=ix(/source|acqui/);
+          trs.forEach(tr=>{
+            if(tr===hr)return;
+            const c=[...tr.children];if(c.length<4)return;
+            const n=iN>=0?clean((c[iN]||{}).textContent):'';if(!n||/^\d+$/.test(n))return;
+            const im=tr.querySelector('img');
+            st.set(tNorm(n),{n,armor:ggNum((c[iA]||{}).textContent),speed:ggNum((c[iS]||{}).textContent),stamina:ggNum((c[iT]||{}).textContent),passive:clean((c[iP]||{}).textContent),cost:clean((c[iC]||{}).textContent),src:clean((c[iR]||{}).textContent),icon:im?ggAbs(imgSrc(im)):''});
+          });
+        });
+      }
+    }catch(e){}
+    const cls={};L.forEach(n=>cls[tNorm(n)]='Light');M.forEach(n=>cls[tNorm(n)]='Medium');H.forEach(n=>cls[tNorm(n)]='Heavy');
+    let names=[...new Set([...L,...M,...H])];
+    if(!names.length)names=[...st.values()].map(x=>x.n);
+    const armor=names.map(n=>{const s=st.get(tNorm(n))||{};return {n,c:cls[tNorm(n)]||'',armor:s.armor==null?null:s.armor,speed:s.speed==null?null:s.speed,stamina:s.stamina==null?null:s.stamina,passive:s.passive||'',cost:s.cost||'',src:s.src||'',icon:s.icon||''}});
+    if(!armor.length&&!he.length&&!ca.length)throw new Error('no gear');
+    return {armor,helmets:[...new Set(he)],capes:[...new Set(ca)]};
+  });
+}
+function gearData(){
+  const g=GEAR||{};
+  return {
+    armor:(g.armor&&g.armor.length)?g.armor:GEAR_FB.armor.map(([n,c])=>({n,c,armor:null,speed:null,stamina:null,passive:'',cost:'',src:'',icon:''})),
+    helmets:(g.helmets&&g.helmets.length)?g.helmets:GEAR_FB.helmets,
+    capes:(g.capes&&g.capes.length)?g.capes:GEAR_FB.capes
+  };
+}
+const gearStat=n=>gearData().armor.find(x=>x.n===n)||null;
+function gearImgs(k,n,st){
+  const f=s=>ggFile(n+' '+s,420);
+  const L={arm:['Armor Render.png','Armor Icon.png','Armor Armory.png','v1 Armor Render.png'],hel:['Helmet Render.png','Helmet Icon.png','v1 Helmet Render.png'],cap:['Cape Render.png','Cape Icon.png','Cape Armory.png','Cape Default.png']}[k]||[];
+  const u=L.map(f);if(st&&st.icon)u.push(st.icon);
+  return u;
+}
+function gearImgTag(k,n,st,cls){
+  const u=gearImgs(k,n,st);
+  return `<img class="${cls||'wimg'}" src="${esc(u[0])}" data-alt="${esc(u.slice(1).join('|'))}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="imgChain(this)">`;
+}
+/* infobox of a wiki.gg page (cost, source...) */
+function getGgInfo(n){
+  return cached('gi1:'+n,24*3600e3,async()=>{
+    const html=ggHtml(await ggApi({...PARSE,page:n}));
+    if(!html)return {info:[]};
+    const doc=new DOMParser().parseFromString(html,'text/html');
+    doc.querySelectorAll('script,style,sup,.mw-editsection,.navbox,.toc,#toc').forEach(x=>x.remove());
+    const root=doc.querySelector('.mw-parser-output')||doc.body;
+    const info=[],add=(a,b)=>{a=clean(a);b=clean(b);if(a&&b&&a.length<40&&info.length<16&&!info.find(x=>x[0]===a))info.push([a,b.slice(0,120)])};
+    root.querySelectorAll('[class*="infobox"] tr,aside tr').forEach(tr=>{const th=tr.querySelector('th'),td=tr.querySelector('td');if(th&&td)add(th.textContent,td.textContent)});
+    root.querySelectorAll('.pi-data').forEach(p=>{const l=p.querySelector('.pi-data-label'),v=p.querySelector('.pi-data-value');if(l&&v)add(l.textContent,v.textContent)});
+    if(!info.length)root.querySelectorAll('table').forEach((tb,i)=>{if(i<2)tb.querySelectorAll('tr').forEach(tr=>{const th=tr.querySelector('th'),td=tr.querySelector('td');if(th&&td)add(th.textContent,td.textContent)})});
+    return {info};
+  });
+}
+const BL_PRI=[/^damage/i,/fire ?rate|rpm/i,/capacity|magazine/i,/reload/i,/range/i,/penetration/i,/recoil/i,/cooldown/i,/uses|call-?in/i];
+const BL_SKIP=/^(warbond|source|cost|release|category|unlock|acquisition|obtained|image)/i;
+function blPickInfo(info,n){
+  const out=[],used=new Set();
+  BL_PRI.forEach(re=>info.forEach(([a,b],i)=>{if(!used.has(i)&&re.test(a)&&out.length<n){used.add(i);out.push([a,cut(String(b),40)])}}));
+  info.forEach(([a,b],i)=>{if(!used.has(i)&&out.length<n&&!BL_SKIP.test(a)){used.add(i);out.push([a,cut(String(b),40)])}});
+  return out;
+}
+/* [label,value] pairs describing one slot: used by the stats table, the dossier and the PNG */
+async function blStatPairs(s){
+  if(s.k==='arm'){
+    const a=gearStat(s.val);if(!a)return [];
+    const o=[['Class',a.c],['Armor',a.armor],['Speed',a.speed],['Stamina',a.stamina],['Passive',a.passive],['Source',a.src],['Cost',a.cost]].filter(x=>x[1]!=null&&x[1]!=='');
+    if(o.length<3){const g=await getGgInfo(s.val).catch(()=>null);((g&&g.info)||[]).filter(([l])=>/^(armor|speed|stamina|passive|armor type|acquisition|source|cost)/i.test(l)).forEach(x=>{if(!o.find(y=>y[0].toLowerCase()===x[0].toLowerCase()))o.push([x[0],cut(x[1],40)])})}
+    return o.slice(0,7);
+  }
+  if(s.k==='hel'||s.k==='cap'){
+    const g=await getGgInfo(s.val).catch(()=>null);
+    const info=((g&&g.info)||[]).filter(([l])=>!/^(armor|speed|stamina|passive|type|armor type|body)/i.test(l)).slice(0,3).map(([a,b])=>[a,cut(b,40)]);
+    return [['Type','Cosmetic'],...info];
+  }
+  const p=await getPage(s.val).catch(()=>null);
+  if(!p||p.missing)return [];
+  const o=blPickInfo(p.info||[],5);
+  const st=STRAT.find(x=>x.w===s.val);
+  if(st)o.unshift(['Code',st.c.split(' ').map(k=>ARR[k]).join(' ')]);
+  if(!o.length&&p.lead&&p.lead[0])o.push(['Effect',cut(p.lead[0],110)]);
+  return o;
+}
+let BL_ROWS=[],BL_EV=null,blStTok=0;
+async function blStats(){
+  const box=$('#blStats');if(!box||!BL)return;
+  const tok=++blStTok,sel=BL.filter(s=>s.val);
+  if(!sel.length){box.innerHTML='<p class="lead" style="font-size:15px">Pick or roll a loadout to read its numbers.</p>';return}
+  const rows=await Promise.all(sel.map(async s=>({s,p:await blStatPairs(s).catch(()=>[])})));
+  if(tok!==blStTok||!$('#blStats'))return;
+  BL_ROWS=rows;
+  const ga=BL.find(s=>s.k==='arm'&&s.val),a=ga&&gearStat(ga.val);
+  let prof='';
+  if(a&&(a.armor!=null||a.speed!=null||a.stamina!=null)){
+    const all=gearData().armor,mx=k=>Math.max(1,...all.map(x=>x[k]||0));
+    const bar=(l,k)=>a[k]==null?'':`<div class="ax">${l}<b>${a[k]}</b><div><i style="width:${Math.max(4,a[k]/mx(k)*100)}%"></i></div></div>`;
+    prof=`<div class="blArm"><span class="kicker">Armor profile · ${esc(a.n)}${a.c?' · '+esc(a.c):''}</span>${bar('Armor rating','armor')}${bar('Speed','speed')}${bar('Stamina regen','stamina')}${a.passive?`<div class="attr">Passive: <b style="color:var(--y)">${esc(a.passive)}</b></div>`:''}<div class="attr">Bars are relative to the highest value among all armors on the wiki.</div></div>`;
+  }
+  box.innerHTML=`${prof}<div class="blTabW"><table class="blTab"><thead><tr><th>Slot</th><th>Item</th><th>Stats</th></tr></thead><tbody>${rows.map(({s,p})=>`<tr><td data-l="Slot">${esc(s.label)}</td><td data-l="Item"><b>${esc(s.val)}</b></td><td data-l="Stats">${p.length?p.map(([x,y])=>`<span class="st"><i>${esc(x)}</i>${esc(y)}</span>`).join(''):'<span class="attr" style="margin:0">no data listed on the wiki</span>'}</td></tr>`).join('')}</tbody></table></div>
+   <div class="attr">Weapons, stratagems and boosters: numbers read from the Helldivers Wiki (Fandom). Armor, helmets and capes: Helldivers Wiki on wiki.gg.</div>`;
+}
+async function gearDossier(k,n){
+  const st=k==='arm'?gearStat(n):null,kind={arm:'Armor',hel:'Helmet',cap:'Cape'}[k];
+  $('#modalBox').innerHTML=`<button class="x" id="mx" aria-label="Close">✕</button><span class="kicker">${kind} file</span>
+   <h3 style="font-family:var(--h);font-weight:400;font-size:clamp(26px,5vw,40px);letter-spacing:.05em;text-transform:uppercase;color:var(--y);margin:6px 0">${esc(n)}</h3>
+   <div style="text-align:center">${gearImgTag(k,n,st)}</div><div id="gdBody" style="margin-top:10px">${loadingHTML}</div>
+   <div class="attr">Source: <a target="_blank" rel="noopener" href="${GG}/wiki/${encodeURIComponent(n.replace(/ /g,'_'))}">${esc(n)} · Helldivers Wiki (wiki.gg)</a></div>`;
+  showModal();$('#mx').onclick=closeBrief;
+  const pr=await blStatPairs({k,val:n}).catch(()=>[]);
+  if($('#gdBody'))$('#gdBody').innerHTML=pr.length?pr.map(([a,b])=>`<div class="irow"><b>${esc(a)}</b><span>${esc(b)}</span></div>`).join(''):'<p class="lead" style="font-size:15px">No data listed on the wiki.</p>';
+}
+
+/* ---------- OPERATOR CARD (any title, level independent) ---------- */
+let BC_SP=SPECIAL_TITLES.slice(),BC_SPI={};
+function bcFillTitles(keep){
+  const sel=$('#bcTitle');if(!sel)return;
+  const cur0=keep!=null?keep:sel.value||'auto';
+  sel.innerHTML=`<option value="auto">Automatic · title of the level</option><optgroup label="Rank titles (by level)">${TITLES_FB.map(t=>`<option value="r:${t.lv}">LV ${t.lv} · ${esc(t.name)}</option>`).join('')}</optgroup><optgroup label="Warbond and special titles">${[...BC_SP].sort((a,b)=>a.localeCompare(b,'en',{sensitivity:'base'})).map(n=>`<option value="s:${esc(n)}">${esc(n)}</option>`).join('')}</optgroup>`;
+  sel.value=[...sel.options].some(o=>o.value===cur0)?cur0:'auto';
+}
+function bcTitle(lv){
+  const v=($('#bcTitle')||{}).value||'auto';
+  if(v.startsWith('r:')){const t=TITLES_FB.find(x=>x.lv===+v.slice(2));if(t)return {name:t.name,lv:t.lv,kind:'rank'}}
+  if(v.startsWith('s:'))return {name:v.slice(2),lv:0,kind:'special'};
+  const t=titleFor(lv);return {name:t.name,lv:t.lv,kind:'rank'};
+}
+const bcLvl=()=>Math.max(1,Math.min(300,Math.floor(+($('#bcLv')||{}).value)||1));
+function bcIcon(t){
+  if(t.kind==='rank')return titleImg(t,'idic');
+  const alts=[BC_SPI[t.name]].filter(Boolean).map(esc).join('|');
+  return `<img class="idic" src="${esc(specIcon(t.name))}" data-alt="${alts}" alt="" referrerpolicy="no-referrer" onerror="imgChain(this)">`;
+}
+function bcCard(){
+  const o=$('#bcOut');if(!o||!$('#bcLv'))return;
+  const lv=bcLvl(),raw=$('#bcName').value.trim(),nm=(raw||'CITIZEN').toUpperCase(),t=bcTitle(lv),nx=TITLES.find(x=>x.lv>lv);
+  o.innerHTML=`<div class="idc"><div class="idh"><div class="idE">${emb('superEarth')}</div><div><b>SUPER EARTH</b><span>HELLDIVER SERVICE RECORD</span></div></div>
+   <div class="idn">${esc(nm)}</div><div class="idt">${esc(t.name)}</div>
+   <div class="idr"><span>LEVEL</span><b>${lv}</b></div>
+   <div class="idr"><span>NEXT TITLE</span><b>${nx?esc(nx.name)+' · LV '+nx.lv:'MAXIMUM — SUSPICIOUSLY HIGH'}</b></div>
+   <div class="idr"><span>STATUS</span><b class="ok">LOYAL (PENDING REVIEW)</b></div>
+   <div class="bc"></div><div class="stamp">APPROVED</div>${bcIcon(t)}</div>`;
+  LS.set('bc',{n:raw,l:lv,t:$('#bcTitle').value});
+}
+function bcInit(){
+  if(!$('#bcName'))return;
+  const sv=LS.get('bc')||{},id=LS.get('id')||{};
+  $('#bcName').value=sv.n!=null?sv.n:(id.n||'');
+  $('#bcLv').value=sv.l||id.l||lvlOf(SAVE.xp);
+  bcFillTitles(sv.t||'auto');
+  bcCard();
+  $('#bcName').oninput=bcCard;$('#bcLv').oninput=bcCard;$('#bcTitle').onchange=bcCard;
+  $('#bcCamp').onclick=()=>{$('#bcLv').value=lvlOf(SAVE.xp);bcCard()};
+  $('#bcAuto').onclick=()=>{$('#bcTitle').value='auto';bcCard()};
+  const A=['Iron','Liberty','Freedom','Valor','Patriot','Eagle','Justice','Thunder'],B=['Fist','Dive','Spear','Heart','Storm','Hammer','Vow','Wing'];
+  $('#bcRnd').onclick=()=>{$('#bcName').value=pick(A)+' '+pick(B);bcCard()};
+  /* warbond titles known to the wiki, added to the list when available */
+  getWbTitles().then(rows=>{
+    if(cur!=='builder'||!rows)return;
+    const have=new Set(BC_SP.map(tNorm));let add=false;
+    rows.forEach(r=>{if(r.img)BC_SPI[r.n]=r.img;if(r.n&&!have.has(tNorm(r.n))&&r.n.length<40){have.add(tNorm(r.n));BC_SP.push(r.n);add=true}});
+    if(add){bcFillTitles();bcCard()}
+  }).catch(()=>{});
+  resolveRanks();
+}
+
+/* ---------- EXPORT: card + loadout as one PNG, drawn on a canvas in the style of the site ---------- */
+const delay=ms=>new Promise(r=>setTimeout(r,ms));
+function loadImg(urls,ms){
+  const one=u=>new Promise(res=>{const im=new Image();im.crossOrigin='anonymous';const t=setTimeout(()=>res(null),ms||6000);im.onload=()=>{clearTimeout(t);res(im)};im.onerror=()=>{clearTimeout(t);res(null)};im.src=u});
+  return Promise.race([(async()=>{for(const u of [...new Set(urls.filter(Boolean))]){const im=await one(u);if(im)return im}return null})(),delay(16000).then(()=>null)]);
+}
+const svgImg=str=>loadImg(['data:image/svg+xml;charset=utf-8,'+encodeURIComponent(String(str).replace(/^<svg /,'<svg xmlns="http://www.w3.org/2000/svg" ').replace(/currentColor/g,'#ffe81f'))]);
+async function bcRender(noImg){
+  const S=2,W=1200,PAD=36,HDR=84,TOP=HDR+24;
+  const cs=getComputedStyle(document.documentElement),HF=cs.getPropertyValue('--h').trim()||'Impact,sans-serif',MF=cs.getPropertyValue('--m').trim()||'monospace';
+  const items=BL.filter(s=>s.val),lv=bcLvl(),nm=($('#bcName').value.trim()||'CITIZEN').toUpperCase(),t=bcTitle(lv),nx=TITLES.find(x=>x.lv>lv);
+  const prs=s=>((BL_ROWS.find(r=>r.s===s))||{p:[]}).p;
+  const IM={};
+  if(!noImg){
+    const jobs=[];
+    items.forEach(s=>{
+      if(GEARK.includes(s.k))jobs.push(loadImg(gearImgs(s.k,s.val,s.k==='arm'?gearStat(s.val):null)).then(im=>IM[s.k]=im));
+      else jobs.push(getPage(s.val).then(p=>loadImg(p&&!p.missing&&p.img?[p.img]:[])).catch(()=>null).then(im=>IM[s.k]=im));
+    });
+    const eb=$('#brandEmb img');
+    jobs.push((eb&&eb.src?loadImg([eb.src]):Promise.resolve(null)).then(async im=>IM.emb=im||await svgImg(SVG.superEarth)));
+    const tu=t.kind==='rank'?[RANKU[t.lv],rankIconUrl(t),TICON[t.name]]:[BC_SPI[t.name],specIcon(t.name)];
+    jobs.push(loadImg(tu).then(async im=>IM.title=im||await svgImg(tBadge({lv:t.lv||200,name:t.name}))));
+    await Promise.all(jobs);
+  }else{
+    IM.emb=await svgImg(SVG.superEarth);IM.title=await svgImg(tBadge({lv:t.lv||200,name:t.name}));
+  }
+  /* layout */
+  const COLS=3,CW=240,GAP=20,CH=236,RG=16,RX=PAD+340+28,rows=Math.ceil(items.length/COLS);
+  const ev=BL_EV,ga=BL.find(s=>s.k==='arm'&&s.val),a=ga&&gearStat(ga.val),hasA=a&&(a.armor!=null||a.speed!=null||a.stamina!=null);
+  const tw=($('#blTwist')||{}).textContent||'';
+  const cardH=392,evH=ev?248:0,arH=hasA?150:0,twH=tw?104:0;
+  const leftB=TOP+cardH+(ev?20+evH:0)+(hasA?16+arH:0)+(tw?16+twH:0);
+  const rightB=TOP+rows*(CH+RG)-RG;
+  const H=Math.max(leftB,rightB)+78;
+  const cv=document.createElement('canvas');cv.width=W*S;cv.height=H*S;
+  const c=cv.getContext('2d');c.scale(S,S);
+  const panel=(x,y,w,h,k,fill,stroke,lw)=>{c.save();c.beginPath();c.moveTo(x,y);c.lineTo(x+w-k,y);c.lineTo(x+w,y+k);c.lineTo(x+w,y+h);c.lineTo(x+k,y+h);c.lineTo(x,y+h-k);c.closePath();if(fill){c.fillStyle=fill;c.fill()}if(stroke){c.lineWidth=lw||1;c.strokeStyle=stroke;c.stroke()}c.restore()};
+  const T=(s,x,y,o)=>{o=o||{};c.save();c.font=o.f;c.fillStyle=o.c||'#fff';c.textAlign=o.a||'left';c.textBaseline='alphabetic';try{c.letterSpacing=(o.ls||0)+'px'}catch(e){}let str=String(s);if(o.mw){const full=str;while(str.length>1&&c.measureText(str).width>o.mw)str=str.slice(0,-1);if(str!==full)str=str.slice(0,-1)+'…'}c.fillText(str,x,y);c.restore()};
+  const fit=(im,x,y,w,h)=>{if(!im)return false;const r=Math.min(w/im.width,h/im.height),dw=im.width*r,dh=im.height*r;c.drawImage(im,x+(w-dw)/2,y+(h-dh)/2,dw,dh);return true};
+  const lines=(s,w,font,max)=>{c.save();c.font=font;const out=[];let cur2='';String(s).split(/\s+/).forEach(wd=>{const tr=cur2?cur2+' '+wd:wd;if(c.measureText(tr).width>w&&cur2){out.push(cur2);cur2=wd}else cur2=tr});if(cur2)out.push(cur2);c.restore();if(out.length>max){out.length=max;out[max-1]=out[max-1].replace(/\s*\S*$/,'')+'…'}return out};
+  const pack=(pairs,w,font,max)=>{c.save();c.font=font;const out=[];let cur2='';pairs.forEach(([x,y])=>{const p=x+' '+y,tr=cur2?cur2+'   '+p:p;if(c.measureText(tr).width>w&&cur2){out.push(cur2);cur2=p}else cur2=tr});if(cur2)out.push(cur2);c.restore();if(out.length>max)out.length=max;return out};
+  /* background */
+  c.fillStyle='#05070a';c.fillRect(0,0,W,H);
+  c.strokeStyle='rgba(255,232,31,.045)';c.lineWidth=1;
+  for(let x=0;x<W;x+=40){c.beginPath();c.moveTo(x+.5,0);c.lineTo(x+.5,H);c.stroke()}
+  for(let y=0;y<H;y+=40){c.beginPath();c.moveTo(0,y+.5);c.lineTo(W,y+.5);c.stroke()}
+  const g=c.createRadialGradient(W/2,H/2,H*.25,W/2,H/2,H*.8);g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(1,'rgba(0,0,0,.65)');c.fillStyle=g;c.fillRect(0,0,W,H);
+  /* top bar */
+  c.fillStyle='#000';c.fillRect(0,0,W,HDR);
+  c.fillStyle='#ffe81f';c.fillRect(0,HDR-6,W,3);c.fillStyle='#f5c400';c.fillRect(0,HDR,W,2);
+  fit(IM.emb,PAD,20,44,44);
+  T('DEMOCRACY ARCHIVE',PAD+60,50,{f:'28px '+HF,c:'#ffe81f',ls:3});
+  T('LOADOUT FILE · '+nm,W-PAD,50,{f:'16px '+MF,c:'#8b98a5',a:'right',ls:2,mw:520});
+  /* operator card */
+  const cx=PAD,cy=TOP,cw=340;
+  const gr=c.createLinearGradient(cx,cy,cx+cw,cy+cardH);gr.addColorStop(0,'#0f1a25');gr.addColorStop(1,'#0a1018');
+  c.fillStyle=gr;c.fillRect(cx,cy,cw,cardH);c.strokeStyle='#ffe81f';c.lineWidth=2;c.strokeRect(cx+1,cy+1,cw-2,cardH-2);
+  fit(IM.emb,cx+20,cy+18,50,50);
+  T('SUPER EARTH',cx+82,cy+46,{f:'26px '+HF,c:'#ffe81f',ls:3});
+  T('HELLDIVER SERVICE RECORD',cx+82,cy+64,{f:'10px '+MF,c:'#8b98a5',ls:2});
+  c.fillStyle='#ffe81f';c.fillRect(cx+20,cy+80,cw-40,2);
+  let fs=48;c.save();while(fs>20){c.font=fs+'px '+HF;if(c.measureText(nm).width<=cw-40)break;fs-=2}c.restore();
+  T(nm,cx+20,cy+138,{f:fs+'px '+HF,c:'#fff',ls:2});
+  const tl=lines(t.name.toUpperCase(),cw-40-100,'22px '+HF,2);
+  tl.forEach((l,i)=>T(l,cx+20,cy+176+i*26,{f:'22px '+HF,c:'#37d6ff',ls:2}));
+  if(IM.title){c.save();c.shadowColor='rgba(255,232,31,.4)';c.shadowBlur=12;fit(IM.title,cx+cw-20-84,cy+150,84,84);c.restore()}
+  const rowsC=[['LEVEL',String(lv),'#fff'],['NEXT TITLE',nx?nx.name+' · LV '+nx.lv:'MAXIMUM, SUSPICIOUSLY HIGH','#fff'],['STATUS','LOYAL (PENDING REVIEW)','#7dff9b']];
+  rowsC.forEach(([l,v,col],i)=>{const y=cy+258+i*32;c.fillStyle='rgba(255,255,255,.08)';c.fillRect(cx+20,y+10,cw-40,1);T(l,cx+20,y+4,{f:'12px '+MF,c:'#8b98a5',ls:1.5});T(v,cx+cw-20,y+4,{f:'12px '+MF,c:col,a:'right',mw:cw-40-100})});
+  let hs=0;for(const ch of nm)hs=(hs*31+ch.charCodeAt(0))>>>0;
+  c.fillStyle='rgba(255,255,255,.75)';let bx=cx+20;const bw=cw-40;while(bx<cx+20+bw-2){hs=(hs*1103515245+12345)>>>0;const w1=1+(hs>>>16)%4,gp=2+(hs>>>20)%4;c.fillRect(bx,cy+cardH-52,Math.min(w1,cx+20+bw-bx),30);bx+=w1+gp}
+  c.save();c.translate(cx+cw-92,cy+cardH-30);c.rotate(-.21);c.strokeStyle='#7dff9b';c.lineWidth=3;c.fillStyle='rgba(5,7,10,.8)';c.fillRect(-72,-22,144,40);c.strokeRect(-72,-22,144,40);c.restore();
+  c.save();c.translate(cx+cw-92,cy+cardH-30);c.rotate(-.21);T('APPROVED',0,6,{f:'22px '+HF,c:'#7dff9b',a:'center',ls:3});c.restore();
+  /* evaluation */
+  let ly=cy+cardH;
+  if(ev){
+    ly+=20;panel(cx,ly,cw,evH,14,'rgba(11,17,24,.92)','rgba(255,232,31,.3)',1);c.fillStyle='#ffe81f';c.fillRect(cx,ly+14,4,evH-28);
+    T('LOADOUT EVALUATION · '+({all:'ALL FRONTS',bug:'TERMINIDS',bot:'AUTOMATONS',ill:'ILLUMINATE'}[ev.fac]||'ALL FRONTS'),cx+20,ly+26,{f:'11px '+MF,c:'#37d6ff',ls:2,mw:cw-40});
+    T(ev.grade,cx+20,ly+112,{f:'88px '+HF,c:'#ffe81f'});
+    T(ev.score.toFixed(1)+' / 10',cx+20,ly+136,{f:'11px '+MF,c:'#8b98a5',ls:1.5});
+    AXES.forEach(([k,l],i)=>{const y=ly+54+i*34,bx2=cx+128,bw2=cw-128-20;T(l.toUpperCase(),bx2,y,{f:'11px '+MF,c:'#cfe0ea',ls:1});T(ev.v[k].toFixed(1),bx2+bw2,y,{f:'11px '+MF,c:'#ffe81f',a:'right'});c.fillStyle='rgba(255,255,255,.1)';c.fillRect(bx2,y+8,bw2,8);c.fillStyle='#ffe81f';c.fillRect(bx2,y+8,bw2*Math.min(1,ev.v[k]/10),8)});
+    ly+=evH;
+  }
+  if(hasA){
+    ly+=16;panel(cx,ly,cw,arH,14,'rgba(11,17,24,.92)','rgba(255,232,31,.3)',1);c.fillStyle='#ffe81f';c.fillRect(cx,ly+14,4,arH-28);
+    T('ARMOR PROFILE · '+(a.c||'').toUpperCase(),cx+20,ly+26,{f:'11px '+MF,c:'#37d6ff',ls:2,mw:cw-40});
+    const all=gearData().armor,mx=k=>Math.max(1,...all.map(x=>x[k]||0));let yy=ly+52;
+    [['ARMOR RATING','armor'],['SPEED','speed'],['STAMINA REGEN','stamina']].forEach(([l,k])=>{if(a[k]==null)return;T(l,cx+20,yy,{f:'11px '+MF,c:'#cfe0ea',ls:1});T(String(a[k]),cx+cw-20,yy,{f:'11px '+MF,c:'#ffe81f',a:'right'});c.fillStyle='rgba(255,255,255,.1)';c.fillRect(cx+20,yy+7,cw-40,7);c.fillStyle='#ffe81f';c.fillRect(cx+20,yy+7,(cw-40)*Math.max(.04,a[k]/mx(k)),7);yy+=30});
+    if(a.passive)T('PASSIVE: '+a.passive.toUpperCase(),cx+20,ly+arH-12,{f:'11px '+MF,c:'#ffe81f',ls:1,mw:cw-40});
+    ly+=arH;
+  }
+  if(tw){
+    ly+=16;c.fillStyle='rgba(255,232,31,.06)';c.fillRect(cx,ly,cw,twH);c.fillStyle='#ffe81f';c.fillRect(cx,ly,4,twH);
+    lines(tw,cw-40,'12px '+MF,5).forEach((l,i)=>T(l,cx+18,ly+24+i*16,{f:'12px '+MF,c:'#cfe0ea'}));
+  }
+  /* slots */
+  items.forEach((s,i)=>{
+    const col=i%COLS,row=(i/COLS)|0,x=RX+col*(CW+GAP),y=TOP+row*(CH+RG);
+    panel(x,y,CW,CH,14,'rgba(11,17,24,.92)','rgba(255,232,31,.3)',1);
+    c.fillStyle='#ffe81f';c.fillRect(x,y+14,4,CH-28);
+    T(s.label.toUpperCase(),x+16,y+22,{f:'11px '+MF,c:'#37d6ff',ls:2,mw:CW-32});
+    c.fillStyle='rgba(0,0,0,.4)';c.fillRect(x+16,y+32,CW-32,98);c.strokeStyle='rgba(255,232,31,.18)';c.lineWidth=1;c.strokeRect(x+16.5,y+32.5,CW-33,97);
+    if(!fit(IM[s.k],x+22,y+36,CW-44,90)){c.save();c.globalAlpha=.16;fit(IM.emb,x+CW/2-26,y+57,52,52);c.restore()}
+    lines(s.val.toUpperCase(),CW-32,'20px '+HF,2).forEach((l,j)=>T(l,x+16,y+154+j*22,{f:'20px '+HF,c:'#fff',ls:1}));
+    const pr=prs(s).filter(p=>p[0]!=='Code'),code=STRAT.find(z=>z.w===s.val);
+    let yy=y+196;
+    if(code){T(code.c.split(' ').map(k=>ARR[k]).join(' '),x+16,yy,{f:'16px '+MF,c:'#ffe81f',ls:4});yy+=17}
+    pack(pr,CW-32,'11px '+MF,code?2:3).forEach(l=>{T(l,x+16,yy,{f:'11px '+MF,c:'#cfe0ea',mw:CW-32});yy+=15});
+  });
+  /* footer */
+  c.fillStyle='rgba(255,232,31,.25)';c.fillRect(PAD,H-58,W-2*PAD,1);
+  T('Made with HelldiverInteractiveArchive by Phenix',W/2,H-32,{f:'12px '+MF,c:'#8b98a5',a:'center',ls:1.5});
+  c.save();c.beginPath();c.rect(0,H-10,W,10);c.clip();c.fillStyle='#ffe81f';c.fillRect(0,H-10,W,10);c.fillStyle='#05070a';for(let x=-20;x<W+20;x+=28){c.beginPath();c.moveTo(x,H);c.lineTo(x+14,H);c.lineTo(x+24,H-10);c.lineTo(x+10,H-10);c.closePath();c.fill()}c.restore();
+  return new Promise((res,rej)=>{try{cv.toBlob(b=>b?res(b):rej(new Error('blob')),'image/png')}catch(e){rej(e)}});
+}
+async function bcExport(){
+  if(!BL||!BL.some(s=>s.val)){toast('Pick or roll a loadout first');return}
+  const btns=$$('[data-bx]');btns.forEach(b=>{b.disabled=true});toast('Printing your file...');
+  try{
+    await blEvaluate();await blStats();
+    let blob;
+    try{blob=await bcRender(false)}catch(e){blob=await bcRender(true)}
+    const url=URL.createObjectURL(blob),nm=($('#bcName').value.trim()||'citizen').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'citizen';
+    $('#modalBox').innerHTML=`<button class="x" id="mx" aria-label="Close">✕</button><span class="kicker">Loadout image · PNG</span>
+     <img id="bxImg" src="${url}" alt="Your loadout" style="width:100%;height:auto;display:block;margin:12px 0;border:1px solid var(--line)">
+     <div class="ctl"><a class="btn" id="bxDl" href="${url}" download="helldivers-loadout-${nm}.png">⬇ Download PNG</a></div>
+     <div class="attr">On a phone, if the download does not start, press and hold the image to save it.</div>`;
+    showModal();$('#mx').onclick=closeBrief;
+  }catch(e){toast('Export failed. Try again.')}
+  btns.forEach(b=>{b.disabled=false});
+}
+
+
+/* ---------- LIVE WAR COUNTERS (same war API as the Major Order; refreshed at most every 5 minutes) ---------- */
+const WS_TTL=300e3;
+let WSD=null,wsP=null,wsLast=0;
+const fmtBig=n=>{n=+n;if(!isFinite(n))return '—';if(n>=1e9)return (n/1e9).toFixed(2)+' billion';if(n>=1e6)return (n/1e6).toFixed(2)+' million';return fmtN(Math.round(n))};
+async function getWarStats(){
+  const now=Date.now();
+  if(WSD&&now-WSD.t<WS_TTL)return WSD;
+  const c=LS.get('ws');
+  if(!WSD&&c&&now-c.t<WS_TTL){WSD=c;return WSD}
+  if(wsP)return wsP;
+  if(WSD&&now-wsLast<60e3)return WSD;
+  wsLast=now;
+  wsP=(async()=>{
+    try{
+      const [st,cp,sv]=await Promise.all([moFetch('/war/stats'),moFetch('/war/campaign').catch(()=>null),moFetch('/war/status').catch(()=>null)]);
+      if(!st||st.missionsWon==null)throw new Error('no stats');
+      const camp=Array.isArray(cp)?cp:[],sum=a=>a.reduce((x,p)=>x+(+p.players||0),0),f={};
+      ['Terminids','Automatons','Illuminates'].forEach(k=>{const l=camp.filter(p=>p.faction===k);f[k]={p:sum(l),n:l.length}});
+      WSD={t:Date.now(),live:true,won:+st.missionsWon,lost:+st.missionsLost,rate:+st.missionSuccessRate,deaths:+st.deaths,ff:+st.friendlies,bug:+st.bugKills,bot:+st.automatonKills,ill:+st.illuminateKills,
+        online:sv&&Array.isArray(sv.planetStatus)?sum(sv.planetStatus):null,front:camp.length?sum(camp):null,planets:camp.length||null,f};
+      LS.set('ws',WSD);return WSD;
+    }catch(e){
+      const o=WSD||c;if(o){WSD=Object.assign({},o,{live:false});return WSD}
+      throw e;
+    }finally{wsP=null}
+  })();
+  return wsP;
+}
+function wsSet(el,to,fmt){
+  if(!el)return;
+  if(to==null||!isFinite(to)){el.textContent='—';return}
+  const had=el.dataset.v!=null,from=had?+el.dataset.v:0,d=had?900:1600,id=el.dataset.tk=(+el.dataset.tk||0)+1;
+  el.dataset.v=to;
+  if(had&&from===to){el.textContent=fmt(to);return}
+  let t0=null;
+  const s=t=>{if(+el.dataset.tk!==id)return;if(!t0)t0=t;const p=Math.min((t-t0)/d,1);el.textContent=fmt(from+(to-from)*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(s)};
+  requestAnimationFrame(s);
+}
+function wsPaint(d){
+  const I=n=>fmtN(Math.round(n)),S=(id,v,f)=>wsSet($('#'+id),v,f||I);
+  S('stOn',d.online);S('stWon',d.won,fmtBig);S('stRate',d.rate,n=>Math.round(n)+'%');S('stLost',d.deaths,fmtBig);S('stPl',d.planets);
+  S('wsBug',d.bug,fmtBig);S('wsBot',d.bot,fmtBig);S('wsIll',d.ill,fmtBig);S('wsFF',d.ff,fmtBig);S('wsFr',d.front);
+  [['B','Terminids'],['I','Illuminates'],['A','Automatons']].forEach(([k,fc])=>{const x=(d.f||{})[fc]||{p:0,n:0};S('wsv'+k,x.p);const e=$('#wsv'+k+'s');if(e)e.textContent=x.n+(x.n===1?' planet':' planets')});
+  const l=$('#wsLive');if(l){l.className='moLive'+(d.live===false?' off':'');l.textContent=d.live===false?'● CACHED':'● LIVE'}
+  const u=$('#wsUp');if(u)u.textContent=' · updated '+new Date(d.t).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+}
+async function wsLoad(){
+  if(!$('#wsGrid'))return;
+  try{const d=await getWarStats();if($('#wsGrid'))wsPaint(d)}
+  catch(e){
+    $$('#hubStats b,#wsGrid b').forEach(b=>{if(b.dataset.v==null)b.textContent='—'});
+    const l=$('#wsLive');if(l){l.className='moLive off';l.textContent='● UNAVAILABLE'}
+  }
+}
+function wsTick(){if(document.hidden||!$('#wsGrid'))return;wsLoad()}
+setInterval(wsTick,30000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)wsTick()});
 
 /* ---------- XP CALCULATOR (community-verified level table) ---------- */
 /* XP needed to reach a level from the previous one. Levels 2-11 are listed values, 12-150 follow
