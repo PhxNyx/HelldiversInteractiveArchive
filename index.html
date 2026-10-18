@@ -228,7 +228,7 @@ h2.sec small{display:block;font-family:var(--m);font-size:13px;letter-spacing:.2
 @keyframes beam{to{top:100vh}}
 .boom{position:absolute;width:20px;height:20px;border-radius:50%;background:radial-gradient(#fff,var(--y),#ff6a00,#0000);animation:boom .8s ease-out forwards}
 @keyframes boom{to{transform:scale(22);opacity:0}}
-.fxText{position:absolute;left:50%;top:38%;transform:translate(-50%,-50%);font-family:var(--h);font-size:clamp(34px,8vw,100px);color:var(--y);letter-spacing:.12em;text-transform:uppercase;text-shadow:0 0 30px #000,0 0 40px var(--y);animation:ftx 1.8s forwards;white-space:nowrap}
+.fxText{position:absolute;left:50%;top:38%;transform:translate(-50%,-50%);font-family:var(--h);font-size:clamp(34px,8vw,100px);color:var(--y);letter-spacing:.12em;text-transform:uppercase;text-shadow:0 0 30px #000,0 0 40px var(--y);animation:ftx 1.8s forwards;width:max-content;max-width:88vw;text-align:center;white-space:normal;overflow-wrap:anywhere;line-height:1.1}
 @keyframes ftx{0%{opacity:0;transform:translate(-50%,-50%) scale(2)}15%{opacity:1;transform:translate(-50%,-50%) scale(1)}80%{opacity:1}100%{opacity:0;transform:translate(-50%,-70%) scale(1)}}
 .shk{animation:shk .5s}
 @keyframes shk{20%{transform:translate(-12px,8px)}40%{transform:translate(10px,-10px)}60%{transform:translate(-8px,-6px)}80%{transform:translate(6px,8px)}}
@@ -678,7 +678,7 @@ h2.sec::after{content:"";display:block;height:6px;width:150px;margin-top:16px;ba
 /* easter eggs */
 #eggO{position:fixed;inset:0;z-index:300;display:flex;align-items:center;justify-content:center;flex-direction:column;background:#000d;font-family:var(--h);color:var(--rd);text-align:center;letter-spacing:.14em;text-transform:uppercase}
 #eggO b{font-weight:400;font-size:clamp(50px,16vw,220px);line-height:1}
-#eggO span{font-family:var(--m);font-size:14px;color:var(--y)}
+#eggO span{font-family:var(--m);font-size:14px;color:var(--y);max-width:90vw;padding:0 12px}
 #eggO.boom{background:#fff;color:#000;animation:eggF 1.2s forwards}
 @keyframes eggF{0%{background:#fff}100%{background:#000000e0}}
 .bugR{position:fixed;bottom:6px;z-index:250;width:34px;height:34px;color:var(--y);pointer-events:none;animation:bugRun 5.5s linear forwards}
@@ -704,6 +704,40 @@ button.wbIt{cursor:pointer}button.wbIt:hover{background:#ffe81f1c;border-color:v
 #pq{width:100%;max-width:520px;background:#000a;border:2px solid var(--y);color:var(--y);padding:14px 18px;font-family:var(--m);font-size:18px;outline:none}
 .aTools #pq{flex:1;min-width:220px}
 .pnList .moRow:hover{background:#ffe81f12}
+
+/* ---------- BESTIARY / GALAXY: uniform, tidy cards ---------- */
+#bGrid,#pGrid{grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:20px;align-items:stretch}
+#bGrid .lz,#pGrid .lz{min-width:0;border-top:3px solid var(--line)}
+#bGrid .lz[data-g="Terminids"]{border-top-color:#ffa94d}
+#bGrid .lz[data-g="Automatons"]{border-top-color:var(--rd)}
+#bGrid .lz[data-g="Illuminate"]{border-top-color:#c27bff}
+#pGrid .lz{border-top-color:var(--cy)}
+#bGrid .lz h4,#pGrid .lz h4{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.4em;line-height:1.2;margin-bottom:8px}
+#bGrid .lz .cat{margin-bottom:4px}
+#bGrid .lz[data-g="Terminids"] .cat{color:#ffa94d}
+#bGrid .lz[data-g="Automatons"] .cat{color:var(--rd)}
+#bGrid .lz[data-g="Illuminate"] .cat{color:#c27bff}
+.pFr{position:relative;width:100%;height:170px;margin:4px 0 12px;background:#00000066;border:1px solid var(--line);overflow:hidden}
+.pFr .pFb{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--y);opacity:.14}
+.pFr .pFb svg{width:64px;height:64px}
+.pFr .wimg{position:absolute;inset:0;width:100%;height:100%;max-height:none;margin:0;border:0;background:none;object-fit:contain}
+#bGrid .lz p,#pGrid .lz p{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;min-height:6.2em}
+#bGrid .lz .irow,#pGrid .lz .irow{min-width:0}
+#bGrid .lz .irow span,#pGrid .lz .irow span{min-width:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
+@media(max-width:640px){#bGrid,#pGrid{grid-template-columns:1fr}.pFr{height:150px}}
+
+/* ---------- XP calculator: play stats and estimate tiles ---------- */
+.xpSess{margin-top:22px;padding-top:16px;border-top:1px dashed var(--line)}
+.xpSess .kicker small{font-size:10px;letter-spacing:.1em;color:var(--mut);text-transform:none}
+.xpRow2{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:end}
+.xpAvg{margin-top:12px;font-family:var(--m);font-size:12px;color:var(--mut);display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center}
+.xpAvg b{color:var(--cy);letter-spacing:.14em;text-transform:uppercase;font-weight:400;font-size:11px}
+.xpAvg span{color:var(--y)}
+.xpTiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:16px 0 8px}
+.xpTiles>div{border:1px solid var(--line);background:#0006;padding:12px 8px;text-align:center;min-width:0}
+.xpTiles b{display:block;font-family:var(--h);font-weight:400;font-size:clamp(22px,2.6vw,30px);color:var(--y);letter-spacing:.04em;line-height:1.1;overflow-wrap:anywhere}
+.xpTiles small{display:block;margin-top:6px;font-family:var(--m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+@media(max-width:640px){.xpTiles{grid-template-columns:1fr}.xpTiles>div{padding:10px}}
 
 /* ---------- MOBILE ADAPTATION (phones and small tablets only; desktop untouched) ---------- */
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
@@ -1266,7 +1300,8 @@ async function fillCard(el){
     if(p.missing){el.innerHTML=`<h4>${esc(q)}</h4><p>No matching page found on the wiki.</p>`;return}
     el.dataset.t=p.title;
     const n=mode==='weapon'||mode==='enemy'?10:4;
-    el.innerHTML=(el.dataset.g?`<div class="cat">${esc(el.dataset.g)}</div>`:'')+`<h4>${esc(p.title)}</h4>`+wimg(p.img)+`<p>${esc(cut(p.lead[0]||'',mode==='weapon'?340:240))}</p>`+irows(p,n)+`<button class="btn ghost sm" data-open="${esc(p.title)}">Full entry</button>`;
+    const tidy=mode==='enemy'||mode==='planet';
+    el.innerHTML=(el.dataset.g?`<div class="cat">${esc(el.dataset.g)}</div>`:'')+`<h4>${esc(p.title)}</h4>`+(tidy?`<div class="pFr"><span class="pFb">${SVG.superEarth}</span>${wimg(p.img)}</div>`:wimg(p.img))+`<p>${esc(cut(p.lead[0]||'',mode==='weapon'?340:240))}</p>`+irows(p,tidy?4:n)+`<button class="btn ghost sm" data-open="${esc(p.title)}">Full entry</button>`;
   }catch(e){el.innerHTML=errHTML(q)}
 }
 function lazyGrid(sel,names,mode,cls,meta){
@@ -1702,8 +1737,8 @@ async function getPlanets(){
   try{const d=await moFetch('/planets');PLN={};Object.entries(d).forEach(([k,v])=>{if(v&&v.name)PLN[k]=v.name});LS.set('pl:idx',{t:Date.now(),d:PLN});return PLN}
   catch(e){if(c){PLN=c.d;return PLN}return {}}
 }
-async function getMO(){
-  if(MOD&&Date.now()-MOD.t<120e3)return MOD;
+async function getMO(force){
+  if(!force&&MOD&&Date.now()-MOD.t<120e3)return MOD;
   try{const d=await moFetch('/war/major-orders');MOD={t:Date.now(),d:Array.isArray(d)?d:(d?[d]:[]),live:true};LS.set('mo',{t:MOD.t,d:MOD.d})}
   catch(e){const c=LS.get('mo');if(!c)throw e;MOD={t:c.t,d:c.d,live:false}}
   return MOD;
@@ -1734,20 +1769,31 @@ function moHTML(o,pl,compact){
    ${tasks.map(t=>{const p=t.goal?Math.min(100,t.cur/t.goal*100):(t.done?100:0);return `<div class="moT ${t.done?'done':''}"><div class="tl1"><span>${esc(t.label)}</span><b>${t.goal?fmtN(Math.min(t.cur,t.goal))+' / '+fmtN(t.goal):(t.done?'COMPLETE':'IN PROGRESS')}</b></div><div class="prog"><i style="width:${p}%"></i></div></div>`}).join('')}
    ${rw&&rw.amount?`<div class="moRew">Reward: ${fmtN(rw.amount)} ${rw.type===1?'Medals':'(reward type '+rw.type+')'}</div>`:''}`;
 }
-async function moCard(sel,compact){
+async function moCard(sel,compact,silent){
   const box=$(sel);if(!box)return;
-  box.innerHTML=loadingHTML;
+  if(!silent)box.innerHTML=loadingHTML;
   try{
-    const [m,pl]=await Promise.all([getMO(),getPlanets()]);
+    const [m,pl]=await Promise.all([getMO(silent),getPlanets()]);
     if(!$(sel))return;
+    const sig=JSON.stringify(m.d.map(o=>[o.id32,o.progress,o.setting]));
+    if(silent){
+      if(!m.live)return;
+      $$('.moCd',box).forEach((el,i)=>{const o=m.d[i];if(o)el.dataset.exp=m.t+(o.expiresIn||0)*1000});
+      if(box.dataset.sig===sig)return;
+    }
+    box.dataset.sig=sig;
     const src=`<div class="attr"><span class="moLive ${m.live?'':'off'}">${m.live?'● LIVE':'● CACHED'}</span> Source: Helldivers war API (helldiverstrainingmanual.com), the same feed as the <a target="_blank" rel="noopener" href="${MO_TRACKER}">Prop Builds live tracker ↗</a>${m.live?'':' · last saved copy shown (API unreachable)'}</div>`;
     box.innerHTML=(m.d.length?m.d.map(o=>moHTML(o,pl,compact)).join('<hr style="border:0;border-top:1px solid #ffffff18;margin:18px 0">'):`<p class="lead" style="font-size:15px">No Major Order is active right now. Enjoy it while it lasts.</p>`)+src+(compact?`<button class="btn ghost sm" data-go="ordini" style="margin-top:12px">Order history ▸</button>`:'');
   }catch(e){
-    if(!$(sel))return;
+    if(silent||!$(sel))return;
     box.innerHTML=`<span class="kicker">▌ Major Order</span><p class="lead" style="font-size:15px;margin-top:8px">The live war feed could not be reached (offline, or blocked by the browser). The current order is on the <a target="_blank" rel="noopener" href="${MO_TRACKER}">Prop Builds live tracker ↗</a>; the wiki history below still works.</p>`;
   }
 }
 setInterval(()=>{$$('.moCd').forEach(el=>{el.textContent=fmtCd(+el.dataset.exp-Date.now())})},1000);
+/* live refresh of the Major Order card every 30 s (no page reload; only redraws when the data changed) */
+function moTick(){if(document.hidden||$('#boot'))return;[['#hubMO',true],['#moLive',false]].forEach(([sel,c])=>{if($(sel))moCard(sel,c,true)})}
+setInterval(moTick,30000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)moTick()});
 const MONTH=/^(january|february|march|april|may|june|july|august|september|october|november|december)\b/i;
 const stCls=t=>/^•?\s*Status:?\s*(SUCCESS|SUCCESSFUL|COMPLETE)/i.test(t)?'ok':/^•?\s*Status:?\s*(FAIL)/i.test(t)?'bad':/^•?\s*Status:?\s*(ONGOING|ACTIVE|IN PROGRESS)/i.test(t)?'on':'';
 const rowHTML=t=>{const sc=stCls(t);t=t.replace(/^•\s*/,'');if(t.includes(' | ')){return `<div class="moRow">${t.split(' | ').map(x=>`<span>${esc(cut(x,220))}</span>`).join('')}</div>`}return `<div class="moRow t1 ${sc}"><span style="${sc?'':'color:#c5d0da'}">${esc(t)}</span></div>`};
@@ -1976,7 +2022,7 @@ function fire(name){
    document.body.classList.add('shk');setTimeout(()=>document.body.classList.remove('shk'),500)},900);
   shout(name.toUpperCase()+' INCOMING');
 }
-function shout(t){const f=document.createElement('div');f.className='fxText';f.textContent=t;$('#fx').appendChild(f);setTimeout(()=>f.remove(),1800)}
+function shout(t){const f=document.createElement('div');f.className='fxText';f.textContent=t;if(String(t).length>20)f.style.fontSize='clamp(24px,5.2vw,64px)';$('#fx').appendChild(f);setTimeout(()=>f.remove(),1800)}
 
 /* ---------- ARMORY ---------- */
 const WCAT_ROOTS=['Category:Weapons','Category:Primary Weapons','Category:Secondary Weapons','Category:Support Weapons','Category:Throwables','Category:Throwable Weapons','Category:Stratagem Weapons'];
@@ -2814,7 +2860,6 @@ function xpChart(a,b){
 }
 function xpCalc(){
   const c=xpCum(),clampL=v=>Math.max(1,Math.min(XP_MAX,Math.floor(+v)||1));
-  const per=+$('#xpM').value||0,mph=+$('#xpH').value||0;
   let total,rows='',a,b;
   if(XPM==='lv'){
     const L=clampL($('#xpC').value),T=Math.max(L,clampL($('#xpT').value)),inL=Math.max(0,+$('#xpIn').value||0);
@@ -2830,15 +2875,28 @@ function xpCalc(){
      <div class="row"><span>Progress to level ${Math.min(XP_MAX,L+1)}</span><b>${L<XP_MAX?fmtN(into)+' / '+fmtN(need)+' ('+Math.round(into/need*100)+'%)':'MAX LEVEL'}</b></div>
      <div class="row"><span>XP to reach level ${b}</span><b>${fmtN(total)}</b></div><div class="row"><span>Title at level ${b}</span><b>${esc(titleFor(b).name)}</b></div>`;
   }
-  const missions=per>0&&total>0?Math.ceil(total/per):null,hours=missions&&mph>0?missions/mph:null;
-  if(missions!=null)$('#xpOut').insertAdjacentHTML('beforeend',`<div class="row"><span>Missions at ${fmtN(per)} XP each</span><b>${fmtN(missions)}</b></div>`);
-  if(hours!=null)$('#xpOut').insertAdjacentHTML('beforeend',`<div class="row"><span>Play time at ${mph} missions/hour</span><b>${hours.toFixed(1)} h</b></div>`);
+  /* play stats: missions played + time played + XP earned in those missions -> pace -> what is left */
+  const num=id=>Math.max(0,+(($('#'+id)||{}).value)||0);
+  const mis=num('xpMi'),mins=num('xpHr')*60+num('xpMn'),sx=num('xpSx'),dayH=num('xpDay');
+  const avgX=mis>0&&sx>0?sx/mis:0,avgT=mis>0&&mins>0?mins/mis:0,xph=mins>0&&sx>0?sx/(mins/60):0;
+  const pace=$('#xpAvg');
+  if(pace)pace.innerHTML=(avgX||avgT||xph)?`<b>Your pace</b>${avgX?`<span>${fmtN(Math.round(avgX))} XP / mission</span>`:''}${avgT?`<span>${avgT.toFixed(1)} min / mission</span>`:''}${xph?`<span>${fmtN(Math.round(xph))} XP / hour</span>`:''}`:`Fill in missions, time and XP earned to see your average pace.`;
+  const missions=avgX>0&&total>0?Math.ceil(total/avgX):null;
+  const tMin=missions!=null&&avgT>0?missions*avgT:(xph>0&&total>0?total/xph*60:null);
+  const days=tMin!=null&&dayH>0?tMin/60/dayH:null;
+  const dur=m=>{m=Math.round(m);const h=Math.floor(m/60),r=m%60;return h?h+' h '+String(r).padStart(2,'0')+' m':r+' m'};
+  let eta='';if(days!=null){const d=new Date();d.setDate(d.getDate()+Math.ceil(days));eta=d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}
+  const done=total<=0;
+  const tile=(v,l)=>`<div><b>${v}</b><small>${l}</small></div>`;
+  const need='<span class="xpNeed">add your play stats</span>';
+  $('#xpOut').insertAdjacentHTML('beforeend',`<div class="xpTiles">${tile(done?'0':(missions!=null?fmtN(missions):'—'),'Missions to play')}${tile(done?'0 m':(tMin!=null?dur(tMin):'—'),'Play time left')}${tile(done?'now':(days!=null?(days<1?'<1':Math.ceil(days))+(Math.ceil(days)===1?' day':' days'):'—'),'At '+(dayH?dayH+' h/day':'your hours/day'))}</div>
+   ${done?'<div class="attr">Target already reached. Democracy is proud of you.</div>':(missions==null&&tMin==null?`<div class="attr">${need}: missions played, time played and the XP you earned in them. The Ministry will do the arithmetic.</div>`:`<div class="attr">${missions!=null?`About ${fmtN(missions)} missions at ${fmtN(Math.round(avgX))} XP each`:`At ${fmtN(Math.round(xph))} XP / hour`}${tMin!=null?`, roughly ${dur(tMin)} of play`:''}${eta?`. Target reached around <b>${eta}</b>.`:'.'}</div>`)}`);
   $('#xpChart').innerHTML=xpChart(a,b);
 }
 function xp(){
   return `<div class="wrap"><p class="kicker rv">Personnel division</p>
   <h2 class="sec rv b">XP Calculator<small>// how much democracy until the next title?</small></h2>
-  <p class="lead rv">The XP needed per level is not a single curve: it climbs in steps (+500 XP every five levels from level 12 up to 150, then the listed values up to the level 300 cap). Work out the XP between two levels, or turn your total XP into a level.</p>
+  <p class="lead rv">The XP needed per level is not a single curve: it climbs in steps (+500 XP every five levels from level 12 up to 150, then the listed values up to the level 300 cap). Work out the XP between two levels, or turn your total XP into a level. Add your recent play stats (missions, time, XP earned) and it tells you how many missions and how much time are left.</p>
   <div class="eraBar rv"><button class="chip act" data-xm="lv">Level → Level</button><button class="chip" data-xm="tot">Total XP → Level</button></div>
   <div class="xpGrid"><div class="panel rv l"><span class="kicker">Parameters</span>
    <div id="xpLv"><label class="fl">Current level<input id="xpC" type="number" min="1" max="300" value="1"></label>
@@ -2846,8 +2904,13 @@ function xp(){
    <label class="fl">Target level<input id="xpT" type="number" min="1" max="300" value="50"></label></div>
    <div id="xpTt" style="display:none"><label class="fl">Total XP earned<input id="xpTot" type="number" min="0" value="0"></label>
    <label class="fl">Target level<input id="xpT2" type="number" min="1" max="300" value="150"></label></div>
-   <label class="fl">Average XP per mission (optional)<input id="xpM" type="number" min="0" placeholder="e.g. from your last missions"></label>
-   <label class="fl">Missions per hour (optional)<input id="xpH" type="number" min="0" step="0.5" placeholder="e.g. 4"></label>
+   <div class="xpSess"><span class="kicker">Your play stats <small>· optional, gives you the estimates</small></span>
+    <p class="attr" style="margin:6px 0 0">Look at your profile or a recent session: how many missions, how long, how much XP.</p>
+    <label class="fl">Missions played<input id="xpMi" type="number" min="0" inputmode="numeric" placeholder="e.g. 12"></label>
+    <div class="xpRow2"><label class="fl">Hours played<input id="xpHr" type="number" min="0" inputmode="numeric" placeholder="e.g. 3"></label><label class="fl">minutes<input id="xpMn" type="number" min="0" max="59" inputmode="numeric" placeholder="e.g. 30"></label></div>
+    <label class="fl">XP earned in those missions<input id="xpSx" type="number" min="0" inputmode="numeric" placeholder="e.g. 48000"></label>
+    <div class="xpAvg" id="xpAvg"></div>
+    <label class="fl">Hours I play per day (optional)<input id="xpDay" type="number" min="0" step="0.5" inputmode="decimal" placeholder="e.g. 2"></label></div>
    <div class="attr">XP table: <a target="_blank" rel="noopener" href="https://helldivers.wiki.gg/wiki/Levels">Helldivers Wiki · Levels</a> and the <a target="_blank" rel="noopener" href="https://www.shacknews.com/article/138776/level-xp-table-helldivers-2">Shacknews level table</a> (levels 1-150 match exactly: level 150 = 1,148,400 total XP).</div></div>
    <div class="panel xpOut rv r"><span class="kicker">Result</span><div id="xpOut" style="margin-top:10px"></div><div id="xpChart"></div></div></div>
   <details class="sec2" style="margin-top:26px"><summary>Full table: XP per level and running total</summary><div><div class="xpTab" id="xpTab"></div></div></details></div>`;
@@ -2856,9 +2919,10 @@ xp.init=()=>{
   XPM='lv';
   const sv=LS.get('xpc')||{};
   if(sv.c)$('#xpC').value=sv.c;if(sv.t)$('#xpT').value=sv.t;
+  ['xpMi','xpHr','xpMn','xpSx','xpDay'].forEach(i=>{if(sv[i])$('#'+i).value=sv[i]});
   const c=xpCum();
   $('#xpTab').innerHTML=Array.from({length:XP_MAX},(_,i)=>i+1).map(l=>`<div class="moRow"><span>LV ${l}</span><span>${l>1?'+'+fmtN(xpStep(l)):'—'}</span><span>${fmtN(c[l])} total</span></div>`).join('');
-  const run=()=>{if(XPM==='lv')LS.set('xpc',{c:$('#xpC').value,t:$('#xpT').value});xpCalc()};
+  const run=()=>{const o={c:$('#xpC').value,t:$('#xpT').value};['xpMi','xpHr','xpMn','xpSx','xpDay'].forEach(i=>o[i]=$('#'+i).value);if(XPM!=='lv'){const p=LS.get('xpc')||{};o.c=p.c||o.c;o.t=p.t||o.t}LS.set('xpc',o);xpCalc()};
   $$('.xpGrid input').forEach(i=>i.oninput=run);
   $('.eraBar').onclick=e=>{const b=e.target.closest('[data-xm]');if(!b)return;XPM=b.dataset.xm;$$('.eraBar .chip').forEach(x=>x.classList.toggle('act',x===b));$('#xpLv').style.display=XPM==='lv'?'':'none';$('#xpTt').style.display=XPM==='tot'?'':'none';xpCalc()};
   xpCalc();
@@ -2893,7 +2957,8 @@ bestiary.init=async()=>{
   F.forEach((f,i)=>cats[i].slice(0,40).forEach(t=>{if(!seen.has(t)&&t.toLowerCase()!==f[2].toLowerCase()){seen.add(t);groups[f[2]].push(t)}}));
   const meta={},names=[];
   Object.entries(groups).forEach(([g,l])=>l.forEach(t=>{meta[t]=g;names.push(t)}));
-  names.sort((a,b)=>a.localeCompare(b,'en',{sensitivity:'base'}));
+  const gOrd=Object.keys(groups);
+  names.sort((a,b)=>(gOrd.indexOf(meta[a])-gOrd.indexOf(meta[b]))||a.localeCompare(b,'en',{sensitivity:'base'}));
   $('#bChips').innerHTML=chipsHTML([['all',`All (${names.length})`],...Object.keys(groups).map(g=>[g,`${esc(g)} (${groups[g].length})`])],beGrp,'bg');
   lazyGrid('#bGrid',names,'enemy','panel aCard',meta);
   $('#bChips').onclick=e=>{const b=e.target.closest('[data-bg]');if(!b)return;beGrp=b.dataset.bg;$$('#bChips .chip').forEach(c=>c.classList.toggle('act',c===b));bApply()};
