@@ -569,6 +569,9 @@ h2.sec::after{content:"";display:block;height:6px;width:150px;margin-top:16px;ba
 .ax div{height:8px;background:#ffffff14;margin-top:4px}
 .ax i{display:block;height:100%;background:linear-gradient(90deg,var(--y2),var(--y));transition:width .6s}
 .ax b{float:right;color:var(--y);font-weight:400}
+.spin{display:inline-block;width:34px;height:34px;border:3px solid #ffe81f33;border-top-color:#ffe81f;border-radius:50%;animation:spn .8s linear infinite}@keyframes spn{to{transform:rotate(360deg)}}
+.ax small{opacity:.55;text-transform:none;letter-spacing:.02em;font-size:10px}
+.thr{margin:10px 0 4px;font-family:var(--m);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}.thr>div{display:flex;gap:2px;margin-top:4px;height:22px;align-items:stretch}.thr>div>i{display:block;font-style:normal;padding:0 4px;line-height:22px;height:22px;box-sizing:border-box;color:#05070a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center}.thr .tz0{background:#7dff9b}.thr .tz1{background:#ffe81f}.thr .tz2{background:#ff7a59}
 .tips{list-style:none;margin-top:10px}
 .tips li{font-family:var(--m);font-size:12.5px;color:#cfe0ea;padding:5px 0 5px 14px;border-left:2px solid var(--y);margin:5px 0;background:#ffe81f0a}
 .tips li.w{border-left-color:var(--rd)}
@@ -708,15 +711,15 @@ button.wbIt{cursor:pointer}button.wbIt:hover{background:#ffe81f1c;border-color:v
 /* ---------- BESTIARY / GALAXY: uniform, tidy cards ---------- */
 #bGrid,#pGrid{grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:20px;align-items:stretch}
 #bGrid .lz,#pGrid .lz{min-width:0;border-top:3px solid var(--line)}
-#bGrid .lz[data-g="Terminids"]{border-top-color:#ffa94d}
-#bGrid .lz[data-g="Automatons"]{border-top-color:var(--rd)}
-#bGrid .lz[data-g="Illuminate"]{border-top-color:#c27bff}
+#bGrid .lz[data-k="Terminids"]{border-top-color:#ffa94d}
+#bGrid .lz[data-k="Automatons"]{border-top-color:var(--rd)}
+#bGrid .lz[data-k="Illuminate"]{border-top-color:#c27bff}
 #pGrid .lz{border-top-color:var(--cy)}
 #bGrid .lz h4,#pGrid .lz h4{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.4em;line-height:1.2;margin-bottom:8px}
 #bGrid .lz .cat{margin-bottom:4px}
-#bGrid .lz[data-g="Terminids"] .cat{color:#ffa94d}
-#bGrid .lz[data-g="Automatons"] .cat{color:var(--rd)}
-#bGrid .lz[data-g="Illuminate"] .cat{color:#c27bff}
+#bGrid .lz[data-k="Terminids"] .cat{color:#ffa94d}
+#bGrid .lz[data-k="Automatons"] .cat{color:var(--rd)}
+#bGrid .lz[data-k="Illuminate"] .cat{color:#c27bff}
 .pFr{position:relative;width:100%;height:170px;margin:4px 0 12px;background:#00000066;border:1px solid var(--line);overflow:hidden}
 .pFr .pFb{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--y);opacity:.14}
 .pFr .pFb svg{width:64px;height:64px}
@@ -764,6 +767,117 @@ button.wbIt{cursor:pointer}button.wbIt:hover{background:#ffe81f1c;border-color:v
 .wsT em{display:block;font-style:normal;font-family:var(--m);font-size:11px;color:var(--mut);letter-spacing:.08em;min-height:14px}
 .wsT.bug{border-top:3px solid #ffa94d}.wsT.bot{border-top:3px solid var(--rd)}.wsT.ill{border-top:3px solid #c27bff}
 @media(max-width:640px){.stats{gap:10px}.stats .stat{min-width:0;flex:1 1 calc(50% - 10px);padding:12px 8px}.stat b{font-size:28px}.wsGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.wsT{padding:10px 8px}}
+
+/* ---------- GALACTIC MAP ---------- */
+.gxBar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:22px 0 12px}
+.gxBar .eraBar{margin:0;flex:1 1 auto}
+#gxQ{flex:0 1 240px;min-width:0;max-width:none;margin-top:0;padding:9px 14px;font-size:14px;border-width:1px}
+.gxLive{font-family:var(--m);font-size:11px;letter-spacing:.12em;padding:5px 10px;border:1px solid var(--gr);color:var(--gr);white-space:nowrap}
+.gxLive.off{border-color:var(--rd);color:var(--rd)}
+.gxMain{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:16px;align-items:stretch}
+.gxBox{position:relative;height:clamp(420px,72vh,760px);border:1px solid var(--line);background:radial-gradient(ellipse at center,#0d1722 0%,#060a10 70%,#03050a 100%);overflow:hidden;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}
+.gxBox.drag{cursor:grabbing}
+#gxSvg{position:absolute;inset:0;width:100%;height:100%;display:block;--k:1}
+#gxSvg .gxRing{fill:none;stroke:#ffffff14;stroke-width:calc(1px / var(--k))}
+#gxSvg .gxSec{fill:#fff;opacity:.11;font-family:var(--h);letter-spacing:.18em;text-anchor:middle;font-size:calc(24px / var(--k));pointer-events:none;text-transform:uppercase;transition:opacity .3s}
+#gxSvg[data-z="hi"] .gxSec{opacity:0}
+#gxSvg .gxAt{stroke-width:calc(1.4px / var(--k));stroke-dasharray:calc(6px / var(--k)) calc(6px / var(--k));opacity:.6;animation:gxDash 1.2s linear infinite}
+@keyframes gxDash{to{stroke-dashoffset:calc(-12px / var(--k))}}
+#gxSvg .gxP{stroke:#000a;stroke-width:calc(1px / var(--k));transition:opacity .25s}
+#gxSvg .gxP.dim{opacity:.13}
+#gxSvg .gxFr{fill:none;stroke-width:calc(2px / var(--k));transform-box:fill-box;transform-origin:center;animation:gxPulse 2.2s ease-out infinite}
+#gxSvg .gxFr.def{stroke-dasharray:calc(5px / var(--k)) calc(3px / var(--k))}
+@keyframes gxPulse{0%{transform:scale(.8);opacity:.95}100%{transform:scale(1.9);opacity:0}}
+#gxSvg .gxSel{fill:none;stroke:#fff;stroke-width:calc(2px / var(--k))}
+#gxSvg .gxL{fill:#e7edf3;font-family:var(--m);font-size:calc(11px / var(--k));text-anchor:middle;pointer-events:none;paint-order:stroke;stroke:#000;stroke-width:calc(3px / var(--k));stroke-linejoin:round}
+#gxSvg[data-z="lo"] .gxL.lazy{display:none}
+#gxSvg .gxDss{fill:var(--cy);stroke:#000;stroke-width:calc(1px / var(--k))}
+.gxTip{position:absolute;pointer-events:none;z-index:3;background:#000d;border:1px solid var(--y);padding:6px 10px;font-family:var(--m);font-size:12px;color:var(--tx);white-space:nowrap;transform:translate(12px,12px);display:none}
+.gxTip b{color:var(--y);font-weight:400;letter-spacing:.06em}
+.gxZoom{position:absolute;right:10px;top:10px;z-index:3;display:flex;flex-direction:column;gap:6px}
+.gxZoom button{width:36px;height:36px;background:#000b;border:1px solid var(--y);color:var(--y);font-family:var(--h);font-size:20px;line-height:1}
+.gxZoom button:hover{background:var(--y);color:#000}
+.gxLeg{position:absolute;left:10px;bottom:10px;z-index:3;background:#000b;border:1px solid var(--line);padding:8px 10px;font-family:var(--m);font-size:11px;color:var(--mut);display:flex;flex-direction:column;gap:3px;pointer-events:none}
+.gxLeg i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px;vertical-align:middle}
+.gxMsg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:30px;color:var(--mut);font-family:var(--m);font-size:13px;z-index:2}
+.gxSide{display:flex;flex-direction:column;gap:10px;min-width:0;max-height:clamp(420px,72vh,760px);overflow:auto}
+.gxSide h3{font-family:var(--h);font-weight:400;font-size:28px;letter-spacing:.06em;margin:0;overflow-wrap:anywhere}
+.gxSide .irow{display:flex;justify-content:space-between;gap:12px;font-size:13px;border-bottom:1px solid #ffffff10;padding:5px 0}
+.gxSide .irow b{background:none;border:0;padding:0;margin:0;min-width:0;max-width:none;font-family:var(--m);font-weight:400;font-size:11px;color:var(--mut);letter-spacing:.12em;text-transform:uppercase}
+.gxSide .irow span{text-align:right;min-width:0;overflow-wrap:anywhere}
+.gxFac{display:inline-block;padding:2px 9px;font-family:var(--m);font-size:11px;letter-spacing:.14em;text-transform:uppercase;border:1px solid currentColor}
+.gxSide p{font-size:13px;color:var(--mut);margin:0;line-height:1.5}
+.gxLists{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.gxLists .panel{min-width:0}
+.gxLists h3{font-family:var(--h);font-weight:400;font-size:22px;letter-spacing:.08em;margin:0 0 4px}
+.gxLists .sub{font-family:var(--m);font-size:11px;color:var(--mut);letter-spacing:.1em;margin-bottom:10px}
+.gxRows{max-height:380px;overflow:auto;display:flex;flex-direction:column;gap:2px;margin-right:-6px;padding-right:6px}
+.gxRow{display:grid;grid-template-columns:10px minmax(0,1fr) auto;gap:4px 10px;align-items:center;padding:8px 6px;border:0;border-bottom:1px solid #ffffff10;background:none;color:var(--tx);text-align:left;width:100%;font:inherit}
+.gxRow:hover,.gxRow.on{background:#ffe81f12}
+.gxRow i{width:9px;height:9px;border-radius:50%}
+.gxRow .nm{font-size:14px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gxRow .nm small{color:var(--mut);font-family:var(--m);font-size:11px;margin-left:6px}
+.gxRow .pn{font-family:var(--m);font-size:12px;color:var(--y);white-space:nowrap}
+.gxRow .bar{grid-column:2/4;height:4px;background:#ffffff14;position:relative}
+.gxRow .bar u{position:absolute;left:0;top:0;bottom:0;display:block}
+.gxEmpty{color:var(--mut);font-size:13px;padding:10px 4px}
+@media(max-width:900px){.gxMain{grid-template-columns:1fr}.gxSide{max-height:none}.gxBox{height:min(66vh,560px);min-height:360px}#gxQ{flex:1 1 100%}.gxLists{grid-template-columns:1fr}}
+
+/* ---------- EXPLORER (filters / tabs / A-Z) ---------- */
+.exTabs{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0 6px}
+.exTab{background:#0009;border:2px solid var(--line);color:var(--mut);font-family:var(--h);letter-spacing:.1em;text-transform:uppercase;font-size:20px;padding:12px 24px;display:inline-flex;align-items:baseline;gap:10px;transition:.2s}
+.exTab small{font-family:var(--m);font-size:11px;letter-spacing:.1em;color:var(--mut)}
+.exTab:hover{border-color:var(--y);color:#fff}
+.exTab.act{border-color:var(--y);background:#ffe81f1c;color:var(--y);box-shadow:0 0 20px #ffe81f22}
+.exK::before,.exSub::before{font-family:var(--m);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);align-self:center;min-width:64px}
+.exK::before{content:"Group"}
+.exSub::before{content:"Type"}
+.exK,.exSub{align-items:center;margin:8px 0 0}
+.exSub .chip{font-size:13px;padding:5px 12px;border-style:dashed}
+.exSub .chip.act{border-style:solid}
+.exTools select{background:#000a;border:1px solid var(--line);color:#c5d0da;font-family:var(--m);font-size:13px;padding:11px 12px;outline:none}
+.exTools select:focus{border-color:var(--y)}
+.exTools input[type=search]{flex:1 1 240px;min-width:0;max-width:520px;background:#000a;border:2px solid var(--y);color:var(--y);padding:11px 16px;font-family:var(--m);font-size:16px;outline:none;margin-top:0}
+.exTools input[type=search]:focus{box-shadow:0 0 24px #ffe81f55}
+.exAZ{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0 0}
+.exAZ button{background:none;border:1px solid transparent;color:var(--mut);font-family:var(--m);font-size:12px;padding:3px 8px;min-width:28px}
+.exAZ button:hover{color:var(--y);border-color:var(--line)}
+.exAZ button.act{background:var(--y);color:#000}
+.exNone{grid-column:1/-1;color:var(--mut);font-family:var(--m);font-size:13px;padding:18px 4px}
+.cbt{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.cbt .btn{margin-top:0}
+/* ---------- BUILDER BOARD ---------- */
+.blBoard{margin-top:8px}
+.blSec{margin-top:26px}
+.blSec>h3{font-family:var(--h);font-weight:400;font-size:22px;letter-spacing:.12em;text-transform:uppercase;color:var(--y);display:flex;align-items:center;gap:12px;margin:0}
+.blSec>h3 small{font-family:var(--m);font-size:11px;color:var(--mut);letter-spacing:.14em}
+.blSec>h3::after{content:"";flex:1;height:1px;background:var(--line)}
+.blRow{display:grid;gap:14px;margin-top:14px}
+.blRow.c2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.blRow.c3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.blRow.c4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.blT{padding:0;display:flex;flex-direction:column;min-width:0}
+.blPick{display:flex;flex-direction:column;gap:6px;width:100%;text-align:left;background:none;border:0;color:inherit;font:inherit;padding:16px 16px 10px;cursor:pointer;min-width:0;flex:1}
+.blT .blImg{height:112px;margin:2px 0;background:#00000055;border:1px solid #ffffff10;overflow:hidden}
+.blT .blImg .wimg{max-height:104px;max-width:100%;object-fit:contain}
+.blT h4{margin:4px 0 0;font-size:19px;line-height:1.15;min-height:0;overflow-wrap:anywhere}
+.blSub{font-family:var(--m);font-size:12px;color:var(--mut);min-height:16px;overflow-wrap:anywhere}
+.blChg{font-family:var(--m);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--cy);margin-top:2px}
+.blPick:hover .blChg,.blPick:focus-visible .blChg{color:var(--y)}
+.blPick:hover .blImg{border-color:var(--y)}
+.blT .blAct{margin:0;padding:8px 10px 10px;border-top:1px solid #ffffff12;flex-wrap:nowrap}
+.blT .blAct .btn{flex:1;padding:6px 4px;font-size:12px;min-width:0}
+#modalBox.wide{max-width:1040px}
+.pkGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:14px;max-height:calc(90vh - 360px);min-height:220px;overflow:auto;padding:2px 6px 2px 2px;align-content:start}
+.pkC{display:flex;flex-direction:column;gap:4px;text-align:left;background:#0009;border:1px solid var(--line);padding:10px;color:var(--tx);font:inherit;cursor:pointer;min-width:0;transition:.15s}
+.pkC:hover{border-color:var(--y);background:#ffe81f10}
+.pkC.cur{border-color:var(--y);box-shadow:0 0 18px #ffe81f33;background:#ffe81f14}
+.pkI{height:84px;display:flex;align-items:center;justify-content:center;background:#00000066;margin-bottom:4px;overflow:hidden}
+.pkI img{max-width:100%;max-height:100%;object-fit:contain;margin:0;border:0;background:none}
+.pkC b{font-family:var(--h);font-weight:400;font-size:15px;letter-spacing:.04em;text-transform:uppercase;overflow-wrap:anywhere;line-height:1.2}
+.pkC small{font-family:var(--m);font-size:11px;color:var(--mut);overflow-wrap:anywhere}
+@media(max-width:900px){.blRow.c3,.blRow.c4{grid-template-columns:repeat(2,minmax(0,1fr))}.blRow.c3>:last-child:nth-child(odd){grid-column:1/-1}.exTab{font-size:17px;padding:10px 16px}}
+@media(max-width:560px){.blRow.c2{grid-template-columns:repeat(2,minmax(0,1fr))}.blPick{padding:12px 10px 8px}.blT h4{font-size:16px}.blT .blImg{height:84px}.blT .blAct{padding:6px 6px 8px;gap:4px}.blT .blAct .btn{font-size:10px;letter-spacing:0;padding:8px 0}.pkGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.exK::before,.exSub::before{min-width:100%}}
 
 /* ---------- MOBILE ADAPTATION (phones and small tablets only; desktop untouched) ---------- */
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
@@ -816,7 +930,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 <footer>
   <b>SUPER EARTH</b> IS NOT RESPONSIBLE FOR ANY LOSS OF LIMBS, FRIENDS OR PERSONAL FREEDOMS. · Unofficial fan project.<br>
   Helldivers™ is a trademark of its respective owners (Arrowhead Game Studios / Sony Interactive Entertainment). Text and images are loaded live from the
-  <a href="https://helldivers.fandom.com/wiki/Helldivers_Wiki" target="_blank" rel="noopener">Helldivers Wiki</a> (Fandom, CC BY-SA unless otherwise noted) and, for rank emblems and patch notes, from the <a href="https://helldivers.wiki.gg" target="_blank" rel="noopener">Helldivers Wiki on wiki.gg</a>: every entry in this archive links back to its source.<br>
+  <a href="https://helldivers.wiki.gg" target="_blank" rel="noopener">Helldivers Wiki on wiki.gg</a> (CC BY-SA unless otherwise noted) and, where an entry is missing there, from the older <a href="https://helldivers.fandom.com/wiki/Helldivers_Wiki" target="_blank" rel="noopener">Helldivers Wiki on Fandom</a>: every entry in this archive links back to its source.<br>
   <span id="wikiSt" class="ws idle">● Waiting</span> · <button class="btn ghost sm" id="refW" style="margin-top:6px">Refresh data from the wiki</button>
   <span class="made">Made with ❤️ by Phenix</span>
 </footer>
@@ -1095,7 +1209,7 @@ hub.init=()=>{
 
 /* ---------- WIKI (live data) ---------- */
 const WIKI='https://helldivers.fandom.com';
-const wlink=t=>WIKI+'/wiki/'+encodeURIComponent(String(t).replace(/ /g,'_')).replace(/%3A/g,':').replace(/%2F/g,'/');
+const wlink=t=>GGB+'/wiki/'+encodeURIComponent(String(t).replace(/ /g,'_')).replace(/%3A/g,':').replace(/%2F/g,'/');
 const LS={
  get(k){try{return JSON.parse(localStorage.getItem('hdw:'+k))}catch(e){return null}},
  set(k,v){const j=JSON.stringify(v);try{localStorage.setItem('hdw:'+k,j)}catch(e){try{this.clear();localStorage.setItem('hdw:'+k,j)}catch(_){}}},
@@ -1121,16 +1235,53 @@ function jsonp(url){
 let act=0;const wq=[];
 function sysSt(){const el=document.getElementById('sysLine');if(el)el.textContent=(act>0||wq.length)?'[SYSTEM: RECEIVING]':'[SYSTEM: IDLE]'}
 function limit(fn){return new Promise((res,rej)=>{const run=()=>{act++;sysSt();fn().then(res,rej).finally(()=>{act--;sysSt();if(wq.length)wq.shift()()})};act<5?run():wq.push(run)})}
+const GGB='https://helldivers.wiki.gg';
+let ggBad=0,ggBadT=0;
+async function apiOne(base,qs){
+  try{const r=await fetch(base+'/api.php?'+qs+'&origin=*');if(!r.ok)throw new Error('HTTP '+r.status);return await r.json()}
+  catch(e){return await jsonp(base+'/api.php?'+qs)}
+}
+/* true when the answer of a wiki says "nothing here" (so the other wiki is asked too) */
+function apiEmpty(p,d){
+  if(!d)return true;
+  if(p.action==='parse')return !!d.error||!d.parse;
+  const q=d.query||{};
+  if(p.list==='search')return !(q.search&&q.search.length);
+  if(p.list==='allimages')return !(q.allimages&&q.allimages.length);
+  if(p.list==='recentchanges')return !(q.recentchanges&&q.recentchanges.length);
+  if(p.list==='categorymembers')return !(q.categorymembers&&q.categorymembers.length);
+  if(p.prop==='imageinfo')return !(q.pages&&q.pages[0]&&q.pages[0].imageinfo);
+  if(p.prop==='links')return !(q.pages&&q.pages[0]&&q.pages[0].links);
+  if(p.titles&&!p.prop)return (q.pages||[]).some(x=>x.missing||x.invalid);
+  return false;
+}
+function apiMerge(p,g,f){
+  const q=g.query||{},r=f.query||{};
+  if(p.list==='categorymembers'){
+    const m=[...(q.categorymembers||[])],s=new Set(m.map(x=>x.title));
+    (r.categorymembers||[]).forEach(x=>{if(!s.has(x.title)){s.add(x.title);m.push(x)}});
+    return {query:{categorymembers:m}};
+  }
+  if(p.titles&&!p.prop){
+    const ok=x=>x&&!x.missing&&!x.invalid,pg=[],seen=new Set();
+    [...(q.pages||[]),...(r.pages||[])].forEach(x=>{if(ok(x)&&!seen.has(x.title)){seen.add(x.title);pg.push(x)}});
+    [...(q.pages||[]),...(r.pages||[])].forEach(x=>{if(!ok(x)&&!seen.has(x.title)){seen.add(x.title);pg.push(x)}});
+    return {query:{normalized:[...(q.normalized||[]),...(r.normalized||[])],redirects:[...(q.redirects||[]),...(r.redirects||[])],pages:pg}};
+  }
+  return f;
+}
+/* the Helldivers Wiki on wiki.gg is the live one: it is asked first, Fandom only fills what is missing */
 function rawApi(params){
   return limit(async()=>{
     const qs=new URLSearchParams({format:'json',formatversion:'2',...params}).toString();
-    try{
-      const r=await fetch(WIKI+'/api.php?'+qs+'&origin=*');
-      if(!r.ok)throw new Error('HTTP '+r.status);
-      return await r.json();
-    }catch(e){
-      return await jsonp(WIKI+'/api.php?'+qs);
+    let g=null,fe=null;
+    if(ggBad<3||Date.now()-ggBadT>300e3){
+      try{g=await apiOne(GGB,qs);ggBad=0}catch(e){if(++ggBad>=3)ggBadT=Date.now()}
     }
+    if(g&&!apiEmpty(params,g))return g;
+    let f=null;try{f=await apiOne(WIKI,qs)}catch(e){fe=e}
+    if(!f){if(g)return g;throw fe}
+    return g?apiMerge(params,g,f):f;
   });
 }
 async function cached(key,ttl,fn){
@@ -1147,7 +1298,7 @@ async function cached(key,ttl,fn){
 const clean=t=>(t||'').replace(/\[\s*\d+\s*\]/g,'').replace(/ /g,' ').replace(/\s+/g,' ').trim();
 function imgSrc(i){
   if(!i)return null;let u=i.getAttribute('data-src')||i.getAttribute('src')||'';
-  if(!u||u.startsWith('data:'))return null;if(u.startsWith('//'))u='https:'+u;
+  if(!u||u.startsWith('data:'))return null;if(u.startsWith('//'))u='https:'+u;else if(u.startsWith('/'))u=GGB+u;
   return u.replace(/scale-to-width-down\/\d+/,'scale-to-width-down/700');
 }
 const LINKBAD=/^(File|Category|Special|Template|Help|User|Talk|Forum|Message Wall|Blog|MediaWiki|Helldivers Wiki):/i;
@@ -1163,13 +1314,14 @@ function parseHtml(html,title){
   doc.querySelectorAll('script,style,.mw-editsection,sup,.toc,#toc,.navbox,.noprint,.mbox,.dablink,.hatnote').forEach(n=>n.remove());
   const root=doc.querySelector('.mw-parser-output')||doc.body;
   let img=null;const info=[];
-  const ib=root.querySelector('aside.portable-infobox,.portable-infobox,table.infobox');
+  const ib=root.querySelector('aside.portable-infobox,.portable-infobox,table.infobox,.infobox');
   if(ib){
     img=imgSrc(ib.querySelector('img'));
     ib.querySelectorAll('.pi-data').forEach(d=>{
       const l=d.querySelector('.pi-data-label'),v=d.querySelector('.pi-data-value');
       if(l&&v){const a=clean(l.textContent),b=clean(v.textContent);if(a&&b&&info.length<30)info.push([a,b.slice(0,300)])}
     });
+    if(!info.length)ib.querySelectorAll('tr').forEach(tr=>{const th=tr.querySelector(':scope > th'),td=tr.querySelector(':scope > td');if(th&&td){const a=clean(th.textContent),b=clean(td.textContent);if(a&&b&&info.length<30)info.push([a,b.slice(0,300)])}});
     ib.remove();
   }
   if(!img)img=imgSrc(root.querySelector('figure img,.thumb img,.tright img'));
@@ -1209,7 +1361,7 @@ function parseHtml(html,title){
 }
 const PARSE={action:'parse',prop:'text',redirects:'1',disablelimitreport:'1',disableeditsection:'1',disabletoc:'1'};
 function getPage(q){
-  return cached('p5:'+q,6*3600e3,async()=>{
+  return cached('p6:'+q,6*3600e3,async()=>{
     let d=await rawApi({...PARSE,page:q});
     if(d.error||!d.parse){
       const sr=await rawApi({action:'query',list:'search',srsearch:q,srlimit:'5',srnamespace:'0'});
@@ -1225,7 +1377,7 @@ function getPage(q){
   });
 }
 function getList(cat){
-  return cached('l:'+cat,12*3600e3,async()=>{
+  return cached('l3:'+cat,12*3600e3,async()=>{
     const d=await rawApi({action:'query',list:'categorymembers',cmtitle:cat,cmlimit:'80',cmnamespace:'0'});
     return ((d.query&&d.query.categorymembers)||[]).map(x=>x.title);
   });
@@ -1243,7 +1395,7 @@ function pickEmblem(pool){
 }
 function findEmblem(k){
   const c=EMB_Q[k];
-  return cached('e2:'+k,24*3600e3,async()=>{
+  return cached('e3:'+k,24*3600e3,async()=>{
     let failed=false;const pool=[];
     for(const pre of c.pre){
       try{
@@ -1291,7 +1443,7 @@ async function loadStats(){
 }
 async function loadNews(){
   try{
-    const d=await cached('rc',1800e3,()=>rawApi({action:'query',list:'recentchanges',rcnamespace:'0',rclimit:'20',rctype:'edit|new',rcprop:'title|timestamp'}));
+    const d=await cached('rc2',1800e3,()=>rawApi({action:'query',list:'recentchanges',rcnamespace:'0',rclimit:'20',rctype:'edit|new',rcprop:'title|timestamp'}));
     wikiNews=[...new Set(d.query.recentchanges.map(x=>x.title))].slice(0,10).map(t=>({t:`WIKI ▸ recently updated page: ${t}`,p:t}));
     updTicker();
     wikiLog=d.query.recentchanges.slice(0,12);drawLog();
@@ -1316,7 +1468,7 @@ function pageHTML(p,full){
   h+=p.lead.slice(0,full?6:3).map(t=>`<p style="color:#c5d0da;line-height:1.7;margin:8px 0">${esc(t)}</p>`).join('');
   if(p.info.length)h+=`<div style="margin-top:12px">${irows(p,full?20:8)}</div>`;
   if(full)h+=secsHTML(p,40);
-  h+=`<div class="attr">Source: <a target="_blank" rel="noopener" href="${wlink(p.title)}">${esc(p.title)} · Helldivers Wiki (Fandom, CC BY-SA)</a></div>`;
+  h+=`<div class="attr">Source: <a target="_blank" rel="noopener" href="${wlink(p.title)}">${esc(p.title)} · Helldivers Wiki (wiki.gg, CC BY-SA)</a></div>`;
   return h;
 }
 async function openPage(q){
@@ -1331,9 +1483,9 @@ async function fillCard(el){
     const p=await getPage(q);
     if(p.missing){el.innerHTML=`<h4>${esc(q)}</h4><p>No matching page found on the wiki.</p>`;return}
     el.dataset.t=p.title;
-    const n=mode==='weapon'||mode==='enemy'?10:4;
-    const tidy=mode==='enemy'||mode==='planet';
-    el.innerHTML=(el.dataset.g?`<div class="cat">${esc(el.dataset.g)}</div>`:'')+`<h4>${esc(p.title)}</h4>`+(tidy?`<div class="pFr"><span class="pFb">${SVG.superEarth}</span>${wimg(p.img)}</div>`:wimg(p.img))+`<p>${esc(cut(p.lead[0]||'',mode==='weapon'?340:240))}</p>`+irows(p,tidy?4:n)+`<button class="btn ghost sm" data-open="${esc(p.title)}">Full entry</button>`;
+    const n=mode==='weapon'||mode==='enemy'?10:mode==='gear'?6:4;
+    const tidy=mode==='enemy'||mode==='planet'||mode==='gear';
+    el.innerHTML=(el.dataset.g?`<div class="cat">${esc(el.dataset.g)}</div>`:'')+`<h4>${esc(p.title)}</h4>`+(tidy?`<div class="pFr"><span class="pFb">${SVG.superEarth}</span>${wimg(p.img)}</div>`:wimg(p.img))+`<p>${esc(cut(p.lead[0]||'',mode==='weapon'?340:240))}</p>`+irows(p,tidy?4:n)+`<div class="cbt"><button class="btn ghost sm" data-open="${esc(p.title)}">Full entry</button>${mode==='planet'&&typeof GXD!=='undefined'&&GXD?(g=>g?`<button class="btn ghost sm" data-gx="${g.i}">Show on map</button>`:'')(GXD.P.find(x=>x.n.toLowerCase()===p.title.toLowerCase())):''}</div>`;
   }catch(e){el.innerHTML=errHTML(q)}
 }
 function lazyGrid(sel,names,mode,cls,meta){
@@ -1463,7 +1615,7 @@ function openBrief(i){
   $('#mnext').onclick=()=>openBrief((bIdx+1)%TLD.length);
 }
 function showModal(){$('#modal').classList.add('show');document.body.classList.add('lock')}
-function closeBrief(){$('#modal').classList.remove('show');document.body.classList.remove('lock')}
+function closeBrief(){$('#modal').classList.remove('show');$('#modalBox').classList.remove('wide');document.body.classList.remove('lock')}
 $('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeBrief()});
 addEventListener('keydown',e=>{
   if(!$('#modal').classList.contains('show'))return;
@@ -1515,8 +1667,7 @@ function lore(){
   <div class="scrub rv"><input type="range" id="scr" min="0" max="0" value="0" aria-label="Time scrubber"><div class="ticks" id="ticks"></div><div class="scrubLbl"><span id="scrA"></span><span id="scrB"></span></div></div>
   <p class="kicker rv" style="margin-top:56px">Lore codex</p>
   <h2 class="sec rv b" style="font-size:clamp(26px,4vw,44px)">Dive deeper</h2>
-  <div class="aTools rv"><input id="gq" type="search" placeholder="Search the codex..." autocomplete="off"><button class="btn ghost sm" id="cxRand" style="margin-top:0">Random file</button></div>
-  <div class="pGrid" id="cxGrid">${loadingHTML}</div></div>`;
+  ${exHTML('exLore',{ph:'Search the codex...',gridCls:'pGrid',gid:'cxGrid',extra:'<button class="btn ghost sm" id="cxRand" style="margin-top:0">Random file</button>'})}</div>`;
 }
 function loreBars(){
   const eras=[...new Set(TLD.filter(loreOk).map(e=>e.era))];
@@ -1647,7 +1798,7 @@ function showEv(){
    <div class="rel">${(e.links||[]).slice(0,8).map(l=>`<button class="chip" data-open="${esc(l)}">${esc(l)}</button>`).join('')}</div></div>
   <div class="sR"><div class="sImg" id="sImg"><div class="ph">▌ RETRIEVING IMAGE...</div></div>
    <div class="iro"><b>Ministry note:</b> ${esc(pick(MIN))}</div>
-   <div class="attr">Source: <a target="_blank" rel="noopener" href="${wlink(e.page)}${e.a?'#'+encodeURIComponent(e.a):''}">${esc(e.page)} · Helldivers Wiki (Fandom, CC BY-SA)</a></div></div>`;
+   <div class="attr">Source: <a target="_blank" rel="noopener" href="${wlink(e.page)}${e.a?'#'+encodeURIComponent(e.a):''}">${esc(e.page)} · Helldivers Wiki (wiki.gg, CC BY-SA)</a></div></div>`;
   $('#lvNext').onclick=lvNext;$('#lvPrev').onclick=lvPrev;
   $('#lvPrev').disabled=lvI===0;
   $('#lvAuto').disabled=!!SAVE.camp;
@@ -1687,13 +1838,11 @@ lore.init=async()=>{
     if(j>=0&&!unlocked(j))setTimeout(()=>toast('That file is still classified. Clear the earlier files first.'),700);
   }
   loadTitles().then(()=>hudDraw()).catch(()=>{});
-  let names=[];
-  try{names=await getList('Category:Lore')}catch(e){}
+  let cx=[];try{cx=txReg(await taxLore())}catch(e){}
   if(cur!=='lore')return;
-  if(names.length<4)names=[...new Set([...names,...CODEX_FB])];
-  lazyGrid('#cxGrid',names,'lore','panel aCard');
-  $('#gq').oninput=e=>filterGrid('#cxGrid',e.target);
-  $('#cxRand').onclick=()=>openPage(pick(names));
+  if(cx.length<4)cx=[...new Set([...cx.map(x=>x.t),...CODEX_FB])].map(t=>({t,k:'',s:''}));
+  const exl=exInit('exLore',{sets:{codex:{label:'Codex',items:cx,mode:'lore'}},cls:'panel aCard'});
+  $('#cxRand').onclick=()=>{const v=exl.visible();if(v.length)openPage(pick(v))};
 };
 
 /* ---------- FACTIONS ---------- */
@@ -1722,7 +1871,7 @@ async function facDetail(){
   try{
     const p=await getPage(F[1]);if(facSel!==key||!$('#fMain'))return;
     $('#fMain').innerHTML=`<span class="kicker">${F[3]}</span><h3>${F[2]}</h3>`+(p.missing?errHTML(F[1]):`${wimg(p.img)}${p.lead.slice(0,2).map(t=>`<p>${esc(t)}</p>`).join('')}<div style="margin-top:12px">${irows(p,8)}</div>`)
-      +`<div class="iro"><b>Ministry note:</b> ${esc(pick(MIN))}</div><div class="attr">Source: <a target="_blank" rel="noopener" href="${wlink(F[1])}">${esc(F[1])} · Helldivers Wiki (Fandom, CC BY-SA)</a></div><button class="btn ghost sm" id="fOpen">Read the full entry</button>`;
+      +`<div class="iro"><b>Ministry note:</b> ${esc(pick(MIN))}</div><div class="attr">Source: <a target="_blank" rel="noopener" href="${wlink(F[1])}">${esc(F[1])} · Helldivers Wiki (wiki.gg, CC BY-SA)</a></div><button class="btn ghost sm" id="fOpen">Read the full entry</button>`;
     $('#fOpen').onclick=()=>openPage(F[1]);
   }catch(e){if(facSel===key&&$('#fMain'))$('#fMain').innerHTML=errHTML(F[1])}
 }
@@ -1740,18 +1889,288 @@ function filterGrid(sel,inp){
 }
 function mappa(){
   return `<div class="wrap"><p class="kicker rv">Tactical star chart</p>
-  <h2 class="sec rv b">The Galaxy<small>// the worlds of the war, straight from the wiki</small></h2>
-  <input id="gq" class="rv" type="search" placeholder="Filter planets..." autocomplete="off">
-  <div class="pGrid" id="pGrid">${loadingHTML}</div></div>`;
+  <h2 class="sec rv b">The Galaxy<small>// the live war map, and the worlds of the war straight from the wiki</small></h2>
+  <div class="gxBar rv"><div class="eraBar" id="gxFil"></div><input id="gxQ" type="search" placeholder="Find a planet on the map..." autocomplete="off"><span class="gxLive" id="gxLiveB">● CONNECTING</span></div>
+  <div class="gxMain rv">
+   <div class="gxBox" id="gxBox"><svg id="gxSvg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"><g id="gxG"></g></svg>
+    <div class="gxMsg" id="gxMsg">Receiving the galactic war feed…</div><div class="gxTip" id="gxTip"></div>
+    <div class="gxZoom"><button id="gxIn" aria-label="Zoom in">+</button><button id="gxOut" aria-label="Zoom out">−</button><button id="gxRs" aria-label="Reset view" style="font-size:15px">◎</button></div>
+    <div class="gxLeg"><span><i style="background:#37d6ff"></i>Super Earth</span><span><i style="background:#ffa94d"></i>Terminids</span><span><i style="background:#ff3b30"></i>Automatons</span><span><i style="background:#c27bff"></i>Illuminate</span></div></div>
+   <aside class="gxSide panel" id="gxSide"></aside></div>
+  <div class="gxLists rv" id="gxLists"><div class="panel" id="gxFront"></div><div class="panel" id="gxLib"></div></div>
+  <div class="attr rv">Map data: Helldivers war API (helldiverstrainingmanual.com): planet positions, owners, campaigns and Super Earth dispatches. Refreshed every 5 minutes while this page is open. Planet files below: Helldivers Wiki.</div>
+  <p class="kicker rv" style="margin-top:46px">Planet files</p>
+  ${exHTML('exPln',{ph:'Search planet files...',gridCls:'pGrid',gid:'pGrid'})}</div>`;
 }
 mappa.init=async()=>{
+  gxInit();
   let names=[];
-  try{names=await getList('Category:Planets')}catch(e){}
+  try{names=(await getList('Category:Planets')).filter(t=>!TX_JUNK.test(t))}catch(e){}
   if(cur!=='mappa')return;
-  if(!names.length)names=PLANETS_FB;
-  lazyGrid('#pGrid',names,'planet','panel aCard');
-  $('#gq').oninput=e=>filterGrid('#pGrid',e.target);
+  if(!names.length)names=PLANETS_FB.slice();
+  const OW=['Super Earth','Terminids','Automatons','Illuminate'];
+  const build=()=>{
+    const by={};if(GXD)GXD.P.forEach(p=>{by[p.n.toLowerCase()]=p});
+    return {planets:{label:'Planets',mode:'planet',items:names.map(t=>{const p=by[t.toLowerCase()];return {t,k:p?(GX_F[p.o]||GX_F[1]).n:'',s:p?p.s:''}})}};
+  };
+  const ex=exInit('exPln',{sets:build(),order:OW,cls:'panel aCard'});
+  getGalaxy().then(()=>{if(cur==='mappa'&&ex)ex.setSets(build())}).catch(()=>{});
 };
+
+
+/* ---------- GALACTIC MAP (live war API: positions, owners, fronts, dispatches) ---------- */
+const GX_TTL=300e3;
+const GX_F={1:{n:'Super Earth',c:'#37d6ff'},2:{n:'Terminids',c:'#ffa94d'},3:{n:'Automatons',c:'#ff3b30'},4:{n:'Illuminate',c:'#c27bff'}};
+const GX_FN={'Super Earth':1,Terminids:2,Automatons:3,Illuminates:4,Illuminate:4};
+let GXD=null,GXP=null,GXL=0,GXPREV,GXSel=-1,GXFil='all',GXQ='',GXV=null,GXFit=1,GXBox=null,GXHold=null;
+const gxAgo=ts=>{const m=Math.round((Date.now()-ts)/60000);return m<1?'just now':m<60?m+' min ago':m<2880?Math.round(m/60)+' h ago':Math.round(m/1440)+' days ago'};
+async function gxPlanets(){
+  const c=LS.get('gx:pl');if(c&&Date.now()-c.t<7*864e5)return c.d;
+  try{
+    const d=await moFetch('/planets'),o={};
+    Object.entries(d||{}).forEach(([k,v])=>{if(v&&v.name)o[k]={n:v.name,s:v.sector||'',b:(v.biome&&v.biome.slug)||'',d:((v.biome&&v.biome.description)||'').slice(0,240),e:(v.environmentals||[]).map(x=>x.name)}});
+    if(Object.keys(o).length)LS.set('gx:pl',{t:Date.now(),d:o});
+    return o;
+  }catch(e){return c?c.d:{}}
+}
+async function gxHydrate(D){
+  const pl=await gxPlanets().catch(()=>({}));
+  D.P.forEach(p=>{const m=pl[p.i];if(m){p.n=m.n;p.s=m.s;p.b=m.b;p.d=m.d;p.e=m.e}else{p.n=p.n||('Planet #'+p.i);p.s=p.s||'';p.b=p.b||'';p.d=p.d||'';p.e=p.e||[]}});
+  return D;
+}
+async function getGalaxy(force){
+  const now=Date.now();
+  if(!force&&GXD&&now-GXD.t<GX_TTL)return GXD;
+  if(!GXD&&!force){const c=LS.get('gx');if(c&&c.P&&now-c.t<GX_TTL){GXD=await gxHydrate(c);if(GXPREV===undefined)GXPREV=LS.get('gx:own')||null;return GXD}}
+  if(GXP)return GXP;
+  if(GXD&&now-GXL<60e3)return GXD;
+  GXL=now;
+  GXP=(async()=>{
+    try{
+      const [st,cp,nw]=await Promise.all([moFetch('/war/status'),moFetch('/war/campaign').catch(()=>null),moFetch('/war/news').catch(()=>null)]);
+      if(!st||!Array.isArray(st.planetStatus)||!st.planetStatus.length)throw new Error('no status');
+      const t=Date.now(),wt=+st.time||0;
+      const camp={};(Array.isArray(cp)?cp:[]).forEach(c=>{camp[c.planetIndex]={f:GX_FN[c.faction]||0,pc:+c.percentage||0,pl:+c.players||0,def:!!c.defense}});
+      const ev={};(st.planetEvents||[]).forEach(e=>{ev[e.planetIndex]={r:+e.race||0,exp:e.expireTime&&wt?t+(e.expireTime-wt)*1000:null}});
+      const P=st.planetStatus.map(p=>{
+        const i=p.index,pos=p.position||{};
+        let c=camp[i]||null;if(!c&&ev[i])c={f:ev[i].r,pc:0,pl:+p.players||0,def:true};
+        return {i,x:(+pos.x||0)*1000,y:-(+pos.y||0)*1000,o:+p.owner||1,pl:+p.players||0,c,exp:ev[i]?ev[i].exp:null};
+      });
+      const D={t,live:true,P,A:(st.planetAttacks||[]).map(a=>[a.source,a.target]),S:(st.spaceStations||[]).map(x=>x.planetIndex),lib:[]};
+      await gxHydrate(D);
+      /* recently liberated: planets named in Super Earth dispatches that announce a liberation and are still held */
+      const LIB=/been (liberated|freed|returned|retaken|reclaimed)|returned to the care|(was|were|is|are) (liberated|free again)|(liberated|freed) (by|from)/i,got={};
+      (Array.isArray(nw)?nw:[]).forEach(m=>{
+        const txt=String(m.message||'').replace(/<[^>]*>/g,'');if(!LIB.test(txt))return;
+        const low=txt.toLowerCase();let best=null,bi=1e9;
+        D.P.forEach(p=>{
+          if(p.o!==1||p.i===0||p.n.length<4)return;
+          const k=low.indexOf(p.n.toLowerCase());if(k<0||k>=bi)return;
+          const a=low[k-1],b=low[k+p.n.length];if((a&&/[a-z0-9]/.test(a))||(b&&/[a-z0-9]/.test(b)))return;
+          best=p;bi=k;
+        });
+        if(!best)return;
+        let ts=null;const pb=+m.published;
+        if(pb>1e9)ts=pb*1000;else if(wt&&pb)ts=t-(wt-pb)*1000;
+        if(ts&&(ts>t+6e4||t-ts>120*864e5))ts=null;
+        if(!got[best.i]||(ts&&ts>(got[best.i].ts||0)))got[best.i]={i:best.i,ts,txt:txt.slice(0,220)};
+      });
+      D.lib=Object.values(got).sort((a,b)=>(b.ts||0)-(a.ts||0)).slice(0,8);
+      /* liberated since this browser last looked (local snapshot) */
+      if(GXPREV===undefined)GXPREV=LS.get('gx:own')||null;
+      if(GXPREV&&GXPREV.o)D.P.forEach(p=>{const q=GXPREV.o[p.i];if(q!=null&&q!==1&&p.o===1&&!D.lib.some(l=>l.i===p.i))D.lib.push({i:p.i,ts:null,since:GXPREV.t})});
+      LS.set('gx:own',{t,o:Object.fromEntries(D.P.map(p=>[p.i,p.o]))});
+      LS.set('gx',Object.assign({},D,{P:D.P.map(({n,s,b,d,e,...r})=>r)}));
+      GXD=D;return D;
+    }catch(e){
+      let o=GXD;if(!o){const c=LS.get('gx');if(c&&c.P)o=await gxHydrate(c)}
+      if(o){GXD=Object.assign({},o,{live:false});return GXD}
+      throw e;
+    }finally{GXP=null}
+  })();
+  return GXP;
+}
+const gxCol=p=>(GX_F[p.o]||GX_F[1]).c;
+let GXK=1,GXB=-1;
+const gxPm=p=>(p.i===0?9:(p.c?6+Math.log10(p.pl+1)*1.4:4.4))*Math.min(1+.3*(GXK/GXFit-1),2.4)/GXK;
+function gxMatch(p){
+  if(GXFil==='fight'){if(!p.c)return false}
+  else if(GXFil!=='all'&&p.o!==+GXFil)return false;
+  return !GXQ||p.n.toLowerCase().includes(GXQ);
+}
+function gxVB(){
+  const s=$('#gxSvg');if(!s||!GXV)return;
+  s.setAttribute('viewBox',`${GXV.x} ${GXV.y} ${GXV.w} ${GXV.h}`);
+  const bw=GXBox.clientWidth||1,z=(bw/GXV.w)/GXFit;
+  GXK=bw/GXV.w;s.style.setProperty('--k',GXK.toFixed(4));s.dataset.z=z>2.4?'hi':z<1.3?'lo':'mid';
+  const bk=Math.round(z*4);if(bk!==GXB){GXB=bk;if(GXD&&$('#gxG')&&$('#gxG').childElementCount)gxPaint()}
+}
+function gxFit(keep){
+  const box=$('#gxBox');if(!box||!GXD)return;GXBox=box;
+  const bw=box.clientWidth||600,bh=box.clientHeight||500;
+  let a=1e9,b=-1e9,c=1e9,d=-1e9;
+  GXD.P.forEach(p=>{a=Math.min(a,p.x);b=Math.max(b,p.x);c=Math.min(c,p.y);d=Math.max(d,p.y)});
+  const pad=70,W=Math.max(b-a,50)+pad*2,H=Math.max(d-c,50)+pad*2;
+  GXFit=Math.min(bw/W,bh/H);
+  const cx=(a+b)/2,cy=(c+d)/2;
+  if(keep&&GXV){const z=(bw/GXV.w),ox=GXV.x+GXV.w/2,oy=GXV.y+GXV.h/2,nw=bw/z,nh=bh/z;GXV={x:ox-nw/2,y:oy-nh/2,w:nw,h:nh}}
+  else GXV={x:cx-bw/GXFit/2,y:cy-bh/GXFit/2,w:bw/GXFit,h:bh/GXFit};
+  GXV.b=[a-pad,b+pad,c-pad,d+pad];
+  gxVB();
+}
+function gxZoom(f,px,py){
+  if(!GXV)return;
+  const bw=GXBox.clientWidth,bh=GXBox.clientHeight,cur=bw/GXV.w/GXFit;
+  const nz=Math.min(16,Math.max(1,cur*f)),k=cur/nz;
+  const fx=px==null?.5:px/bw,fy=py==null?.5:py/bh;
+  const nw=GXV.w*k,nh=GXV.h*k;
+  const wx=GXV.x+GXV.w*fx,wy=GXV.y+GXV.h*fy;
+  GXV={x:wx-nw*fx,y:wy-nh*fy,w:nw,h:nh,b:GXV.b};gxClamp();gxVB();
+}
+function gxClamp(){
+  const b=GXV.b;if(!b)return;
+  GXV.x=Math.min(Math.max(GXV.x,b[0]-GXV.w*.6),b[1]-GXV.w*.4);
+  GXV.y=Math.min(Math.max(GXV.y,b[2]-GXV.h*.6),b[3]-GXV.h*.4);
+}
+function gxFocus(i){
+  const p=GXD&&GXD.P.find(x=>x.i===i);if(!p||!GXBox)return;
+  const bw=GXBox.clientWidth,bh=GXBox.clientHeight,z=Math.max(bw/GXV.w/GXFit,3.2),k=bw/(GXFit*z);
+  const to={x:p.x-k/2,y:p.y-k*bh/bw/2,w:k,h:k*bh/bw,b:GXV.b},from={...GXV};let t0=null;
+  const step=t=>{if(!t0)t0=t;const q=Math.min((t-t0)/550,1),e=1-Math.pow(1-q,3);
+    GXV={x:from.x+(to.x-from.x)*e,y:from.y+(to.y-from.y)*e,w:from.w+(to.w-from.w)*e,h:from.h+(to.h-from.h)*e,b:from.b};gxVB();if(q<1&&cur==='mappa')requestAnimationFrame(step)};
+  requestAnimationFrame(step);
+}
+function gxPaint(){
+  const g=$('#gxG');if(!g||!GXD)return;
+  const D=GXD,P=D.P,byI={};P.forEach(p=>byI[p.i]=p);
+  let h='';
+  [250,500,750,1000].forEach(r=>{h+=`<circle class="gxRing" cx="0" cy="0" r="${r}"/>`});
+  const sec={};P.forEach(p=>{if(p.s){const q=sec[p.s]=sec[p.s]||{x:0,y:0,n:0};q.x+=p.x;q.y+=p.y;q.n++}});
+  Object.entries(sec).forEach(([k,q])=>{if(q.n>=2)h+=`<text class="gxSec" x="${(q.x/q.n).toFixed(1)}" y="${(q.y/q.n).toFixed(1)}">${esc(k)}</text>`});
+  D.A.forEach(([s,t])=>{const a=byI[s],b=byI[t];if(a&&b)h+=`<line class="gxAt" x1="${a.x.toFixed(1)}" y1="${a.y.toFixed(1)}" x2="${b.x.toFixed(1)}" y2="${b.y.toFixed(1)}" stroke="${gxCol(a)}"/>`});
+  P.forEach(p=>{const ok=gxMatch(p);
+    if(p.c)h+=`<circle class="gxFr${p.c.def?' def':''}" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${(gxPm(p)+2/GXK).toFixed(1)}" stroke="${(GX_F[p.c.f]||GX_F[2]).c}" style="${ok?'':'opacity:.1'}"/>`;
+    h+=`<circle class="gxP${ok?'':' dim'}" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${gxPm(p).toFixed(1)}" fill="${gxCol(p)}"/>`;
+    if(D.S.includes(p.i))h+=`<path class="gxDss" d="M${(p.x+10/GXK).toFixed(1)} ${(p.y-13/GXK).toFixed(1)}l${(5/GXK).toFixed(1)} ${(5/GXK).toFixed(1)}-${(5/GXK).toFixed(1)} ${(5/GXK).toFixed(1)}-${(5/GXK).toFixed(1)}-${(5/GXK).toFixed(1)}z"/>`;
+  });
+  const top=P.filter(p=>p.c).sort((a,b)=>b.pl-a.pl).slice(0,10).map(p=>p.i);
+  P.forEach(p=>{if(!gxMatch(p))return;const big=p.i===0||top.includes(p.i),sel=p.i===GXSel;
+    if(big||sel||p.c||GXQ)h+=`<text class="gxL${big||sel?'':' lazy'}" x="${p.x.toFixed(1)}" y="${(p.y-gxPm(p)-4/GXK).toFixed(1)}">${esc(p.n)}</text>`});
+  const sp=byI[GXSel];if(sp)h+=`<circle class="gxSel" cx="${sp.x.toFixed(1)}" cy="${sp.y.toFixed(1)}" r="${(gxPm(sp)+5/GXK).toFixed(1)}"/>`;
+  g.innerHTML=h;
+}
+function gxSide(){
+  const el=$('#gxSide');if(!el||!GXD)return;
+  const P=GXD.P,p=P.find(x=>x.i===GXSel);
+  if(!p){
+    const n=o=>P.filter(x=>x.o===o).length;
+    el.innerHTML=`<p class="kicker">Galactic overview</p><h3>${P.length} worlds on the chart</h3>
+     ${[1,2,3,4].map(o=>`<div class="irow"><b><i style="display:inline-block;width:9px;height:9px;border-radius:50%;background:${GX_F[o].c};margin-right:8px"></i>${GX_F[o].n}</b><span>${n(o)} planets</span></div>`).join('')}
+     <div class="irow"><b>Active fronts</b><span>${P.filter(x=>x.c).length}</span></div>
+     <div class="irow"><b>Helldivers deployed</b><span>${fmtN(P.reduce((a,x)=>a+x.pl,0))}</span></div>
+     <p>Scroll or pinch to zoom, drag to pan. Click a planet to open its file. Pulsing rings mark planets being fought over, dashed rings mark defence campaigns, dashed lines are enemy attack routes.</p>`;
+    return;
+  }
+  const F=GX_F[p.o]||GX_F[1],c=p.c;
+  el.innerHTML=`<p class="kicker">${esc(p.s||'Unknown sector')}${p.s?' sector':''}</p><h3>${esc(p.n)}</h3>
+   <div><span class="gxFac" style="color:${F.c}">${F.n}</span>${c&&c.def?' <span class="gxFac" style="color:var(--y)">Defence</span>':''}${GXD.S.includes(p.i)?' <span class="gxFac" style="color:var(--cy)">DSS in orbit</span>':''}</div>
+   <div>${c?`<div class="irow"><b>${c.def?'Defence':'Liberation'}</b><span>${c.pc?c.pc.toFixed(1)+'%':'—'}</span></div>
+   <div class="prog" style="margin:4px 0 8px"><i style="width:${Math.min(100,c.pc)}%;transition:none"></i></div>`:''}
+   <div class="irow"><b>Helldivers here</b><span>${fmtN(p.pl)}</span></div>
+   ${p.exp?`<div class="irow"><b>Defence ends in</b><span class="moCd" data-exp="${p.exp}">${fmtCd(p.exp-Date.now())}</span></div>`:''}
+   ${p.b?`<div class="irow"><b>Biome</b><span>${esc(p.b)}</span></div>`:''}
+   ${p.e&&p.e.length?`<div class="irow"><b>Hazards</b><span>${esc(p.e.join(', '))}</span></div>`:''}</div>
+   ${p.d?`<p>${esc(p.d)}</p>`:''}
+   <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn ghost sm" id="gxOpen">Open wiki dossier</button><button class="btn ghost sm" id="gxZm">Centre on map</button></div>`;
+  $('#gxOpen').onclick=()=>openPage(p.n);
+  $('#gxZm').onclick=()=>gxFocus(p.i);
+}
+function gxLists(){
+  const D=GXD;if(!D)return;
+  const fr=D.P.filter(p=>p.c).sort((a,b)=>b.pl-a.pl);
+  const row=(p,right,bar)=>`<button class="gxRow${p.i===GXSel?' on':''}" data-gi="${p.i}"><i style="background:${gxCol(p)}"></i><span class="nm">${esc(p.n)}<small>${esc(p.s||'')}</small></span><span class="pn">${right}</span>${bar==null?'':`<span class="bar"><u style="width:${Math.min(100,bar)}%;background:${(GX_F[p.c&&p.c.f]||GX_F[2]).c}"></u></span>`}</button>`;
+  $('#gxFront').innerHTML=`<h3>Planets in battle</h3><div class="sub">${fr.length} ACTIVE CAMPAIGNS · SORTED BY HELLDIVERS</div><div class="gxRows">${fr.length?fr.map(p=>row(p,fmtN(p.pl)+(p.c.def?' · DEF':''),p.c.pc)).join(''):'<div class="gxEmpty">No active campaign reported.</div>'}</div>`;
+  const lb=D.lib.map(l=>({l,p:D.P.find(x=>x.i===l.i)})).filter(x=>x.p);
+  $('#gxLib').innerHTML=`<h3>Recently liberated</h3><div class="sub">FROM SUPER EARTH DISPATCHES · AND CHANGES SINCE YOUR LAST VISIT</div><div class="gxRows">${lb.length?lb.map(({l,p})=>row(p,l.ts?gxAgo(l.ts):'since '+gxAgo(l.since),null)).join(''):'<div class="gxEmpty">No liberation announced in the latest dispatches.</div>'}</div>`;
+}
+function gxSelect(i,focus){
+  GXSel=GXSel===i&&!focus?-1:i;gxPaint();gxSide();gxLists();
+  if(focus&&GXSel>=0)gxFocus(GXSel);
+}
+function gxLive(){
+  const el=$('#gxLiveB');if(!el||!GXD)return;
+  const d=new Date(GXD.t);
+  el.className='gxLive'+(GXD.live?'':' off');
+  el.textContent=GXD.live?'● LIVE · updated '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0'):'● CACHED · war API unreachable';
+}
+function gxBind(){
+  const box=$('#gxBox'),svg=$('#gxSvg');if(!box)return;
+  const ptr=new Map();let moved=0,last=null,pd=0;
+  const loc=e=>{const r=box.getBoundingClientRect();return {x:e.clientX-r.left,y:e.clientY-r.top}};
+  const toW=q=>({x:GXV.x+q.x/box.clientWidth*GXV.w,y:GXV.y+q.y/box.clientHeight*GXV.h});
+  const pick=q=>{
+    const w=toW(q),s=GXV.w/box.clientWidth;let best=null,bd=1e9;
+    GXD.P.forEach(p=>{if(!gxMatch(p))return;const d=Math.hypot(p.x-w.x,p.y-w.y)/s-gxPm(p)/s;if(d<bd){bd=d;best=p}});
+    return best&&bd<(last&&last.touch?18:9)?best:null;
+  };
+  box.addEventListener('pointerdown',e=>{
+    if(e.target.closest('.gxZoom'))return;
+    box.setPointerCapture(e.pointerId);ptr.set(e.pointerId,loc(e));moved=0;last={touch:e.pointerType!=='mouse'};
+    if(ptr.size===2){const [a,b]=[...ptr.values()];pd=Math.hypot(a.x-b.x,a.y-b.y)}
+    box.classList.add('drag');
+  });
+  box.addEventListener('pointermove',e=>{
+    const q=loc(e);
+    if(!ptr.has(e.pointerId)){
+      if(e.pointerType==='mouse'&&GXD){const p=pick(q),t=$('#gxTip');
+        if(p){const F=GX_F[p.o]||GX_F[1];t.innerHTML=`<b>${esc(p.n)}</b> · ${F.n}${p.pl?' · '+fmtN(p.pl)+' Helldivers':''}`;t.style.display='block';t.style.left=q.x+'px';t.style.top=q.y+'px'}else t.style.display='none'}
+      return;
+    }
+    const prev=ptr.get(e.pointerId);ptr.set(e.pointerId,q);
+    if(ptr.size===2){
+      const [a,b]=[...ptr.values()],d=Math.hypot(a.x-b.x,a.y-b.y);
+      if(pd>0)gxZoom(d/pd,(a.x+b.x)/2,(a.y+b.y)/2);pd=d;moved=99;return;
+    }
+    const dx=q.x-prev.x,dy=q.y-prev.y;moved+=Math.abs(dx)+Math.abs(dy);
+    if(moved>6){GXV.x-=dx*GXV.w/box.clientWidth;GXV.y-=dy*GXV.h/box.clientHeight;gxClamp();gxVB();$('#gxTip').style.display='none'}
+  });
+  const up=e=>{
+    if(!ptr.has(e.pointerId))return;
+    const q=ptr.get(e.pointerId);ptr.delete(e.pointerId);if(!ptr.size)box.classList.remove('drag');
+    if(moved<=6&&GXD&&!e.target.closest('.gxZoom')){const p=pick(q);gxSelect(p?p.i:-1,false)}
+  };
+  box.addEventListener('pointerup',up);box.addEventListener('pointercancel',e=>{ptr.delete(e.pointerId);box.classList.remove('drag')});
+  box.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse')$('#gxTip').style.display='none'});
+  box.addEventListener('wheel',e=>{e.preventDefault();const q=loc(e);gxZoom(Math.pow(1.0017,-e.deltaY),q.x,q.y)},{passive:false});
+  $('#gxIn').onclick=()=>gxZoom(1.5);$('#gxOut').onclick=()=>gxZoom(1/1.5);$('#gxRs').onclick=()=>gxFit(false);
+  if(window.ResizeObserver){let t;new ResizeObserver(()=>{clearTimeout(t);t=setTimeout(()=>{if(cur==='mappa'&&GXD)gxFit(true);gxPaint()},120)}).observe(box)}
+  $('#gxFil').onclick=e=>{const b=e.target.closest('[data-gf]');if(!b)return;GXFil=b.dataset.gf;$$('#gxFil .chip').forEach(c=>c.classList.toggle('act',c===b));gxPaint()};
+  $('#gxQ').oninput=e=>{GXQ=e.target.value.trim().toLowerCase();gxPaint()};
+  $('#gxQ').onkeydown=e=>{if(e.key==='Enter'&&GXQ){const p=GXD.P.find(x=>gxMatch(x));if(p)gxSelect(p.i,true)}};
+  $('#gxLists').onclick=e=>{const b=e.target.closest('[data-gi]');if(b)gxSelect(+b.dataset.gi,true)};
+}
+async function gxLoad(force){
+  try{
+    const D=await getGalaxy(force);if(cur!=='mappa')return;
+    const first=!$('#gxG').childElementCount;
+    $('#gxMsg').style.display='none';
+    if(first||!GXV)gxFit(false);
+    gxPaint();gxSide();gxLists();gxLive();
+  }catch(e){if(cur==='mappa'&&!GXD){$('#gxMsg').innerHTML='The galactic war API is unreachable right now.<br>The planet files below still work: the live map needs a connection to the war feed.';$('#gxLiveB').className='gxLive off';$('#gxLiveB').textContent='● OFFLINE'}}
+}
+function gxTick(){
+  if(document.hidden||cur!=='mappa'||!GXD)return;
+  if(Date.now()-GXD.t>=GX_TTL)gxLoad(true);
+}
+setInterval(gxTick,30000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)gxTick()});
+function gxInit(){
+  GXSel=-1;GXFil='all';GXQ='';GXV=null;
+  gxBind();
+  $('#gxFil').innerHTML=chipsHTML([['all','All'],['1','Super Earth'],['2','Terminids'],['3','Automatons'],['4','Illuminate'],['fight','Fighting']],'all','gf');
+  gxLoad(false);
+}
 
 /* ---------- MAJOR ORDERS (live war API + wiki history) ---------- */
 const MO_API='https://helldiverstrainingmanual.com/api/v1';
@@ -1896,7 +2315,7 @@ function opDossier(op){
    ${op.extras.map(x=>`<h5>${esc(x.l)}</h5><p>${esc(x.t)}</p>`).join('')}
    ${op.reward?`<h5>Reward</h5><p>${esc(op.reward)}</p>`:''}
    ${op.st&&op.st.rest?`<h5>Outcome</h5><div class="opOut" style="--sc:var(--${c==='ok'?'gr':c==='bad'?'rd':'y'})">${esc(op.st.rest)}</div>`:''}
-   <div class="attr">Source: <a target="_blank" rel="noopener" href="${wlink('Major Orders')}">Major Orders · Helldivers Wiki (Fandom, CC BY-SA)</a></div></div>`;
+   <div class="attr">Source: <a target="_blank" rel="noopener" href="${wlink('Major Orders')}">Major Orders · Helldivers Wiki (wiki.gg, CC BY-SA)</a></div></div>`;
 }
 let OPS=[],opFilt='all';
 function ordini(){
@@ -2059,62 +2478,233 @@ function shout(t){const f=document.createElement('div');f.className='fxText';f.t
 /* ---------- ARMORY ---------- */
 const WCAT_ROOTS=['Category:Weapons','Category:Primary Weapons','Category:Secondary Weapons','Category:Support Weapons','Category:Throwables','Category:Throwable Weapons','Category:Stratagem Weapons'];
 const WGENERIC=/^(weapons?|primary weapons?|secondary weapons?|support weapons?|throwables?|throwable weapons?|grenades?|stratagem weapons?)$/i;
-let armGrp='all',armMeta={};
-function getWeapons(){
-  return cached('w2:all',12*3600e3,async()=>{
-    const groups={},seen=new Set();
-    const add=(g,t)=>{if(seen.has(t)||WGENERIC.test(t))return;seen.add(t);(groups[g]=groups[g]||[]).push(t)};
-    async function walk(cat,label,depth){
-      let d;try{d=await rawApi({action:'query',list:'categorymembers',cmtitle:cat,cmlimit:'500',cmtype:'page|subcat'})}catch(e){return}
-      const m=(d.query&&d.query.categorymembers)||[];
-      if(depth<2)for(const x of m.filter(x=>x.ns===14))await walk(x.title,x.title.replace(/^Category:/,''),depth+1);
-      m.filter(x=>x.ns===0).forEach(x=>add(label,x.title));
-    }
-    await walk(WCAT_ROOTS[0],'Other',0);
-    if(seen.size<8)for(const c of WCAT_ROOTS.slice(1))await walk(c,c.replace(/^Category:/,''),1);
-    return groups;
+/* ---------- WIKI TAXONOMY: the real categories of the Helldivers Wiki (wiki.gg) ---------- */
+const TX_JUNK=/^(weapons?|stratagems?|armors?|armor passives?|passives?|boosters?|enemies|enemy classes|factions|lore|planets|warbonds?|equipment|damage comparison|equipment traits|mines|automatons?|terminids?|illuminate|federation of super earth|minor characters|non-playable characters|planets and sectors|environmental conditions|second galactic war mechanics|major orders?)$|\(disambiguation\)|^(?![A-Z0-9]{1,4}\/[A-Z0-9]).*\/|^(Category|Template|User|Community|Helldivers Wiki|Help|File|Module|Helldivers 1):/i;
+const txLab=n=>String(n).replace(/^Category:/,'').replace(/ (Weapons|Stratagems|Enemies)$/,'');
+const TXI={};
+const txReg=a=>{a.forEach(x=>{if(!TXI[x.t])TXI[x.t]=x});return a};
+async function txMembers(cat){
+  const P={action:'query',list:'categorymembers',cmtitle:cat,cmlimit:'500',cmtype:'page|subcat'};
+  let m=[];
+  /* wiki.gg first (the only reliable source of these categories), retried once: a throttled or failed call must not silently drop a whole category */
+  for(let i=0;i<2&&!m.length;i++){try{const d=await ggApi(P);m=(d.query&&d.query.categorymembers)||[]}catch(e){}}
+  if(!m.length){try{const d=await rawApi(P);m=(d.query&&d.query.categorymembers)||[]}catch(e){}}
+  return m;
+}
+async function txTree(cat,depth){
+  let m=[];try{m=await txMembers(cat)}catch(e){}
+  const subs=await Promise.all(m.filter(x=>x.ns===14).map(async x=>({name:x.title.replace(/^Category:/,''),node:depth>0?await txTree(x.title,depth-1):{pages:[],subs:[]}})));
+  return {pages:m.filter(x=>x.ns===0).map(x=>x.title),subs};
+}
+function txFlat(node,label,out,seen){
+  node.subs.forEach(s=>txFlat(s.node,txLab(s.name),out,seen));
+  node.pages.forEach(t=>{if(!seen.has(t)&&!TX_JUNK.test(t)){seen.add(t);out.push({t,s:label})}});
+}
+function taxWeapons(){
+  return cached('tx:w3',12*3600e3,async()=>{
+    const K=[['Primary',[['Primary Weapons','Other'],['Special Primaries','Special']]],['Secondary',[['Secondary Weapons','Other'],['Special Secondaries','Special'],['Pistols','Pistols'],['Melee','Melee']]],['Support',[['Support Weapons','']]],['Throwable',[['Throwables','Other'],['Special Throwables','Special'],['Standard Throwables','Standard']]]];
+    const jobs=[];K.forEach(([k,cs])=>cs.forEach(([c,l])=>jobs.push({k,c,l})));
+    const trees=await Promise.all(jobs.map(j=>txTree('Category:'+j.c,1)));
+    const seen=new Set(),out=[];
+    jobs.forEach((j,i)=>{const tmp=[];txFlat(trees[i],j.l,tmp,seen);tmp.forEach(x=>out.push({t:x.t,k:j.k,s:x.s}))});
+    const [en,ex]=await Promise.all(['Energy-Based','Explosive'].map(c=>txMembers('Category:'+c).catch(()=>[])));
+    const E=new Set(en.map(x=>x.title)),X=new Set(ex.map(x=>x.title));
+    out.forEach(o=>{if(o.k==='Support')o.s=E.has(o.t)?'Energy':X.has(o.t)?'Explosive':'Ballistic / other'});
+    if(out.length<8)throw new Error('no weapons');
+    return out;
   });
 }
+const ST_ORDER=['Eagle','Orbital','Sentry','Emplacement','Support Weapon','Backpack','Vehicle','Mission','Patriotic','Engineering','Hangar','Robotics'];
+const ST_FB={
+ 'Eagle':['Eagle 110mm Rocket Pods','Eagle 500kg Bomb','Eagle Airstrike','Eagle Cluster Bomb','Eagle Gas Airstrike','Eagle Napalm Airstrike','Eagle Smoke Strike','Eagle Strafing Run'],
+ 'Orbital':['Orbital 120mm HE Barrage','Orbital 380mm HE Barrage','Orbital Airburst Strike','Orbital EMS Strike','Orbital Gas Strike','Orbital Gatling Barrage','Orbital Laser','Orbital Napalm Barrage','Orbital Precision Strike','Orbital Railcannon Strike','Orbital Smoke Strike','Orbital Walking Barrage'],
+ 'Sentry':['A/AC-8 Autocannon Sentry','A/ARC-3 Tesla Tower','A/FLAM-40 Flame Sentry','A/G-16 Gatling Sentry','A/GM-17 Gas Mortar Sentry','A/LAS-98 Laser Sentry','A/M-12 Mortar Sentry','A/M-23 EMS Mortar Sentry','A/MG-43 Machine Gun Sentry','A/MLS-4X Rocket Sentry'],
+ 'Emplacement':['E/AT-12 Anti-Tank Emplacement','E/GL-21 Grenadier Battlement','E/MG-101 HMG Emplacement','FX-12 Shield Generator Relay','MD-17 Anti-Tank Mines','MD-6 Anti-Personnel Minefield','MD-8 Gas Mines','MD-I4 Incendiary Mines'],
+ 'Backpack':['AX/AR-23 Guard Dog','AX/ARC-3 K-9','AX/FLAM-75 Hot Dog','AX/LAS-5 Rover','AX/TX-13 Dog Breath','B-1 Supply Pack','B-100 Portable Hellbomb','LIFT-182 Warp Pack','LIFT-850 Jump Pack','LIFT-860 Hover Pack','SH-20 Ballistic Shield Backpack','SH-32 Shield Generator Pack','SH-51 Directional Shield'],
+ 'Support Weapon':['40-K Meltagun','AC-8 Autocannon','APW-1 Anti-Materiel Rifle','ARC-3 Arc Thrower','B/FLAM-80 Cremator','B/MD C4 Pack','CQC-1 One True Flag','CQC-20 Breaching Hammer','CQC-9 Defoliation Tool','EAT-17 Expendable Anti-Tank','EAT-411 Leveller','EAT-700 Expendable Napalm','FAF-14 Spear','FLAM-40 Flamethrower','GL-21 Grenade Launcher','GL-28 Belt-Fed Grenade Launcher','GL-52 De-Escalator','GR-8 Recoilless Rifle','LAS-98 Laser Cannon','LAS-99 Quasar Cannon','M-1000 Maxigun','M-105 Stalwart','MG-206 Heavy Machine Gun','MG-43 Machine Gun','MGX-42 Bullet Storm','MLS-4X Commando','MS-11 Solo Silo','PLAS-45 Epoch','RL-77 Airburst Rocket Launcher','RS-422 Railgun','S-11 Speargun','StA-X3 W.A.S.P. Launcher','TX-41 Sterilizer'],
+ 'Vehicle':['EXO-45 Patriot Exosuit','EXO-49 Emancipator Exosuit','EXO-51 Lumberer Exosuit','EXO-55 Breakthrough Exosuit','M-102 Gunner FRV','M-103 Supply FRV','M-104 Incinerator FRV','TD-110 Maelstrom','TD-220 Bastion MK XVI']};
+const ST_WB=['AX/ARC-3 K-9','AX/FLAM-75 Hot Dog','AX/TX-13 Dog Breath','B/FLAM-80 Cremator','CQC-1 One True Flag','CQC-20 Breaching Hammer','CQC-9 Defoliation Tool','EAT-700 Expendable Napalm','GL-28 Belt-Fed Grenade Launcher','GL-52 De-Escalator','M-1000 Maxigun','MS-11 Solo Silo','S-11 Speargun','TX-41 Sterilizer'];
+function taxStrat(){
+  return cached('tx:s4',12*3600e3,async()=>{
+    const root=await txTree('Category:Stratagems',2);
+    const ord=n=>{const i=ST_ORDER.findIndex(o=>n.toLowerCase().startsWith(o.toLowerCase()));return i<0?99:i};
+    const subs=root.subs.filter(s=>!/arrows|^support weapons$|bridge|warbond/i.test(s.name)).sort((a,b)=>ord(a.name)-ord(b.name));
+    const wb=root.subs.find(s=>/warbond/i.test(s.name)),W=new Set(wb?wb.node.pages:[]);
+    const seen=new Set(),out=[];
+    subs.forEach(s=>{const tmp=[];txFlat(s.node,'',tmp,seen);tmp.forEach(x=>out.push({t:x.t,k:txLab(s.name),s:W.has(x.t)?'Warbond':'Standard'}))});
+    root.pages.forEach(t=>{if(!seen.has(t)&&!TX_JUNK.test(t)){seen.add(t);out.push({t,k:'Other',s:W.has(t)?'Warbond':'Standard'})}});
+    /* safety net: the stratagem titles of the wiki (Category:Stratagems), so a failed category request can never hide sentries, emplacements, dogs, packs... */
+    const WBF=new Set(ST_WB);
+    Object.entries(ST_FB).forEach(([k,l])=>l.forEach(t=>{const e=out.find(x=>x.t===t);if(e){if(e.k==='Other')e.k=k}else out.push({t,k,s:WBF.has(t)?'Warbond':'Standard'})}));
+    if(out.length<8)throw new Error('no stratagems');
+    return out;
+  });
+}
+function taxArmor(){
+  return cached('tx:a2',12*3600e3,async()=>{
+    const defs=[['Light','Light Armor'],['Medium','Medium Armor'],['Heavy','Heavy Armor'],['Helmets','Helmets'],['Capes','Capes'],['Passives','Armor Passives']];
+    const res=await Promise.all(defs.map(([k,c])=>txMembers('Category:'+c).catch(()=>[])));
+    let pas={};try{const g=GEAR||await getGear();(g.armor||[]).forEach(a=>{if(a.passive)pas[tNorm(a.n)]=a.passive})}catch(e){}
+    const seen=new Set(),out=[];
+    defs.forEach(([k],i)=>res[i].filter(x=>x.ns===0).forEach(x=>{
+      const t=x.title;if(seen.has(t+'|'+k)||TX_JUNK.test(t)||GEAR_BAD.test(t))return;seen.add(t+'|'+k);
+      out.push({t,k,s:/^(Light|Medium|Heavy)$/.test(k)?(pas[tNorm(t)]||''):''});
+    }));
+    if(out.length<8)throw new Error('no armor');
+    return out;
+  });
+}
+function taxBoosters(){
+  return cached('tx:b2',12*3600e3,async()=>{
+    const m=(await txMembers('Category:Boosters')).filter(x=>x.ns===0&&!TX_JUNK.test(x.title));
+    if(m.length<3)throw new Error('no boosters');
+    return m.map(x=>({t:x.title,k:'',s:''}));
+  });
+}
+function taxEnemies(){
+  return cached('tx:e2',12*3600e3,async()=>{
+    const F=['Illuminate','Terminids','Automatons'],Z=['Small','Medium','Large','Massive','Superheavy'];
+    const [ft,...zs]=await Promise.all([Promise.all(F.map(f=>txTree('Category:'+f,2))),...Z.map(z=>txMembers('Category:'+z+' Enemies').catch(()=>[]))]);
+    const size={};Z.forEach((z,i)=>zs[i].filter(x=>x.ns===0).forEach(x=>{if(!size[x.title])size[x.title]=z}));
+    const seen=new Set(),by={};
+    F.forEach((f,i)=>{const tmp=[];txFlat(ft[i],'',tmp,seen);by[f]=tmp.map(x=>({t:x.t,k:f,s:size[x.t]||'Unsorted'}))});
+    const out=[...by.Terminids,...by.Automatons,...by.Illuminate];
+    Object.keys(size).forEach(t=>{if(!seen.has(t)&&!TX_JUNK.test(t)){seen.add(t);out.push({t,k:'Other',s:size[t]})}});
+    if(out.length<8)throw new Error('no enemies');
+    return out;
+  });
+}
+function taxLore(){
+  return cached('tx:l2',12*3600e3,async()=>{
+    const root=await txTree('Category:Lore',1);
+    const seen=new Set(),out=[];
+    root.subs.filter(s=>!/^battles$/i.test(s.name)).forEach(s=>{const tmp=[];txFlat(s.node,'',tmp,seen);tmp.forEach(x=>out.push({t:x.t,k:txLab(s.name),s:x.s}))});
+    root.pages.forEach(t=>{if(!seen.has(t)&&!TX_JUNK.test(t)){seen.add(t);out.push({t,k:'Other files',s:''})}});
+    if(out.length<8)throw new Error('no lore');
+    return out;
+  });
+}
+function getWeapons(){
+  return cached('w4:all',12*3600e3,async()=>{
+    const t=txReg(await taxWeapons()),g={};
+    t.forEach(x=>{(g[x.k]=g[x.k]||[]).push(x.t)});
+    return g;
+  });
+}
+
+/* ---------- EXPLORER: tabs, two filter levels, search, sort, A-Z index ---------- */
+function exHTML(id,o){
+  o=o||{};
+  return `<div class="ex" id="${id}">
+   <div class="exTabs ${o.rv===false?'':'rv'}" data-x="tabs" style="display:none"></div>
+   <div class="eraBar exK ${o.rv===false?'':'rv'}" data-x="kinds" style="display:none"></div>
+   <div class="eraBar exSub ${o.rv===false?'':'rv'}" data-x="subs" style="display:none"></div>
+   <div class="aTools exTools ${o.rv===false?'':'rv'}"><input type="search" data-x="q" placeholder="${esc(o.ph||'Search...')}" autocomplete="off"><select data-x="sort" aria-label="Sort"><option value="az">Name A → Z</option><option value="za">Name Z → A</option><option value="grp">By group</option></select>${o.extra||''}<span class="aCount" data-x="count"></span></div>
+   <div class="exAZ ${o.rv===false?'':'rv'}" data-x="az" style="display:none"></div>
+   <div class="${o.gridCls||'aGrid'}"${o.gid?` id="${o.gid}"`:''} data-x="grid">${loadingHTML}</div></div>`;
+}
+function exInit(id,cfg){
+  const root=$('#'+id);if(!root)return null;
+  const q=n=>root.querySelector('[data-x="'+n+'"]');
+  const S={tab:null,k:'all',s:'all',q:'',sort:cfg.sort||'az',az:'all',deep:{}};
+  let sets=cfg.sets,items=[],cards=[],tm=null;
+  const ltr=t=>{const c=(String(t).match(/[A-Za-z0-9]/)||['#'])[0].toUpperCase();return /[0-9]/.test(c)?'#':c};
+  const norm=s=>String(s).toLowerCase().replace(/[^a-z0-9]+/g,'');
+  const show=(el,on)=>{el.style.display=on?'':'none'};
+  function kinds(){const c=new Map();items.forEach(x=>{if(x.k)c.set(x.k,(c.get(x.k)||0)+1)});const o=cfg.order||[];return [...c.entries()].sort((a,b)=>{const i=o.indexOf(a[0]),j=o.indexOf(b[0]);return o.length?((i<0?99:i)-(j<0?99:j)):0})}
+  function drawTabs(){const el=q('tabs'),ks=Object.keys(sets);show(el,ks.length>1);if(ks.length>1)el.innerHTML=ks.map(k=>`<button class="exTab ${k===S.tab?'act':''}" data-xt="${esc(k)}">${esc(sets[k].label)}<small>${sets[k].items.length}</small></button>`).join('')}
+  function drawKinds(){const el=q('kinds'),ks=kinds();show(el,ks.length>1);if(ks.length>1)el.innerHTML=chipsHTML([['all',`All (${items.length})`],...ks.map(([k,n])=>[k,`${esc(k)} (${n})`])],S.k,'xk')}
+  function drawSubs(){
+    const el=q('subs'),c=new Map();items.forEach(x=>{if(x.s&&(S.k==='all'||x.k===S.k))c.set(x.s,(c.get(x.s)||0)+1)});
+    if(S.s!=='all'&&!c.has(S.s))S.s='all';
+    if(sets[S.tab].need&&S.k==='all')c.clear();
+    show(el,c.size>1);if(c.size>1)el.innerHTML=chipsHTML([['all','Any type'],...[...c.entries()].map(([k,n])=>[k,`${esc(k)} (${n})`])],S.s,'xs');
+  }
+  function drawAZ(){const el=q('az');const L=[...new Set(items.map(x=>ltr(x.t)))].sort();show(el,items.length>=60&&L.length>3);if(items.length>=60)el.innerHTML=['all',...L].map(l=>`<button class="${l===S.az?'act':''}" data-xa="${l}">${l==='all'?'All':l}</button>`).join('')}
+  function sorted(){
+    const r=[...items],ko=kinds().map(x=>x[0]),cmp=(a,b)=>a.t.localeCompare(b.t,'en',{sensitivity:'base'});
+    if(S.sort==='grp')r.sort((a,b)=>(ko.indexOf(a.k)-ko.indexOf(b.k))||String(a.s).localeCompare(String(b.s))||cmp(a,b));
+    else{r.sort(cmp);if(S.sort==='za')r.reverse()}
+    return r;
+  }
+  function apply(){
+    const Q=S.q.trim().toLowerCase(),Qn=norm(Q),deep=S.deep[S.tab];let n=0,tmc=0;
+    cards.forEach(el=>{
+      let ok=(S.k==='all'||el.dataset.k===S.k)&&(S.s==='all'||el.dataset.s===S.s)&&(S.az==='all'||el.dataset.l===S.az);
+      if(ok&&Q){
+        const h=(el.dataset.tt+' '+el.dataset.k+' '+el.dataset.s).toLowerCase(),t=h.includes(Q)||norm(h).includes(Qn);
+        if(t)tmc++;
+        ok=t||(deep&&(((el.dataset.t||'')+' '+el.textContent).toLowerCase().includes(Q)));
+      }
+      show(el,ok);if(ok)n++;
+    });
+    const c=q('count');if(c)c.textContent=n+(n===1?' result':' results');
+    let em=q('grid').querySelector('.exNone');
+    if(!n){if(!em){em=document.createElement('div');em.className='exNone';em.textContent='Nothing on file matches this filter.';q('grid').appendChild(em)}}
+    else if(em)em.remove();
+    return tmc;
+  }
+  async function deepSearch(){
+    if(cfg.card||S.deep[S.tab]||S.q.trim().length<3)return;
+    if(apply()>=3)return;
+    S.deep[S.tab]=true;q('count').textContent='Searching the wiki files…';
+    await Promise.all(cards.filter(el=>!el.classList.contains('ld')).map(el=>{lio.unobserve(el);return fillCard(el)}));
+    apply();
+  }
+  function drawGrid(){
+    const g=q('grid'),list=sorted(),mode=sets[S.tab].mode||cfg.mode;
+    g.innerHTML=list.map(x=>cfg.card?cfg.card(x):`<div class="${cfg.cls||'panel aCard'} lz" data-q="${esc(x.t)}" data-mode="${mode}" data-g="${esc([x.k,x.s].filter(Boolean).join(' · '))}"><h4>${esc(x.t)}</h4>${loadingHTML}</div>`).join('');
+    cards=[...g.children];
+    cards.forEach((el,i)=>{const x=list[i];el.dataset.k=x.k||'';el.dataset.s=x.s||'';el.dataset.l=ltr(x.t);el.dataset.tt=x.t});
+    if(cfg.card){if(cfg.after)cfg.after(g)}else cards.forEach(el=>lio.observe(el));
+    apply();
+  }
+  function setTab(t){S.tab=t;items=sets[t].items;S.k='all';S.s='all';S.az='all';drawTabs();drawKinds();drawSubs();drawAZ();drawGrid()}
+  root.addEventListener('click',e=>{
+    let b;
+    if((b=e.target.closest('[data-xt]'))){setTab(b.dataset.xt);return}
+    if((b=e.target.closest('[data-xk]'))){S.k=b.dataset.xk;S.s='all';drawKinds();drawSubs();apply();return}
+    if((b=e.target.closest('[data-xs]'))){S.s=b.dataset.xs;drawSubs();apply();return}
+    if((b=e.target.closest('[data-xa]'))){S.az=b.dataset.xa;drawAZ();apply();return}
+    if((b=e.target.closest('[data-gx]'))){const bx=$('#gxBox');if(bx&&window.gxSelect){bx.scrollIntoView({behavior:'smooth',block:'center'});gxSelect(+b.dataset.gx,true)}return}
+    if((b=e.target.closest('.pkC'))&&cfg.onPick){cfg.onPick(b.dataset.tt);return}
+    if((b=e.target.closest('[data-open]')))openPage(b.dataset.open);
+  });
+  q('q').oninput=e=>{S.q=e.target.value;apply();clearTimeout(tm);tm=setTimeout(deepSearch,260)};
+  q('sort').onchange=e=>{S.sort=e.target.value;drawGrid()};
+  const api={S,apply,setTab,visible:()=>cards.filter(el=>el.style.display!=='none').map(el=>el.dataset.tt),
+    setSets(ns){sets=ns;const ks=Object.keys(sets);if(!sets[S.tab])S.tab=ks[0];items=sets[S.tab].items;const k=S.k;drawTabs();drawKinds();if(k!=='all'&&!kinds().some(x=>x[0]===k))S.k='all';drawKinds();drawSubs();drawAZ();drawGrid()}};
+  setTab(cfg.tab||Object.keys(sets)[0]);
+  return api;
+}
+
 function armi(){
   return `<div class="wrap"><p class="kicker rv">Arsenal of Democracy</p>
-  <h2 class="sec rv b">Armory<small>// every weapon on file, with real stats from the wiki</small></h2>
-  <p class="lead rv">Because liberty does not defend itself. Browse the full arsenal by category, search by name and open any entry for the complete file.</p>
-  <div class="eraBar rv" id="aChips"></div>
-  <div class="aTools rv"><input id="gq" type="search" placeholder="Search weapons..." autocomplete="off"><span class="aCount" id="aCount"></span></div>
-  <div class="aGrid" id="aGrid">${loadingHTML}</div></div>`;
-}
-function armApply(){
-  const L=(($('#gq')||{}).value||'').trim().toLowerCase();
-  if(L)$$('#aGrid .lz:not(.ld)').forEach(el=>{lio.unobserve(el);fillCard(el)});
-  let n=0;
-  $$('#aGrid .lz').forEach(el=>{
-    const ok=(armGrp==='all'||el.dataset.g===armGrp)&&(!L||(el.dataset.q+' '+(el.dataset.t||'')+' '+el.textContent).toLowerCase().includes(L));
-    el.style.display=ok?'':'none';if(ok)n++;
-  });
-  const c=$('#aCount');if(c)c.textContent=n+(n===1?' weapon':' weapons');
+  <h2 class="sec rv b">Armory<small>// weapons, stratagems, armor and boosters, filed as the wiki files them</small></h2>
+  <p class="lead rv">Pick a section, narrow it by category and type, then search by name or by anything written in the file. Open any entry for its full data.</p>
+  ${exHTML('exArm',{ph:'Search the armory (name, class, anything in the file)...',gid:'aGrid'})}</div>`;
 }
 armi.init=async()=>{
-  armGrp='all';
-  let groups=null;
-  try{groups=await getWeapons()}catch(e){}
+  let w=[];try{w=txReg(await taxWeapons())}catch(e){}
   if(cur!=='armi')return;
-  if(!groups||!Object.keys(groups).length)groups={Weapons:ARMI_Q};
-  armMeta={};const names=[];
-  Object.entries(groups).forEach(([g,l])=>l.forEach(t=>{armMeta[t]=g;names.push(t)}));
-  names.sort((a,b)=>a.localeCompare(b,'en',{sensitivity:'base'}));
-  const order=Object.keys(groups).sort((a,b)=>groups[b].length-groups[a].length);
-  $('#aChips').innerHTML=chipsHTML([['all',`All (${names.length})`],...order.map(g=>[g,`${esc(g)} (${groups[g].length})`])],armGrp,'ag');
-  lazyGrid('#aGrid',names,'weapon','panel aCard',armMeta);
-  $('#aChips').onclick=e=>{const b=e.target.closest('[data-ag]');if(!b)return;armGrp=b.dataset.ag;$$('#aChips .chip').forEach(c=>c.classList.toggle('act',c===b));armApply()};
-  $('#gq').oninput=armApply;
-  armApply();
+  if(!w.length)w=ARMI_Q.map(t=>({t,k:'Weapons',s:''}));
+  const sets={weapons:{label:'Weapons',items:w,mode:'weapon',need:1}};
+  const ex=exInit('exArm',{sets,order:['Primary','Secondary','Support','Throwable']});
+  const ORD=['weapons','strat','armor','boost'];
+  const more=async(key,label,fn,mode,need)=>{
+    try{const a=txReg(await fn());if(cur!=='armi'||!a.length)return;sets[key]={label,items:a,mode,need};ex.setSets(Object.fromEntries(ORD.filter(k=>sets[k]).map(k=>[k,sets[k]])))}catch(e){}
+  };
+  more('strat','Stratagems',taxStrat,'weapon');
+  more('armor','Armor',taxArmor,'gear',1);
+  more('boost','Boosters',taxBoosters,'weapon');
 };
+
 
 /* ---------- GLOSSARY ---------- */
 let gTerms=[],gSel='';
 const hashS=s=>{let h=0;for(let i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))|0;return h};
 function resolveTitles(list){
-  return cached('rt:'+hashS(list.join('|')),24*3600e3,async()=>{
+  return cached('rt2:'+hashS(list.join('|')),24*3600e3,async()=>{
     const out=[];
     for(let i=0;i<list.length;i+=40){
       const chunk=list.slice(i,i+40);
@@ -2158,7 +2748,7 @@ async function gShow(t){
       +p.lead.slice(0,3).map(x=>`<p style="color:#c5d0da;line-height:1.7;margin:8px 0">${esc(x)}</p>`).join('')
       +(p.info.length?`<div style="margin-top:12px">${irows(p,10)}</div>`:'')
       +(rel.length?`<div class="kicker" style="margin-top:18px">Related terms</div><div class="relT">${rel.map(r=>`<button class="chip" data-g="${esc(r)}">${esc(r)}</button>`).join('')}</div>`:'')
-      +`<div class="attr">Source: <a target="_blank" rel="noopener" href="${wlink(p.title)}">${esc(p.title)} · Helldivers Wiki (Fandom, CC BY-SA)</a></div><button class="btn ghost sm" data-open="${esc(p.title)}">Read the full entry</button>`;
+      +`<div class="attr">Source: <a target="_blank" rel="noopener" href="${wlink(p.title)}">${esc(p.title)} · Helldivers Wiki (wiki.gg, CC BY-SA)</a></div><button class="btn ghost sm" data-open="${esc(p.title)}">Read the full entry</button>`;
   }catch(e){if(gSel===t)m.innerHTML=errHTML(t)}
 }
 gloss.init=async()=>{
@@ -2201,7 +2791,7 @@ function parseLadder(p){
   return [...map].map(([lv,name])=>({lv,name})).sort((a,b)=>a.lv-b.lv);
 }
 async function loadTitles(){
-  const r=await cached('ti:v1',12*3600e3,async()=>{
+  const r=await cached('ti:v2',12*3600e3,async()=>{
     const ex=await resolveTitles(TITLE_Q);
     for(const t of ex){
       const p=await getPage(t);if(p.missing)continue;
@@ -2256,7 +2846,7 @@ function fillTitleIcons(){$$('#ladder .tIcW').forEach(w=>{const t=TITLES.find(x=
 async function loadTitleIcons(){
   const r=await loadTitles();
   const page=r&&r.page;if(!page)return {};
-  return cached('ti:ic2',12*3600e3,async()=>{
+  return cached('ti:ic3',12*3600e3,async()=>{
     const map={};
     const nm=TITLES.map(t=>({n:t.name,k:tNorm(t.name)}));
     /* a title may only match a file/caption that does not belong to a longer title containing it */
@@ -2307,7 +2897,7 @@ async function loadTitleIcons(){
   });
 }
 function getWbTitles(){
-  return cached('wt1',12*3600e3,async()=>{
+  return cached('wt2',12*3600e3,async()=>{
     let html=null;
     for(const q of ['Titles','Title']){try{const d=await rawApi({...PARSE,page:q});if(d.parse){html=typeof d.parse.text==='string'?d.parse.text:d.parse.text['*'];break}}catch(e){}}
     if(!html)throw new Error('no titles page');
@@ -2341,7 +2931,7 @@ function titles(){
   <p class="kicker rv" style="margin-top:44px">Warbond titles</p>
   <p class="lead rv" style="font-size:15px">Every special title, with the Warbond that grants it, read from the Warbond pages of the wiki.</p>
   <div class="ladder" id="wbTitles">${loadingHTML}</div>
-  <div class="attr" style="margin-top:22px">Emblems: <a target="_blank" rel="noopener" href="https://helldivers.wiki.gg/wiki/Levels">Helldivers Wiki (wiki.gg) · Levels</a> for rank titles and its title icon files for special titles. Warbond data: <a target="_blank" rel="noopener" href="${wlink('Titles')}">Titles</a> and the Warbond pages of the Helldivers Wiki (Fandom, CC BY-SA).</div></div>`;
+  <div class="attr" style="margin-top:22px">Emblems: <a target="_blank" rel="noopener" href="https://helldivers.wiki.gg/wiki/Levels">Helldivers Wiki (wiki.gg) · Levels</a> for rank titles and its title icon files for special titles. Warbond data: <a target="_blank" rel="noopener" href="${wlink('Titles')}">Titles</a> and the Warbond pages of the Helldivers Wiki (wiki.gg, CC BY-SA).</div></div>`;
 }
 function idCard(){
   const o=$('#idOut');if(!o||!$('#idLv'))return;
@@ -2356,7 +2946,7 @@ function idCard(){
   $$('#ladder .lr').forEach(r=>r.classList.toggle('cur',r.dataset.t===t.name));
   LS.set('id',{n:raw,l:lv});
 }
-function imgChain(im){const a=(im.dataset.alt||'').split('|').filter(Boolean);if(a.length){im.src=a.shift();im.dataset.alt=a.join('|')}else im.remove()}
+function imgChain(im){const a=(im.dataset.alt||'').split('|').filter(Boolean);if(a.length){im.src=a.shift();im.dataset.alt=a.join('|')}else if(im.dataset.tt&&typeof getThumb==='function'){const t=im.dataset.tt;im.dataset.tt='';getThumb(t).then(u=>{if(u)im.src=u;else im.remove()})}else im.remove()}
 titles.init=async()=>{
   TITLES=TITLES_FB.slice();
   const sv=LS.get('id')||{};
@@ -2473,7 +3063,7 @@ function parseWB(html,title){
   return {title,cover,lead:lead.slice(0,8),pages:real,nav,facts,nItems:real.reduce((a,p)=>a+p.items.length,0)};
 }
 function getWarbond(q){
-  return cached('wb4:'+q,6*3600e3,async()=>{
+  return cached('wb5:'+q,6*3600e3,async()=>{
     let d=await rawApi({...PARSE,page:q});
     if(d.error||!d.parse){
       const sr=await rawApi({action:'query',list:'search',srsearch:q+' warbond',srlimit:'5',srnamespace:'0'});
@@ -2509,7 +3099,7 @@ function wbDossier(p){
    <div class="wbHero">${p.cover?wimg(p.cover):`<div class="wbFb" style="width:120px;color:var(--y)">${emb('warbond')}</div>`}<div style="flex:1;min-width:240px"><h3 style="font-family:var(--h);font-weight:400;font-size:clamp(28px,5vw,46px);letter-spacing:.05em;text-transform:uppercase;color:var(--y);margin:4px 0">${esc(p.title)}</h3>${p.lead.slice(0,3).map(t=>`<p style="color:#c5d0da;line-height:1.7;margin:6px 0">${esc(t)}</p>`).join('')}
     ${[f.price&&['Price',f.price+' Super Credits'],f.date&&['Released',f.date],f.unlock&&['Medals to unlock all pages',f.unlock],f.complete&&['Medals to complete',f.complete]].filter(Boolean).map(([a,b])=>`<div class="irow"><b>${esc(a)}</b><span>${esc(b)}</span></div>`).join('')}</div></div>
    ${body?`<p class="kicker" style="margin-top:18px">Contents</p>${body}`:`<p class="lead" style="font-size:15px">The wiki page has no readable item list. Open it on the wiki.</p>`}
-   <div class="attr">Source: <a target="_blank" rel="noopener" href="${wlink(p.title)}">${esc(p.title)} · Helldivers Wiki (Fandom, CC BY-SA)</a></div>`;
+   <div class="attr">Source: <a target="_blank" rel="noopener" href="${wlink(p.title)}">${esc(p.title)} · Helldivers Wiki (wiki.gg, CC BY-SA)</a></div>`;
 }
 const bigImg=u=>String(u).replace(/scale-to-width-down\/\d+/,'scale-to-width-down/1200').replace(/(\?width=)\d+/,(m,x)=>x+'1200');
 function lightbox(u,name){
@@ -2554,7 +3144,7 @@ warbond.init=async()=>{
   getPage('Warbonds').then(p=>{
     if(cur!=='warbond'||!p||p.missing)return;
     $('#wbInfoT').textContent=cut(p.lead[0]||'',260);
-    $('#wbSecs').innerHTML=`<p class="kicker">From the wiki · ${esc(p.title)}</p>`+secsHTML(p,12)+`<div class="attr">Source: <a target="_blank" rel="noopener" href="${wlink(p.title)}">${esc(p.title)} · Helldivers Wiki (Fandom, CC BY-SA)</a></div>`;
+    $('#wbSecs').innerHTML=`<p class="kicker">From the wiki · ${esc(p.title)}</p>`+secsHTML(p,12)+`<div class="attr">Source: <a target="_blank" rel="noopener" href="${wlink(p.title)}">${esc(p.title)} · Helldivers Wiki (wiki.gg, CC BY-SA)</a></div>`;
   }).catch(()=>{if($('#wbInfoT'))$('#wbInfoT').textContent='Warbonds page not reachable.'});
   (async()=>{
     for(const q of ['Super Citizen Edition','Super Citizen']){
@@ -2564,6 +3154,7 @@ warbond.init=async()=>{
   })();
   let names=[...WB_FB];
   try{(await getList('Category:Warbonds')).forEach(t=>{if(!/^warbonds?$/i.test(t)&&!names.includes(t))names.push(t)})}catch(e){}
+  try{const d=await rawApi({action:'query',prop:'links',titles:'Warbonds',pllimit:'500',plnamespace:'0'});((d.query&&d.query.pages)||[]).forEach(pg=>(pg.links||[]).slice(0,80).forEach(l=>{if(!/^warbonds?$/i.test(l.title)&&!names.includes(l.title))names.push(l.title)}))}catch(e){}
   const seen=new Set();let n=0;
   const load=async q=>{
     if(seen.has(q.toLowerCase()))return;seen.add(q.toLowerCase());
@@ -2577,7 +3168,7 @@ warbond.init=async()=>{
   /* the navigation box at the bottom of each page lists every Warbond, including newer ones */
   const extra=[...new Set(WBS.flatMap(p=>p.nav))].filter(t=>!seen.has(t.toLowerCase())&&!WBS.find(x=>x.title===t));
   await Promise.all(extra.slice(0,40).map(load));
-  if(cur==='warbond'){const o=WB_FB;WBS.sort((a,b)=>{const x=o.indexOf(a.title),y=o.indexOf(b.title);return (x<0?99:x)-(y<0?99:y)});draw()}
+  if(cur==='warbond'){const o=WB_FB;WBS.sort((a,b)=>{const x=o.indexOf(a.title),y=o.indexOf(b.title);return x<0&&y<0?((Date.parse(a.facts.date)||0)-(Date.parse(b.facts.date)||0)):(x<0?99:x)-(y<0?99:y)});draw()}
 };
 
 /* ---------- CHANGELOG REPORT (patch notes from the Helldivers Wiki, wiki.gg) ---------- */
@@ -2731,27 +3322,124 @@ changelog.init=async()=>{
 /* ---------- LOADOUT BUILDER (custom + rating) ---------- */
 let BL=null,blGroups=null,blExtra=[],blFac='all',blTok=0;
 const TWISTS=['Say "Liberty!" before every stratagem call.','Friendly fire only counts if it is patriotic.','Nobody reinforces before the objective is complete. Heroes do not read the manual.','The squad leader is whoever last said "Managed Democracy".','Dive only toward the sound of explosions.','Every squad member names their favourite stratagem before landing.'];
-/* Rating model: name keywords + numbers read from the wiki infobox. An estimate, not an official formula. */
-const AXES=[['at','Anti-armor'],['cc','Crowd control'],['dem','Demolition'],['sus','Sustain'],['rng','Range']];
+/* Rating model (v22): like the Democracy Hub builder it reasons per enemy class (light / medium / heavy), then operational stats
+   (tempo, surge, range, sustain, noise, danger). Inputs: name keywords + numbers read from the wiki infobox. An estimate, not an official formula. */
+const AXES=[['lt','Light enemies'],['md','Medium enemies'],['hv','Heavy enemies'],['tp','Tempo'],['sg','Surge'],['rg','Range']];
+const EVOP=[['sus','Sustain','higher is better'],['nz','Noise','lower is quieter'],['dg','Danger','lower is safer']];
+const EVK=['lt','md','hv','tp','sg','rg','sus','nz','dg'];
 const EVAL_TAGS=[
- [/railgun|recoilless|expendable anti-tank|quasar|anti-materiel|spear|commando|laser cannon|autocannon|\bAT\b/i,{at:3.2,dem:1.2}],
- [/500kg|precision strike|orbital laser|railcannon|hellbomb|380mm|walking barrage|thermite|demolition/i,{at:2.2,dem:3.2}],
- [/airstrike|cluster|strafing|gatling|120mm|napalm|gas|airburst|flamethrower|arc thrower|machine gun|stalwart|grenade launcher|sentry|mortar|flame|incendiary|shotgun|breaker|punisher/i,{cc:3}],
- [/shield|supply pack|resupply|guard dog|ballistic|medic|stim|backpack|sos|reinforce|rover|rearm|armor|booster|vitality|fortified/i,{sus:2.2}],
- [/sniper|diligence|anti-materiel|scorcher|railgun|artillery|seaf|dagger|spear|marksman|counter sniper/i,{rng:2.6}]
+ /* heavy armor */
+ [/railgun|recoilless|expendable anti-tank|\bEAT\b|quasar|anti-materiel|spear|commando|laser cannon/i,{hv:3.2,sg:1.8,rg:1.6}],
+ [/500kg|railcannon|hellbomb|orbital laser|110mm|rocket pods/i,{hv:3,sg:2.6,nz:1.4,dg:1.6}],
+ [/precision strike|380mm|walking barrage|120mm|thermite/i,{hv:1.6,md:1.8,sg:2.2,nz:1.4,dg:1.8}],
+ [/autocannon|auto cannon/i,{hv:1.8,md:2.4,rg:1.8,nz:1.8,tp:1}],
+ /* medium / light crowds */
+ [/machine gun|stalwart|gatling|\bMG-/i,{lt:2.4,md:1.6,tp:2.4,nz:1.6}],
+ [/sentry|emplacement/i,{lt:1.6,md:1.2,tp:2,rg:1.2,nz:1.8,dg:.8}],
+ [/mortar/i,{md:2,lt:1,rg:2,dg:1.4,nz:1.4}],
+ [/airstrike|cluster|strafing|napalm|airburst|gas strike|orbital gas|orbital napalm/i,{lt:2.2,md:1.4,sg:2.2,rg:1,nz:1.2,dg:1.2}],
+ [/flamethrower|flame|torcher|incendiary|arc thrower|\bARC-|arc\b/i,{lt:2.2,md:1.2,tp:1.8,nz:1,dg:1.2}],
+ [/grenade launcher|\bGL-|impact/i,{lt:1.4,md:1.8,dg:1.2,nz:.8}],
+ [/shotgun|breaker|punisher|slugger|cookout|spray ?& ?pray|\bSG-/i,{lt:2,md:1.2,tp:.8}],
+ [/liberator|tenderizer|pummeler|adjudicator|dominator|diligence|defender|knight|blitzer|sickle|scythe|\bSMG-|\bAR-/i,{lt:2,md:.8,tp:1.6}],
+ [/sickle|scythe|laser|dagger|arc/i,{tp:1.6}],
+ [/frag|high explosive|g-\d+/i,{lt:.8,md:.6,dg:1,sg:.6}],
+ /* range */
+ [/sniper|diligence|anti-materiel|marksman|counter sniper|scorcher|seaf|artillery|spear/i,{rg:2.6,md:.6}],
+ [/orbital|eagle/i,{rg:1.2}],
+ /* sustain */
+ [/supply pack|resupply/i,{sus:3,tp:1.2}],
+ [/shield generator|ballistic shield|shield|guard dog|rover|backpack/i,{sus:2.4,dg:-1.6}],
+ [/medic|stim|reinforce|sos|vitality|stamina|fortified|servo|med-?kit|regenerat|siege-ready|engineering kit|booster/i,{sus:1.6}],
+ /* stealth lowers noise */
+ [/scout|stealth|peak physique|infiltrat|ghost/i,{nz:-1.4}],
+ [/fortified|explosive resist|dp-53|demolition specialist/i,{dg:-1.2}]
 ];
-const FAC_W={all:{},bug:{cc:1.25,dem:.9,rng:.9},bot:{at:1.25,dem:1.1,rng:1.2},ill:{cc:1.1,at:1.1,rng:1.1}};
+const THREAT={all:[.4,.35,.25],bug:[.5,.3,.2],bot:[.3,.4,.3],ill:[.4,.35,.25]};
 const statNum=(p,re)=>{for(const [l,v] of (p.info||[])){if(re.test(l)){const m=String(v).replace(/,/g,'').match(/-?\d+(\.\d+)?/);if(m)return +m[0]}}return null};
-function evalItem(name,p){
-  const r={at:0,cc:0,dem:0,sus:0,rng:0};
-  EVAL_TAGS.forEach(([re,w])=>{if(re.test(name))Object.entries(w).forEach(([k,v])=>r[k]+=v)});
-  if(p&&!p.missing){
-    const dmg=statNum(p,/^damage/i),rpm=statNum(p,/rpm|fire ?rate/i),cap=statNum(p,/capacity|magazine/i),rg=statNum(p,/range/i),pen=statNum(p,/penetration/i);
-    if(dmg!=null)r.at+=dmg>=150?1.4:dmg>=90?.7:0;
-    if(rpm!=null)r.cc+=rpm>=600?1.4:rpm>=300?.7:0;
-    if(cap!=null)r.sus+=cap>=40?.7:0;
-    if(rg!=null)r.rng+=Math.min(2,rg/70);
-    if(pen!=null)r.at+=pen>=5?2.4:pen>=3?1.2:0;
+/* ---- wiki data: label/value pairs from the infobox AND the stat tables of the item's wiki.gg page ---- */
+function getEvalStats(n){
+  return cached('es1:'+n,24*3600e3,async()=>{
+    const html=ggHtml(await ggApi({...PARSE,page:n}));
+    if(!html)return {};
+    const doc=new DOMParser().parseFromString(html,'text/html');
+    doc.querySelectorAll('script,style,sup,.mw-editsection,.navbox,.toc,#toc').forEach(x=>x.remove());
+    const m={},add=(l,v)=>{l=clean(l).replace(/:$/,'');v=clean(v);if(!l||!v||l.length>50)return;const k=l.toLowerCase();if(!(k in m))m[k]=v.slice(0,200)};
+    doc.querySelectorAll('.pi-data').forEach(d=>{const l=d.querySelector('.pi-data-label'),v=d.querySelector('.pi-data-value');if(l&&v)add(l.textContent,v.textContent)});
+    doc.querySelectorAll('tr').forEach(tr=>{const c=[...tr.children].filter(x=>/^T[HD]$/.test(x.tagName));if(c.length>=2)add(c[0].textContent,c[1].textContent)});
+    doc.querySelectorAll('[class*="infobox"] [class*="label"]').forEach(l=>{const v=l.nextElementSibling;if(v)add(l.textContent,v.textContent)});
+    return m;
+  });
+}
+const AP_LV=s=>{s=String(s).toLowerCase();let b=0;String(s).split(/[;,()\/]|\band\b/).forEach(t=>{t=t.trim();let v=0,mm=t.match(/anti-?tank\s*(iv|v|iii|ii|i|\d)?/);
+  if(mm){const r={i:1,ii:2,iii:3,iv:4,v:5}[mm[1]]||+mm[1]||1;v=4+r}else if(/heavy/.test(t))v=4;else if(/medium/.test(t))v=3;else if(/light/.test(t))v=2;else if(/unarmou?red/.test(t))v=1;
+  if(v>b)b=v});return b};
+const nOf=s=>{const m=String(s||'').replace(/,/g,'').match(/(\d+(?:\.\d+)?)(?:\s*[-–]\s*(\d+(?:\.\d+)?))?/);return m?(m[2]?+m[2]:+m[1]):null};
+const kfind=(m,re)=>{for(const k in m)if(re.test(k))return m[k];return null};
+/* read the numbers that matter out of the wiki pairs */
+function readStats(m){
+  if(!m||!Object.keys(m).length)return null;
+  const st={},tr=(kfind(m,/^traits?$/)||'').toLowerCase();
+  st.at=/anti-?tank/.test(tr);st.tr=tr;
+  const dm=kfind(m,/^(standard )?damage$|^standard damage|^damage[:,]? standard|^damage$/);
+  if(dm){st.dmg=nOf(dm);const e=String(dm).replace(/,/g,'').match(/(\d+(?:\.\d+)?)\s*explosi/i);if(e)st.expl=+e[1]}
+  const dd=kfind(m,/vs\.? durable/);if(dd)st.dur=nOf(dd);
+  const ex=kfind(m,/inner radius damage|damage[:,]? inner radius|inner radius \(damage\)/);if(ex&&st.expl==null)st.expl=nOf(ex);
+  let ap=0;for(const k in m){if(/armou?r penetration|^penetration[:,]? (direct|slight)|\binner ap\b|^penetration$/.test(k)){const l=AP_LV(m[k]);if(l>ap)ap=l}}
+  if(!ap&&/anti-?tank/.test(tr))ap=5;else if(!ap&&/heavy armou?r/.test(tr))ap=4;else if(!ap&&/medium armou?r/.test(tr))ap=3;else if(!ap&&/light armou?r/.test(tr))ap=2;
+  st.ap=ap;
+  const ex2=kfind(m,/inner ap/);st.eap=ex2?AP_LV(ex2):0;
+  const rr=kfind(m,/outer radius|area of effect[:,]? outer radius/);if(rr)st.rad=nOf(rr);
+  const rp=kfind(m,/^fire rate/);if(rp)st.rpm=nOf(rp);
+  const dp=kfind(m,/^dps$/);if(dp)st.dps=nOf(dp);
+  const cp=kfind(m,/capacity/);if(cp)st.cap=nOf(cp);
+  const sp=kfind(m,/spare (mag|round)/);if(sp)st.spare=nOf(sp);
+  const cd=kfind(m,/^(base )?cooldown/);if(cd)st.cd=nOf(cd);
+  const us=kfind(m,/^uses/);if(us)st.uses=/unlimited/i.test(us)?99:nOf(us);
+  const nz=kfind(m,/noise/);if(nz){const w=String(nz).toLowerCase();st.nz=/silent|none/.test(w)?0:/small|quiet/.test(w)?.4:/medium/.test(w)?1:/large|loud/.test(w)?1.6:/huge/.test(w)?2.2:null}
+  const wt=(kfind(m,/^weapon type/)||'')+' '+(kfind(m,/^weapon category/)||'');st.wt=wt.toLowerCase();
+  return (st.dmg!=null||st.expl!=null||st.ap||st.rpm||st.cd!=null)?st:null;
+}
+/* effect of one weapon/stratagem against light / medium / heavy enemies, driven by wiki numbers */
+const APH=[0,.2,.4,1.2,2.4,3.8,4.4,5,5.4,5.6],APM=[0,.3,.6,1.8,2.4,2.2,2.0,1.9,1.8,1.8],APL=[1.4,1.8,2.2,2.2,2,1,.8,.7,.6,.6];
+function statsEffect(st,name){
+  const r={};EVK.forEach(k=>r[k]=0);
+  const L=Math.min(9,st.ap||2),dmg=st.dmg||0,boom=st.expl||0,rad=st.rad||0;
+  const burst=Math.max(dmg,boom),strat=st.cd!=null&&st.cd>0&&(st.uses!=null||/strat|eagle|orbital|sentry|emplacement/i.test(name)||!st.rpm);
+  const dps=st.dps||(st.rpm&&dmg?dmg*st.rpm/60:(dmg||boom)/2);
+  const dur=st.dur||dmg;
+  /* anti-tank trait: strong versus heavies, wasteful versus trash */
+  let hv=APH[L]*(.55+Math.min(1,Math.max(dur,boom*.6)/1500)*.9);
+  if(st.at){hv*=1.15;hv+=.6}
+  let md=APM[L]*(.5+Math.min(1.2,dps/1400));
+  /* medium penetration beats medium/heavy armor: a Medium-AP weapon scores clearly above a Light-AP one on both */
+  let lt=APL[L]*(.4+Math.min(1.3,dps/1000));
+  if(st.at)lt*=.45;
+  if(rad){const a=Math.min(1,boom/250)*Math.min(1.6,rad/6);lt+=a;md+=a*.6;if((st.eap||0)>=3)hv+=Math.min(1,boom/600)*.6}
+  if(st.rpm>=300){lt+=.4}
+  r.hv=Math.min(strat?5:4.2,hv);r.md=Math.min(4,md);r.lt=Math.min(4,lt);
+  /* tempo: sustained fire / ammo for weapons, cooldown for stratagems */
+  if(strat){const cd=st.cd;r.tp=(cd<=30?2.4:cd<=70?1.8:cd<=120?1.2:cd<=300?.6:.2)+(st.uses>=99?.4:0)}
+  else r.tp=(st.rpm>=300?1.2:st.rpm>=100?.6:.2)+Math.min(1.4,((st.cap||1)*((st.spare||1)+1))/120)+(st.rpm>=600?.3:0);
+  /* surge: big one-off damage */
+  r.sg=strat?Math.min(3.4,burst/600+rad/20):(st.rpm&&st.rpm<150?Math.min(2.4,burst/900):Math.min(.8,burst/2500));
+  if(st.wt&&/marksman|precision|sniper|designated|scout/.test(st.wt))r.rg+=2.2;else if(st.wt&&/anti-armou?r|anti-tank/.test(st.wt))r.rg+=1;
+  if(st.nz!=null&&!strat)r.nz=st.nz;
+  return r;
+}
+function evalItem(name,p,st){
+  const r={};EVK.forEach(k=>r[k]=0);
+  const has=!!st,TW=has?.3:1;
+  EVAL_TAGS.forEach(([re,w])=>{if(re.test(name))Object.entries(w).forEach(([k,v])=>r[k]+=v*((has&&/^(lt|md|hv|tp|sg)$/.test(k))||(has&&k==='nz'&&st.nz!=null)?TW:1))});
+  if(has){const e=statsEffect(st,name);EVK.forEach(k=>r[k]+=e[k]||0)}
+  else if(p&&!p.missing){
+    const dmg=statNum(p,/damage/i),rpm=statNum(p,/rpm|fire ?rate/i),cap=statNum(p,/capacity|magazine/i),rg=statNum(p,/range/i),pen=statNum(p,/penetration/i),cd=statNum(p,/cooldown/i);
+    if(dmg!=null)r.hv+=dmg>=150?1:dmg>=90?.5:0;
+    if(pen!=null){r.hv+=pen>=5?1.6:pen>=4?1:0;r.md+=pen>=3?.8:0}
+    if(rpm!=null){r.lt+=rpm>=600?1.2:rpm>=300?.6:0;r.tp+=rpm>=600?.8:rpm>=300?.4:0}
+    if(cap!=null)r.tp+=cap>=40?.6:0;
+    if(rg!=null)r.rg+=Math.min(2,rg/70);
+    if(cd!=null&&cd>0)r.tp+=cd<=70?1.2:cd<=120?.6:0;
   }
   return r;
 }
@@ -2766,54 +3454,133 @@ async function blEvaluate(){
   const tok=++blTok,sel=BL.filter(s=>s.val&&!GEARK.includes(s.k));
   if(!sel.length){BL_EV=null;box.innerHTML='';return}
   let pages=[];
-  try{pages=await Promise.all(sel.map(s=>getPage(s.val).catch(()=>null)))}catch(e){}
+  let sts=[];
+  try{[pages,sts]=await Promise.all([Promise.all(sel.map(s=>getPage(s.val).catch(()=>null))),Promise.all(sel.map(s=>getEvalStats(s.val).then(readStats).catch(()=>null)))])}catch(e){}
   if(tok!==blTok||!$('#blEval'))return;
-  const raw={at:0,cc:0,dem:0,sus:0,rng:0};
-  sel.forEach((s,i)=>{const r=evalItem(s.val,pages[i]);Object.keys(raw).forEach(k=>raw[k]+=r[k])});
+  const raw={};EVK.forEach(k=>raw[k]=0);
+  sel.forEach((s,i)=>{const r=evalItem(s.val,pages[i],sts[i]);EVK.forEach(k=>raw[k]+=r[k])});
   {const ga=BL.find(s=>s.k==='arm'&&s.val),gs=ga&&gearStat(ga.val);
-   if(gs){if(gs.armor!=null)raw.sus+=gs.armor>=150?1.6:gs.armor>=100?.9:gs.armor>=75?.4:0;if(gs.passive){const r=evalItem(gs.passive,null);Object.keys(raw).forEach(k=>raw[k]+=r[k])}}}
-  const W=FAC_W[blFac]||{},v={};
-  AXES.forEach(([k])=>v[k]=Math.min(10,raw[k]*(W[k]||1)*1.1));
-  const vals=AXES.map(a=>v[a[0]]),avg=vals.reduce((a,b)=>a+b,0)/vals.length,bonus=Math.min(...vals)>=3?.6:0,score=Math.min(10,avg+bonus);
+   if(gs){if(gs.armor!=null){raw.sus+=gs.armor>=150?1.6:gs.armor>=100?.9:gs.armor>=75?.4:0;raw.dg-=gs.armor>=150?1.2:gs.armor>=100?.6:0}
+    if(gs.passive){const r=evalItem(gs.passive,null);EVK.forEach(k=>raw[k]+=r[k])}}}
+  const v={};
+  /* diminishing returns: the first good answer to a threat counts most, a fifth copy of it barely adds */
+  EVK.forEach(k=>v[k]=Math.max(0,/^(nz|dg)$/.test(k)?Math.min(10,raw[k]*1.1):10*(1-Math.exp(-Math.max(0,raw[k])/9))));
+  const th=THREAT[blFac]||THREAT.all,cover=th[0]*v.lt+th[1]*v.md+th[2]*v.hv,ops=(v.tp+v.sg+v.rg+v.sus)/4;
+  let score=.6*cover+.4*ops;
+  [['lt',th[0]],['md',th[1]],['hv',th[2]]].forEach(([k,w])=>{if(w>=.25&&v[k]<2.5)score-=.6});
+  if(v.dg>7)score-=.5;
+  if(Math.min(v.lt,v.md,v.hv)>=4)score+=.5;
+  score=Math.max(0,Math.min(10,score));
   const grade=score>=8?'S':score>=6.5?'A':score>=5?'B':score>=3.5?'C':'D';
-  BL_EV={v:Object.assign({},v),score,grade,fac:blFac};
+  BL_EV={v:Object.assign({},v),score,grade,fac:blFac,th};
   const names=BL.map(s=>s.val).join(' ');
   const tips=[];
   AXES.forEach(([k,l])=>{if(v[k]<3){const alt=shuf(STRAT.map(x=>x.w).filter(n=>EVAL_TAGS.some(([re,w])=>w[k]&&re.test(n)))).slice(0,2);tips.push(['w',`Low ${l.toLowerCase()} (${v[k].toFixed(1)}/10).${alt.length?' Consider: '+alt.join(', ')+'.':''}`])}});
-  if(!/resupply|supply pack/i.test(names))tips.push(['','No supply source in the loadout: remember Resupply is a stratagem slot too.']);
+  if(v.dg>=7)tips.push(['w','High friendly-fire risk ('+v.dg.toFixed(1)+'/10): many splash stratagems. Mind your squad and your own feet.']);
+  if(v.nz>=8)tips.push(['','Very loud loadout ('+v.nz.toFixed(1)+'/10): expect company wherever you drop.']);
+  if(!/resupply|supply pack/i.test(names))tips.push(['','No supply source in the loadout: Resupply is always on call, but a Supply Pack or a Guard Dog keeps the fight going between drops.']);
   const dup=BL.filter(s=>s.k.startsWith('st')).map(s=>s.val).filter((x,i,a)=>x&&a.indexOf(x)!==i);
   if(dup.length)tips.push(['w','Duplicate stratagem: '+dup.join(', ')]);
   if(!tips.length)tips.push(['','Balanced loadout. High Command is almost suspicious.']);
   const fb=[['all','All fronts'],['bug','Terminids'],['bot','Automatons'],['ill','Illuminate']];
   box.innerHTML=`<div class="blOpts">${fb.map(([k,l])=>`<button class="chip ${blFac===k?'act':''}" data-bf="${k}">${l}</button>`).join('')}</div>
    <div class="blEval"><div><div class="grade">${grade}<small>OVERALL ${score.toFixed(1)} / 10</small></div>${radarSVG(v)}</div>
-   <div>${AXES.map(([k,l])=>`<div class="ax">${l}<b>${v[k].toFixed(1)}</b><div><i style="width:${v[k]*10}%"></i></div></div>`).join('')}<ul class="tips">${tips.map(([c,t])=>`<li class="${c}">${esc(t)}</li>`).join('')}</ul></div></div>
-   <div class="attr">Ministry estimate from item names and the numbers read from each wiki entry (damage, fire rate, penetration, range, capacity). It is a guide, not an official formula.</div>`;
+   <div>${AXES.map(([k,l])=>`<div class="ax">${l}<b>${v[k].toFixed(1)}</b><div><i style="width:${v[k]*10}%"></i></div></div>`).join('')}<div class="thr" title="Enemy weights for this front: share of the threat each enemy class represents"><span>Threat split</span><div>${['Light','Medium','Heavy'].map((n,i)=>`<i style="flex:${THREAT[blFac][i]}" class="tz${i}">${n} ${Math.round(THREAT[blFac][i]*100)}%</i>`).join('')}</div></div>${EVOP.map(([k,l,h])=>`<div class="ax" title="${h}">${l} <small>(${h})</small><b>${v[k].toFixed(1)}</b><div><i style="width:${v[k]*10}%"></i></div></div>`).join('')}<ul class="tips">${tips.map(([c,t])=>`<li class="${c}">${esc(t)}</li>`).join('')}</ul></div></div>
+   <div class="attr">Ministry estimate: each item is scored against light, medium and heavy enemies plus tempo, surge, range, sustain, noise and danger, reading the numbers from its wiki page (damage, armor penetration tier, anti-tank trait, fire rate, ammo, blast radius, cooldown, noise); item names only fill the gaps. Medium-penetration weapons count for more against medium and heavy enemies, and anti-tank weapons for more against heavy ones. The grade weighs the front's threat split. A guide, not an official formula.</div>`;
 }
 function blSlots(){
   const all=blGroups?[...new Set(Object.values(blGroups).flat())]:[];
   const mk=(k,label,re)=>{let pool=[];Object.entries(blGroups||{}).forEach(([g,l])=>{if(re.test(g))pool.push(...l)});pool=[...new Set(pool)];if(!pool.length)pool=all.length?all:ARMI_Q.slice();return {k,label,pool,val:'',lock:false}};
   const gd=gearData(),gp=(k,label,pool)=>({k,label,pool,val:'',lock:false});
   const s=[gp('arm','Armor',gd.armor.map(x=>x.n)),gp('hel','Helmet',gd.helmets),gp('cap','Cape',gd.capes),mk('pri','Primary weapon',/primary/i),mk('sec','Secondary weapon',/secondary|sidearm/i),mk('thr','Throwable',/throw|grenade/i),
-    ...[1,2,3,4].map(n=>({k:'st'+n,label:'Stratagem '+n,pool:STRAT.map(x=>x.w),val:'',lock:false}))];
+    ...[1,2,3,4].map(n=>({k:'st'+n,label:'Stratagem '+n,pool:(BLTX.st.length>=10?blStList().map(x=>x.t):STRAT.map(x=>x.w)),val:'',lock:false}))];
   blExtra.forEach(x=>s.push({k:x.k,label:x.label,pool:x.pool,val:'',lock:false}));
   return s;
 }
 const blSave=()=>LS.set('bl',BL.map(s=>({v:s.val,l:s.lock})));
-function blCard(i){
-  const s=BL[i],st=s.k.startsWith('st'),c=st?(STRAT.find(x=>x.w===s.val)||{}).c:'';
-  const opts=[...s.pool].sort((a,b)=>a.localeCompare(b,'en',{sensitivity:'base'}));
-  return `<div class="blS panel ${s.lock?'lock':''}" data-i="${i}"><div class="cat">${esc(s.label)}</div><div class="blImg" id="blI${i}"></div><h4>${esc(s.val||'—')}</h4>${c?`<div class="cd">${c.split(' ').map(k=>ARR[k]).join(' ')}</div>`:''}
-   <select class="blSel" data-a="pick" aria-label="Choose ${esc(s.label)}">${opts.map(o=>`<option ${o===s.val?'selected':''}>${esc(o)}</option>`).join('')}</select>
-   <div class="blAct"><button class="btn ghost sm" data-a="roll">⟳ Re-roll</button><button class="btn ghost sm ${s.lock?'on':''}" data-a="lock">${s.lock?'Locked':'Lock'}</button><button class="btn ghost sm" data-a="open">Entry</button></div></div>`;
-}
 async function blFill(i){
   const s=BL[i],tok=s.tok=(s.tok||0)+1;if(!s.val||!$('#blI'+i))return;
-  if(GEARK.includes(s.k)){$('#blI'+i).innerHTML=gearImgTag(s.k,s.val,s.k==='arm'?gearStat(s.val):null);return}
-  try{const p=await getPage(s.val);if(s.tok!==tok||!$('#blI'+i))return;$('#blI'+i).innerHTML=p.missing?'':wimg(p.img)}catch(e){}
+  $('#blI'+i).innerHTML=gearImgTag(s.k,s.val,s.k==='arm'?gearStat(s.val):null);
 }
 function blOne(i){const el=$('#blGrid .blS[data-i="'+i+'"]');if(el){el.outerHTML=blCard(i);blFill(i)}}
 let blEvTm=null;
+/* ---------- BUILDER: slot board + picker ---------- */
+let BLTX={w:[],st:[]};
+/* mission stratagems (Reinforce, Resupply, drills, Upload Data, SEAF...) are never part of a loadout: hidden in the builder only */
+const BL_MISSION=/^(reinforce|resupply|seaf artillery|sos beacon|eagle rearm|upload data|seismic probe|super earth flag|sssd delivery|tactical video camera|portable comms relay|orbital illumination flare|call in super destroyer|activate e-711 extraction drill|aquifer drill|hive breaker drill|prospecting drill|tectonic drill|dark fluid vessel|nux-223 hellbomb|seize industrial complex|spread democracy|rapid acquisition|cargo container|reinforcement pods|equipment traits)$/i;
+const blStList=()=>BLTX.st.filter(x=>x.k!=='Mission'&&!BL_MISSION.test(x.t));
+const THQ={m:new Map(),q:[],t:null};
+function getThumb(t){
+  if(THQ.m.has(t))return THQ.m.get(t);
+  const p=new Promise(res=>{THQ.q.push([t,res]);clearTimeout(THQ.t);THQ.t=setTimeout(thFlush,60)});
+  THQ.m.set(t,p);return p;
+}
+async function thFlush(){
+  const b=THQ.q.splice(0,40);if(!b.length)return;
+  try{
+    const d=await rawApi({action:'query',prop:'pageimages',piprop:'thumbnail',pithumbsize:'240',pilimit:'50',redirects:'1',titles:b.map(x=>x[0]).join('|')});
+    const map={},qy=d.query||{};
+    (qy.pages||[]).forEach(p=>{if(p.thumbnail&&p.thumbnail.source)map[p.title]=p.thumbnail.source});
+    (qy.redirects||[]).forEach(r=>{if(map[r.to])map[r.from]=map[r.to]});
+    (qy.normalized||[]).forEach(r=>{if(map[r.to])map[r.from]=map[r.to]});
+    b.forEach(([t,res])=>res(map[t]||null));
+  }catch(e){b.forEach(([t,res])=>res(null))}
+  if(THQ.q.length)thFlush();
+}
+const blIsSt=s=>s.k.startsWith('st');
+const BL_KIND={pri:'Primary',sec:'Secondary',thr:'Throwable'};
+function blItems(s){
+  const gd=gearData();
+  if(s.k==='arm')return gd.armor.map(a=>({t:a.n,k:a.c||'',s:a.passive||''}));
+  if(s.k==='hel')return gd.helmets.map(t=>({t,k:'',s:''}));
+  if(s.k==='cap')return gd.capes.map(t=>({t,k:'',s:''}));
+  if(BL_KIND[s.k]){const a=BLTX.w.filter(x=>x.k===BL_KIND[s.k]).map(x=>({t:x.t,k:x.s||'Other',s:''}));if(a.length)return a}
+  if(blIsSt(s)&&BLTX.st.length)return blStList().map(x=>({t:x.t,k:x.k,s:x.s}));
+  return s.pool.map(t=>({t,k:'',s:''}));
+}
+const blCode=v=>{const c=(STRAT.find(x=>tNorm(x.w)===tNorm(v))||{}).c;return c?c.split(' ').map(k=>ARR[k]).join(' '):''};
+function blSub(s){
+  if(!s.val)return '';
+  if(s.k==='arm'){const a=gearStat(s.val);return a?[a.c,a.armor!=null?a.armor+' armor':'',a.passive].filter(Boolean).join(' · '):''}
+  if(s.k==='hel'||s.k==='cap')return 'Cosmetic';
+  if(blIsSt(s))return blCode(s.val)||((TXI[s.val]||{}).k||'');
+  const t=TXI[s.val];return t?(t.s||t.k||''):'';
+}
+function blCard(i){
+  const s=BL[i];
+  return `<div class="blS blT panel ${s.lock?'lock':''}" data-i="${i}">
+   <button class="blPick" data-a="pick" aria-label="Choose ${esc(s.label)}"><span class="cat">${esc(s.label)}</span><span class="blImg" id="blI${i}"></span><h4>${esc(s.val||'—')}</h4><span class="blSub">${esc(blSub(s))}</span><span class="blChg">Change ▾</span></button>
+   <div class="blAct"><button class="btn ghost sm" data-a="roll" title="Re-roll this slot">⟳ Roll</button><button class="btn ghost sm ${s.lock?'on':''}" data-a="lock" title="Keep this item when rolling">${s.lock?'Locked':'Lock'}</button><button class="btn ghost sm" data-a="open" title="Open the wiki entry">Info</button></div></div>`;
+}
+function blBoardHTML(){
+  const n=BL.length,sec=(t,sub,a,b,c)=>`<section class="blSec"><h3>${t}<small>${sub}</small></h3><div class="blRow ${c}">${BL.slice(a,b).map((s,j)=>blCard(a+j)).join('')}</div></section>`;
+  return sec('Armor set','armor · helmet · cape',0,3,'c3')+sec('Weapons','primary · secondary · throwable',3,6,'c3')+sec('Stratagems','four call-ins',6,10,'c4')+(n>10?sec('Extras','booster · passive',10,n,'c2'):'');
+}
+function pkCard(s,x){
+  let m='';
+  if(s.k==='arm'){const a=gearStat(x.t);m=a&&a.armor!=null?a.armor+' armor · '+(a.speed||'—')+' spd':''}
+  else if(blIsSt(s))m=blCode(x.t)||x.s||'';
+  else m=x.s||'';
+  return `<button class="pkC ${x.t===s.val?'cur':''}" data-tt="${esc(x.t)}"><span class="pkI"></span><b>${esc(x.t)}</b><small>${esc(m)}</small></button>`;
+}
+const pkio=window.IntersectionObserver?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){pkio.unobserve(e.target);pkFill(e.target)}}),{rootMargin:'200px'}):null;
+async function pkFill(c){
+  const slot=BL[+c.dataset.sl],t=c.dataset.tt,box=c.querySelector('.pkI');if(!box||!slot)return;
+  box.innerHTML=gearImgTag(slot.k,t,slot.k==='arm'?gearStat(t):null);
+}
+function blOpenPicker(i){
+  const s=BL[i],items=blItems(s),box=$('#modalBox');
+  box.classList.add('wide');
+  box.innerHTML=`<button class="x" id="mx" aria-label="Close">✕</button><p class="kicker">Choose</p><h3 style="margin:4px 0 6px">${esc(s.label)}</h3>
+   <div class="attr" style="margin:0 0 4px">Equipped now: <b>${esc(s.val||'—')}</b>. Click an entry to equip it; the slot is then locked so a re-roll keeps it.</div>
+   ${exHTML('exPick',{ph:'Search '+s.label.toLowerCase()+'...',gridCls:'pkGrid',rv:false,extra:'<button class="btn ghost sm" id="pkRnd">Surprise me</button>'})}`;
+  showModal();$('#mx').onclick=closeBrief;
+  const equip=t=>{if(!t)return;s.val=t;s.lock=true;closeBrief();blOne(i);blSave();blQueueEval()};
+  const X=exInit('exPick',{sets:{p:{label:s.label,items}},card:x=>pkCard(s,x).replace('<button','<button data-sl="'+i+'"'),onPick:equip,
+    after:g=>{$$('.pkC',g).forEach(c=>pkio?pkio.observe(c):pkFill(c));setTimeout(()=>{const c=g.querySelector('.cur');if(c)c.scrollIntoView({block:'center'})},60)}});
+  $('#pkRnd').onclick=()=>{const v=X.visible();if(v.length)equip(pick(v))};
+}
+
 function blQueueEval(){clearTimeout(blEvTm);blEvTm=setTimeout(()=>{blEvaluate();blStats()},350)}
 function blSpin(i,final){
   const s=BL[i];let n=0;
@@ -2838,11 +3605,11 @@ function blRoll(){
 function builder(){
   return `<div class="wrap"><p class="kicker rv">Loadout assignment</p>
   <h2 class="sec rv b">Loadout Builder<small>// pick it yourself or let the Ministry roll it, then read the evaluation</small></h2>
-  <p class="lead rv">Armor, helmets, capes, weapons and stratagems come from the wiki database. Choose every slot by hand with the selector, or roll a random loadout, lock your favourites and re-roll the rest. The evaluation panel rates the build against each front.</p>
+  <p class="lead rv">Armor, helmets, capes, weapons and stratagems come from the wiki database. Click any slot to open its selector (search it, filter it by class or type), or roll a random loadout, lock your favourites and re-roll the rest. The evaluation panel rates the build against each front.</p>
   <div class="blTop rv"><button class="btn" id="blRoll">⟳ Randomize loadout</button><button class="btn ghost" id="blCopy">Copy loadout</button><button class="btn ghost" data-bx>⬇ Export PNG</button><button class="btn ghost" id="blLockAll">Lock / unlock all</button><button class="btn ghost" id="blPrac" data-go="strat">Practice the codes</button></div>
   <div class="iro rv" id="blTwist"></div>
   <div class="panel rv" style="margin-top:18px"><span class="kicker">Loadout evaluation</span><div id="blEval">${loadingHTML}</div></div>
-  <div class="blGrid" id="blGrid">${loadingHTML}</div>
+  <div class="blBoard" id="blGrid">${loadingHTML}</div>
   <div class="panel rv" style="margin-top:24px"><span class="kicker">Loadout stats</span><div id="blStats" style="margin-top:10px">${loadingHTML}</div></div>
   <p class="kicker rv" style="margin-top:44px">Operator card</p>
   <p class="lead rv" style="font-size:15px">Print your Service Record with any title on the wiki, rank or Warbond, and a level that does not depend on it. It goes into the exported image together with the loadout.</p>
@@ -2858,6 +3625,8 @@ function builder(){
 builder.init=async()=>{
   if(!blGroups){try{blGroups=await getWeapons()}catch(e){blGroups={}}}
   if(!GEAR){try{GEAR=await getGear()}catch(e){GEAR=null}}
+  try{BLTX.w=txReg(await taxWeapons())}catch(e){}
+  try{BLTX.st=txReg(await taxStrat())}catch(e){}
   if(!blExtra.length){
     const defs=[['bo','Booster','Category:Boosters'],...(gearData().armor.some(a=>a.passive)?[]:[['ar','Armor passive','Category:Armor Passives']])];
     for(const [k,label,cat] of defs){
@@ -2869,7 +3638,7 @@ builder.init=async()=>{
     BL=blSlots();const sv=LS.get('bl');
     if(sv&&sv.length===BL.length)sv.forEach((x,i)=>{if(x&&x.v&&BL[i].pool.includes(x.v)){BL[i].val=x.v;BL[i].lock=!!x.l}});
   }
-  $('#blGrid').innerHTML=BL.map((s,i)=>blCard(i)).join('');
+  $('#blGrid').innerHTML=blBoardHTML();
   BL.forEach((s,i)=>blFill(i));
   if(BL.some(s=>!s.val))blRoll();else{blEvaluate();blStats()}
   $('#blRoll').onclick=blRoll;
@@ -2879,13 +3648,10 @@ builder.init=async()=>{
     (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>toast('Loadout copied'),()=>{try{prompt('Copy your loadout:',t)}catch(e){}});
   };
   $('#blEval').onclick=e=>{const b=e.target.closest('[data-bf]');if(b){blFac=b.dataset.bf;blEvaluate()}};
-  $('#blGrid').onchange=e=>{
-    const sel=e.target.closest('.blSel'),c=e.target.closest('.blS');if(!sel||!c)return;
-    const i=+c.dataset.i,s=BL[i];s.val=sel.value;s.lock=true;blOne(i);blSave();blQueueEval();
-  };
   $('#blGrid').onclick=e=>{
-    const a=e.target.closest('[data-a]'),c=e.target.closest('.blS');if(!a||!c||a.dataset.a==='pick')return;
+    const a=e.target.closest('[data-a]'),c=e.target.closest('.blS');if(!a||!c)return;
     const i=+c.dataset.i,s=BL[i];
+    if(a.dataset.a==='pick'){blOpenPicker(i);return}
     if(a.dataset.a==='lock'){s.lock=!s.lock;blOne(i);blSave()}
     else if(a.dataset.a==='roll'){if(s.lock){toast('That slot is locked');return}const taken=new Set(BL.filter((x,j)=>j!==i&&x.k.startsWith('st')).map(x=>x.val));blSpin(i,blPickFor(i,taken))}
     else if(a.dataset.a==='open'&&s.val){if(GEARK.includes(s.k))gearDossier(s.k,s.val);else openPage(s.val)}
@@ -2951,15 +3717,32 @@ function gearData(){
   };
 }
 const gearStat=n=>gearData().armor.find(x=>x.n===n)||null;
+const ggDir=f=>GG+'/images/'+encodeURIComponent(f.replace(/ /g,'_'));
 function gearImgs(k,n,st){
-  const f=s=>ggFile(n+' '+s,420);
-  const L={arm:['Armor Render.png','Armor Icon.png','Armor Armory.png','v1 Armor Render.png'],hel:['Helmet Render.png','Helmet Icon.png','v1 Helmet Render.png'],cap:['Cape Render.png','Cape Icon.png','Cape Armory.png','Cape Default.png']}[k]||[];
-  const u=L.map(f);if(st&&st.icon)u.push(st.icon);
+  /* real wiki.gg names: <Title>_<Type>_Render.png, <Title>_Cape_Icon.png, <Name>_Stratagem_Icon_Background.svg, <Name>_Booster_Icon.svg */
+  const base=n.replace(/^[A-Z0-9][A-Z0-9\-\/]*\s+(?=[A-Z][a-z])/,'').replace(/^[A-Z]{1,3}\/[A-Z0-9\-]+\s+/,'');
+  const F=[];
+  const add=(nm,sfx)=>{F.push(nm+' '+sfx)};
+  if(k==='arm'){add(n,'Armor Render.png');add(n,'Armor Icon.png');add(n,'v1 Armor Render.png')}
+  else if(k==='hel'){add(n,'Helmet Render.png');add(n,'Helmet Icon.png');add(n,'v1 Helmet Render.png')}
+  else if(k==='cap'){add(n,'Cape Icon.png');add(n,'Player Card.png');add(n,'Cape Render.png')}
+  else if(k==='pri'){add(n,'Primary Render.png');add(n,'Support Render.png');add(n,'Secondary Render.png')}
+  else if(k==='sec'){add(n,'Secondary Render.png');add(n,'Primary Render.png');add(n,'Support Render.png')}
+  else if(k==='thr'){add(n,'Throwable Render.png')}
+  else if(k==='bo'){add(n,'Booster Icon.svg');add(n,'Booster Icon.png')}
+  else if(/^st\d/.test(k)){add(base,'Stratagem Icon Background.svg');if(base!==n)add(n,'Stratagem Icon Background.svg');add(n,'Support Render.png');add(base,'Stratagem Icon.svg')}
+  else{add(n,'Armor Passive Icon.svg');add(n,'Render.png')}
+  /* extra aliases: some files use the weapon class or upper-case name (DBS-2 Shotgun, G-31 ARC) - tried only after the standard names */
+  const code=(n.match(/^[A-Z0-9][A-Z0-9\-]*(?=\s)/)||[''])[0],rest=code?n.slice(code.length+1):'';
+  if(code&&(k==='pri'||k==='sec')){['Shotgun','Rifle','Pistol','Carbine','Revolver','Submachine Gun','Marksman Rifle','Machine Gun','Launcher'].forEach(w=>add(code+' '+w,(k==='pri'?'Primary':'Secondary')+' Render.png'))}
+  if(code&&k==='thr'){add(code+' '+rest.toUpperCase(),'Throwable Render.png');add(code+' '+rest.split(' ')[0],'Throwable Render.png')}
+  const u=[];F.forEach(f=>{u.push(ggDir(f));u.push(ggFile(f,/\.svg$/.test(f)?0:420))});
+  if(st&&st.icon)u.push(st.icon);
   return u;
 }
 function gearImgTag(k,n,st,cls){
   const u=gearImgs(k,n,st);
-  return `<img class="${cls||'wimg'}" src="${esc(u[0])}" data-alt="${esc(u.slice(1).join('|'))}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="imgChain(this)">`;
+  return `<img class="${cls||'wimg'}" src="${esc(u[0])}" data-alt="${esc(u.slice(1).join('|'))}" data-tt="${esc(n)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="imgChain(this)">`;
 }
 /* infobox of a wiki.gg page (cost, source...) */
 function getGgInfo(n){
@@ -3021,7 +3804,7 @@ async function blStats(){
     prof=`<div class="blArm"><span class="kicker">Armor profile · ${esc(a.n)}${a.c?' · '+esc(a.c):''}</span>${bar('Armor rating','armor')}${bar('Speed','speed')}${bar('Stamina regen','stamina')}${a.passive?`<div class="attr">Passive: <b style="color:var(--y)">${esc(a.passive)}</b></div>`:''}<div class="attr">Bars are relative to the highest value among all armors on the wiki.</div></div>`;
   }
   box.innerHTML=`${prof}<div class="blTabW"><table class="blTab"><thead><tr><th>Slot</th><th>Item</th><th>Stats</th></tr></thead><tbody>${rows.map(({s,p})=>`<tr><td data-l="Slot">${esc(s.label)}</td><td data-l="Item"><b>${esc(s.val)}</b></td><td data-l="Stats">${p.length?p.map(([x,y])=>`<span class="st"><i>${esc(x)}</i>${esc(y)}</span>`).join(''):'<span class="attr" style="margin:0">no data listed on the wiki</span>'}</td></tr>`).join('')}</tbody></table></div>
-   <div class="attr">Weapons, stratagems and boosters: numbers read from the Helldivers Wiki (Fandom). Armor, helmets and capes: Helldivers Wiki on wiki.gg.</div>`;
+   <div class="attr">Weapons, stratagems and boosters: numbers read from the Helldivers Wiki (wiki.gg, with Fandom as a fallback). Armor, helmets and capes: Helldivers Wiki on wiki.gg.</div>`;
 }
 async function gearDossier(k,n){
   const st=k==='arm'?gearStat(n):null,kind={arm:'Armor',hel:'Helmet',cap:'Cape'}[k];
@@ -3081,7 +3864,10 @@ function bcInit(){
   getWbTitles().then(rows=>{
     if(cur!=='builder'||!rows)return;
     const have=new Set(BC_SP.map(tNorm));let add=false;
-    rows.forEach(r=>{if(r.img)BC_SPI[r.n]=r.img;if(r.n&&!have.has(tNorm(r.n))&&r.n.length<40){have.add(tNorm(r.n));BC_SP.push(r.n);add=true}});
+    /* the wiki Titles page also holds the rank-by-level table: those are rank titles, never Warbond/special ones */
+    const rk=new Set([...TITLES_FB,...TITLES].map(t=>tNorm(t.name)));
+    const isRank=r=>rk.has(tNorm(r.n))||/^(level|title|name|icon|image|cost|source|acquisition source|requirement|requirements|armor|description|warbond|rank|unlock)s?$/i.test(r.n.trim())||/^(\d+-star\b|rank\s*\d|max rank|level\s*\d|lv\.?\s*\d|\d+$)/i.test(r.n)||/(^|\s·\s)(levels?|lv\.?)\s*\d|^\d{1,3}(\s*[-–]\s*\d{1,3})?(\s·|$)/i.test(r.info||'');
+    rows.forEach(r=>{if(isRank(r))return;if(r.img)BC_SPI[r.n]=r.img;if(r.n&&!have.has(tNorm(r.n))&&r.n.length<40){have.add(tNorm(r.n));BC_SP.push(r.n);add=true}});
     if(add){bcFillTitles();bcCard()}
   }).catch(()=>{});
   resolveRanks();
@@ -3091,7 +3877,12 @@ function bcInit(){
 const delay=ms=>new Promise(r=>setTimeout(r,ms));
 function loadImg(urls,ms){
   const one=u=>new Promise(res=>{const im=new Image();im.crossOrigin='anonymous';const t=setTimeout(()=>res(null),ms||6000);im.onload=()=>{clearTimeout(t);res(im)};im.onerror=()=>{clearTimeout(t);res(null)};im.src=u});
-  return Promise.race([(async()=>{for(const u of [...new Set(urls.filter(Boolean))]){const im=await one(u);if(im)return im}return null})(),delay(16000).then(()=>null)]);
+  const L=[...new Set(urls.filter(Boolean))];
+  /* pass 1: direct (CORS-enabled hosts); pass 2: public CORS image proxy for hosts that don't send CORS headers, otherwise the canvas could not be exported */
+  return Promise.race([(async()=>{
+    for(const u of L){if(/^data:/.test(u)){const im=await one(u);if(im)return im}else{const im=await one(u);if(im)return im}}
+    for(const u of L.filter(x=>/^https?:/.test(x)&&!/Special:FilePath/.test(x)).slice(0,16)){const im=await one('https://wsrv.nl/?output=png&url='+encodeURIComponent(u),9000);if(im)return im}
+    return null})(),delay(30000).then(()=>null)]);
 }
 const svgImg=str=>loadImg(['data:image/svg+xml;charset=utf-8,'+encodeURIComponent(String(str).replace(/^<svg /,'<svg xmlns="http://www.w3.org/2000/svg" ').replace(/currentColor/g,'#ffe81f'))]);
 async function bcRender(noImg){
@@ -3103,8 +3894,7 @@ async function bcRender(noImg){
   if(!noImg){
     const jobs=[];
     items.forEach(s=>{
-      if(GEARK.includes(s.k))jobs.push(loadImg(gearImgs(s.k,s.val,s.k==='arm'?gearStat(s.val):null)).then(im=>IM[s.k]=im));
-      else jobs.push(getPage(s.val).then(p=>loadImg(p&&!p.missing&&p.img?[p.img]:[])).catch(()=>null).then(im=>IM[s.k]=im));
+      jobs.push(loadImg(gearImgs(s.k,s.val,s.k==='arm'?gearStat(s.val):null)).then(async im=>im||getPage(s.val).then(p=>loadImg(p&&!p.missing&&p.img?[p.img]:[])).catch(()=>null)).then(im=>IM[s.k]=im));
     });
     const eb=$('#brandEmb img');
     jobs.push((eb&&eb.src?loadImg([eb.src]):Promise.resolve(null)).then(async im=>IM.emb=im||await svgImg(SVG.superEarth)));
@@ -3167,7 +3957,7 @@ async function bcRender(noImg){
     T('LOADOUT EVALUATION · '+({all:'ALL FRONTS',bug:'TERMINIDS',bot:'AUTOMATONS',ill:'ILLUMINATE'}[ev.fac]||'ALL FRONTS'),cx+20,ly+26,{f:'11px '+MF,c:'#37d6ff',ls:2,mw:cw-40});
     T(ev.grade,cx+20,ly+112,{f:'88px '+HF,c:'#ffe81f'});
     T(ev.score.toFixed(1)+' / 10',cx+20,ly+136,{f:'11px '+MF,c:'#8b98a5',ls:1.5});
-    AXES.forEach(([k,l],i)=>{const y=ly+54+i*34,bx2=cx+128,bw2=cw-128-20;T(l.toUpperCase(),bx2,y,{f:'11px '+MF,c:'#cfe0ea',ls:1});T(ev.v[k].toFixed(1),bx2+bw2,y,{f:'11px '+MF,c:'#ffe81f',a:'right'});c.fillStyle='rgba(255,255,255,.1)';c.fillRect(bx2,y+8,bw2,8);c.fillStyle='#ffe81f';c.fillRect(bx2,y+8,bw2*Math.min(1,ev.v[k]/10),8)});
+    AXES.forEach(([k,l],i)=>{const y=ly+52+i*31,bx2=cx+128,bw2=cw-128-20;T(l.toUpperCase(),bx2,y,{f:'11px '+MF,c:'#cfe0ea',ls:1});T(ev.v[k].toFixed(1),bx2+bw2,y,{f:'11px '+MF,c:'#ffe81f',a:'right'});c.fillStyle='rgba(255,255,255,.1)';c.fillRect(bx2,y+8,bw2,8);c.fillStyle='#ffe81f';c.fillRect(bx2,y+8,bw2*Math.min(1,ev.v[k]/10),8)});
     ly+=evH;
   }
   if(hasA){
@@ -3204,7 +3994,8 @@ async function bcRender(noImg){
 }
 async function bcExport(){
   if(!BL||!BL.some(s=>s.val)){toast('Pick or roll a loadout first');return}
-  const btns=$$('[data-bx]');btns.forEach(b=>{b.disabled=true});toast('Printing your file...');
+  const btns=$$('[data-bx]');btns.forEach(b=>{b.disabled=true});
+  $('#modalBox').classList.remove('wide');$('#modalBox').innerHTML='<button class="x" id="mx" aria-label="Close">✕</button><span class="kicker">Loadout image · PNG</span><div style="text-align:center;padding:26px 0 10px"><i class="spin"></i><div class="attr" style="margin-top:12px">Printing your file... fetching item images, one moment.</div></div>';showModal();$('#mx').onclick=closeBrief;
   try{
     await blEvaluate();await blStats();
     let blob;
@@ -3215,7 +4006,7 @@ async function bcExport(){
      <div class="ctl"><a class="btn" id="bxDl" href="${url}" download="helldivers-loadout-${nm}.png">⬇ Download PNG</a></div>
      <div class="attr">On a phone, if the download does not start, press and hold the image to save it.</div>`;
     showModal();$('#mx').onclick=closeBrief;
-  }catch(e){toast('Export failed. Try again.')}
+  }catch(e){closeBrief();toast('Export failed. Try again.')}
   btns.forEach(b=>{b.disabled=false});
 }
 
@@ -3364,41 +4155,19 @@ xp.init=()=>{
 };
 
 /* ---------- BESTIARY ---------- */
-let beGrp='all';
 function bestiary(){
   return `<div class="wrap"><p class="kicker rv">Know your enemy</p>
-  <h2 class="sec rv b">Bestiary<small>// everything that wants you dead, filed by faction</small></h2>
-  <p class="lead rv">Terminids, Automatons and Illuminate: every unit has a wiki file with its real data. Filter by faction, search by name and open any entry.</p>
-  <div class="eraBar rv" id="bChips"></div>
-  <div class="aTools rv"><input id="gq" type="search" placeholder="Search enemies..." autocomplete="off"><span class="aCount" id="aCount"></span></div>
-  <div class="aGrid" id="bGrid">${loadingHTML}</div></div>`;
-}
-function bApply(){
-  const L=(($('#gq')||{}).value||'').trim().toLowerCase();
-  if(L)$$('#bGrid .lz:not(.ld)').forEach(el=>{lio.unobserve(el);fillCard(el)});
-  let n=0;
-  $$('#bGrid .lz').forEach(el=>{
-    const ok=(beGrp==='all'||el.dataset.g===beGrp)&&(!L||(el.dataset.q+' '+(el.dataset.t||'')+' '+el.textContent).toLowerCase().includes(L));
-    el.style.display=ok?'':'none';if(ok)n++;
-  });
-  const c=$('#aCount');if(c)c.textContent=n+(n===1?' entry':' entries');
+  <h2 class="sec rv b">Bestiary<small>// everything that wants you dead, filed by faction and size</small></h2>
+  <p class="lead rv">Terminids, Automatons and Illuminate: every unit has a wiki file with its real data. Filter by faction and by size class, search by name and open any entry.</p>
+  ${exHTML('exBes',{ph:'Search enemies...',gid:'bGrid'})}</div>`;
 }
 bestiary.init=async()=>{
-  beGrp='all';
-  const F=FACS.slice(1),groups={},seen=new Set();
-  F.forEach(f=>{groups[f[2]]=[];f[5].forEach(u=>{if(!seen.has(u)){seen.add(u);groups[f[2]].push(u)}})});
-  const cats=await Promise.all(F.map(f=>getList('Category:'+f[2]).catch(()=>[])));
+  let e=[];try{e=txReg(await taxEnemies())}catch(x){}
   if(cur!=='bestiary')return;
-  F.forEach((f,i)=>cats[i].slice(0,40).forEach(t=>{if(!seen.has(t)&&t.toLowerCase()!==f[2].toLowerCase()){seen.add(t);groups[f[2]].push(t)}}));
-  const meta={},names=[];
-  Object.entries(groups).forEach(([g,l])=>l.forEach(t=>{meta[t]=g;names.push(t)}));
-  const gOrd=Object.keys(groups);
-  names.sort((a,b)=>(gOrd.indexOf(meta[a])-gOrd.indexOf(meta[b]))||a.localeCompare(b,'en',{sensitivity:'base'}));
-  $('#bChips').innerHTML=chipsHTML([['all',`All (${names.length})`],...Object.keys(groups).map(g=>[g,`${esc(g)} (${groups[g].length})`])],beGrp,'bg');
-  lazyGrid('#bGrid',names,'enemy','panel aCard',meta);
-  $('#bChips').onclick=e=>{const b=e.target.closest('[data-bg]');if(!b)return;beGrp=b.dataset.bg;$$('#bChips .chip').forEach(c=>c.classList.toggle('act',c===b));bApply()};
-  $('#gq').oninput=bApply;bApply();
+  if(!e.length){const seen=new Set();FACS.slice(1).forEach(f=>f[5].forEach(u=>{if(!seen.has(u)){seen.add(u);e.push({t:u,k:f[2],s:''})}}))}
+  exInit('exBes',{sets:{enemies:{label:'Enemies',items:e,mode:'enemy'}},order:['Terminids','Automatons','Illuminate','Other']});
 };
+
 
 /* ---------- COMMAND PALETTE · DAILY INTEL · EASTER EGGS ---------- */
 let cmdSel=0,cmdItems=[],cmdTm=null,cmdTok=0,wikiLog=[];
