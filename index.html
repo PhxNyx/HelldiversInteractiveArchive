@@ -903,6 +903,37 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
  .btn,button.chip,.chip{min-height:40px}
  #toolMenu{max-width:calc(100vw - 16px)}
 }
+
+/* ===== v29: mobile navigation drawer + touch polish (desktop untouched) ===== */
+#mBurger{display:none}
+#mDrawer,#mDim{display:none}
+@media(max-width:900px){
+ #nav{display:none}
+ #cmdBtn{margin-left:auto}
+ #mBurger{display:inline-flex;align-items:center;justify-content:center;width:42px;height:38px;background:#000a;border:1px solid var(--line);color:var(--y);font-size:20px;line-height:1;cursor:pointer}
+ #mBurger:active{background:var(--y);color:#000}
+ #mBurger{order:10}
+ #mDim{display:block;position:fixed;inset:0;z-index:58;background:#000b;backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .25s}
+ #mDrawer{display:flex;flex-direction:column;position:fixed;top:0;right:0;bottom:0;width:min(86vw,360px);z-index:59;background:linear-gradient(#0a1017,#05080c);border-left:3px solid var(--y);box-shadow:-18px 0 50px #000a;transform:translateX(105%);transition:transform .3s cubic-bezier(.2,.8,.2,1);padding:max(14px,env(safe-area-inset-top)) 14px max(16px,env(safe-area-inset-bottom));overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+ body.mnav #mDrawer{transform:none}
+ body.mnav #mDim{opacity:1;pointer-events:auto}
+ body.mnav{overflow:hidden}
+ #mDrawer .mdH{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+ #mDrawer .mdH b{font-family:var(--h);font-weight:400;font-size:22px;letter-spacing:.12em;color:var(--y);text-transform:uppercase}
+ #mDrawer .mdX{background:none;border:0;color:var(--y);font-size:26px;line-height:1;padding:6px 10px}
+ #mDrawer .mdS{font-family:var(--m);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--mut);margin:14px 2px 6px}
+ #mDrawer .mdG{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ #mDrawer .mdG button,#mDrawer .mdSearch{background:#0d151d;border:1px solid var(--line);color:#d2dce5;font-family:var(--h);letter-spacing:.07em;text-transform:uppercase;font-size:14px;padding:13px 10px;text-align:left;min-height:48px;display:flex;flex-direction:column;justify-content:center;gap:2px;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))}
+ #mDrawer .mdG button small{font-family:var(--m);font-size:9.5px;letter-spacing:.02em;text-transform:none;color:var(--mut);line-height:1.25}
+ #mDrawer .mdG button.act{background:var(--y);color:#000;border-color:var(--y)}
+ #mDrawer .mdG button.act small{color:#000a}
+ #mDrawer .mdSearch{width:100%;margin-top:14px;flex-direction:row;align-items:center;justify-content:center;gap:10px;color:var(--y)}
+}
+@media(max-width:640px){#top{padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right))}}
+@media(hover:none){a,button,.chip,.btn,[data-go]{-webkit-tap-highlight-color:transparent;touch-action:manipulation}#toTop{right:max(14px,env(safe-area-inset-right));bottom:max(14px,env(safe-area-inset-bottom))}}
+@media(max-width:640px){footer{padding-bottom:max(24px,env(safe-area-inset-bottom))}}
+.starR{position:fixed;top:-30px;z-index:299;color:var(--y);pointer-events:none;animation:starF linear forwards}
+@keyframes starF{to{transform:translateY(112vh) rotate(540deg);opacity:.2}}
 </style>
 </head>
 <body>
@@ -922,6 +953,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 <header id="top">
   <div class="brand" data-go="hub"><span id="brandEmb"></span>Democracy Archive</div>
   <nav id="nav"></nav>
+  <button id="mBurger" aria-label="Open the menu" aria-expanded="false" aria-controls="mDrawer">☰</button>
   <span id="sysLine" class="sysl">[SYSTEM: IDLE]</span><button id="cmdBtn" aria-label="Search the archive">⌕ Search <kbd>Ctrl K</kbd></button>
 </header>
 
@@ -1051,7 +1083,14 @@ const cut=(s,n)=>s.length>n?s.slice(0,n-1).replace(/\s+\S*$/,'')+'…':s;
 const pick=a=>a[Math.random()*a.length|0];
 let wikiNews=[];
 (function(){for(let i=NEWS.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[NEWS[i],NEWS[j]]=[NEWS[j],NEWS[i]]}})();
-function tkHTML(){const a=NEWS.concat(wikiNews);return a.concat(a).map(t=>typeof t==='string'?`${esc(t)}<i>◆</i>`:`<span class="tkO" data-open="${esc(t.p)}" title="Open the article">${esc(t.t)}</span><i>◆</i>`).join('')}
+let tkOrd=null,tkSig=-1;
+/* random order on every load, every visit to the home page and whenever new wiki headlines arrive */
+function tkMix(fresh){
+  const a=NEWS.concat(wikiNews);
+  if(fresh||!tkOrd||tkSig!==a.length){tkOrd=a.slice();for(let i=tkOrd.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[tkOrd[i],tkOrd[j]]=[tkOrd[j],tkOrd[i]]}tkSig=a.length}
+  return tkOrd;
+}
+function tkHTML(fresh){const a=tkMix(fresh);return a.concat(a).map(t=>typeof t==='string'?`${esc(t)}<i>◆</i>`:`<span class="tkO" data-open="${esc(t.p)}" title="Open the article">${esc(t.t)}</span><i>◆</i>`).join('')}
 function updTicker(){$$('.ticker div').forEach(d=>d.innerHTML=tkHTML());setTimeout(()=>window.tickSpeed&&tickSpeed(),60)}
 const MIN=[`The Ministry thanks you for reading this. Your attention has been logged and found suitable.`,`Doubt is a luxury. Super Earth will provide a subsidised alternative.`,`Fear is temporary. Paperwork is forever.`,`A Helldiver who retreats is a Helldiver who has discovered a new objective.`,`Every explosion is a conversation. Be a good listener.`,`If you are reading this, congratulations: you are not a bug.`,`Remember: the shortest path to freedom is a stratagem, delivered at speed.`,`Today's weather: liberty, with a chance of orbital strike.`,`There are no bad Helldivers, only insufficiently motivated reinforcements.`,`Your loyalty has been noted. Please do not ask where.`,`High Command is listening. High Command is also, at this moment, asleep.`,`Democracy is a team sport. The score is classified.`,`If it moves, shoot it. If it does not move, shoot it a little later.`,`Super Earth does not make mistakes. Super Earth makes policy.`,`Please recycle your fallen comrades. They are biodegradable.`,`Liberty is inviolable. Your choices have already been verified by someone more qualified.`,`Remember: friendly fire is still fire, and therefore still patriotic.`,`High Command appreciates your sacrifice and recommends it again.`,`A smile is a civic duty.`,`If you receive no order, you are already carrying it out.`,`Democracy never retires.`];
 /* Page titles only: everything else comes from the wiki */
@@ -1125,6 +1164,7 @@ function render(id){
   const isTool=NAV.some(n=>n[0]===id&&n[2]);
   $$('#nav button').forEach(b=>b.classList.toggle('act',b.dataset.go===id||(!!b.dataset.menu&&isTool)));
   $$('#toolMenu button').forEach(b=>b.classList.toggle('act',b.dataset.go===id));
+  $$('#mDrawer [data-go]').forEach(b=>b.classList.toggle('act',b.dataset.go===id));
   const nb=$('#nav button.act');if(nb&&nb.scrollIntoView)nb.scrollIntoView({inline:'center',block:'nearest'});
   document.title=(id==='hub'?'':((NAV.find(n=>n[0]===id)||[0,''])[1]+' · '))+'Democracy Archive — Interactive Helldivers';
   reveal($('#app'));
@@ -1153,6 +1193,23 @@ document.addEventListener('click',e=>{
 addEventListener('scroll',()=>{const m=$('#toolMenu');if(m)m.classList.remove('show')},{passive:true});
 addEventListener('keydown',e=>{if(e.key==='Escape'){const m=$('#toolMenu');if(m)m.classList.remove('show')}});
 $('#tick2').innerHTML=`<div>${tkHTML()}</div>`;
+/* mobile menu: every section in a drawer (the horizontal strip is hidden on phones) */
+(function(){
+  const main=NAV.filter(n=>!n[2]),tools=NAV.filter(n=>n[2]);
+  document.body.insertAdjacentHTML('beforeend',`<div id="mDim"></div><aside id="mDrawer" aria-label="Sections"><div class="mdH"><b>Archive menu</b><button class="mdX" aria-label="Close the menu">✕</button></div>
+   <div class="mdS">Explore</div><div class="mdG">${main.map(([k,l])=>`<button data-go="${k}">${l}</button>`).join('')}</div>
+   <div class="mdS">Tools</div><div class="mdG">${tools.map(([k,l,,d])=>`<button data-go="${k}">${l}<small>${d||''}</small></button>`).join('')}</div>
+   <button class="mdSearch" id="mdSearch">⌕ Search the archive</button></aside>`);
+  const set=on=>{document.body.classList.toggle('mnav',on);const b=$('#mBurger');if(b){b.setAttribute('aria-expanded',on?'true':'false');b.textContent=on?'✕':'☰'}};
+  window.mNav=set;
+  $('#mBurger').onclick=()=>set(!document.body.classList.contains('mnav'));
+  $('#mDim').onclick=()=>set(false);
+  $('#mDrawer .mdX').onclick=()=>set(false);
+  $('#mdSearch').onclick=()=>{set(false);setTimeout(()=>$('#cmdBtn').click(),150)};
+  $('#mDrawer').addEventListener('click',e=>{if(e.target.closest('[data-go]'))set(false)});
+  addEventListener('keydown',e=>{if(e.key==='Escape')set(false)});
+  addEventListener('resize',()=>{if(innerWidth>900)set(false)});
+})();
 
 function tilt(){
   $$('.tilt').forEach(el=>{
@@ -1190,7 +1247,7 @@ function hub(){
     </div>
     <div class="panel hubMO moCard rv" id="hubMO">${loadingHTML}</div>
   </section>
-  <div class="ticker"><div>${tkHTML()}</div></div>
+  <div class="ticker"><div>${tkHTML(true)}</div></div>
   <div class="wrap"><div class="notice rv"><b>CITIZEN NOTICE</b><span>${esc(pick(NOTICES))}</span></div>
   <div class="panel wsPanel rv" id="wsBox"><div class="wsHead"><span class="kicker">▌ Galactic war · live counters</span><span class="moLive off" id="wsLive">● …</span></div>
    <div class="wsGrid" id="wsGrid"><div class="wsT bug"><small>Terminids killed</small><b id="wsBug">…</b><em></em></div><div class="wsT bot"><small>Automatons destroyed</small><b id="wsBot">…</b><em></em></div><div class="wsT ill"><small>Illuminate killed</small><b id="wsIll">…</b><em></em></div><div class="wsT "><small>Friendly fire kills</small><b id="wsFF">…</b><em></em></div><div class="wsT "><small>On active fronts</small><b id="wsFr">…</b><em></em></div><div class="wsT bug"><small>vs Terminids</small><b id="wsvB">…</b><em id="wsvBs"></em></div><div class="wsT ill"><small>vs Illuminates</small><b id="wsvI">…</b><em id="wsvIs"></em></div><div class="wsT bot"><small>vs Automatons</small><b id="wsvA">…</b><em id="wsvAs"></em></div></div>
@@ -2291,7 +2348,7 @@ const opSentences=t=>String(t).split(/(?<=[.!?])\s+(?=[A-Z])/).map(x=>x.trim()).
 function opCard(op,i,no){
   const c=op.st?op.st.cls:'na';
   return `<article class="opC rv ${c}" data-i="${i}" tabindex="0" style="--d:${i%4}">
-   <div class="opTop"><span>File <b>#${String(no).padStart(3,'0')}</b></span><span>${esc(op.month)} ${esc(op.year)}</span></div>
+   <div class="opTop"><span>File <b>#${op.id?esc(op.id):String(no).padStart(3,'0')}</b></span><span>${esc(op.month)} ${esc(op.year)}</span></div>
    <div class="opEm">${emb(op.fac)}</div>
    <h4>${esc(op.name)}</h4>
    <p class="opB">${esc(cut(op.briefing||op.overview||op.raw,235))}</p>
@@ -2332,6 +2389,63 @@ function ordini(){
   <p class="kicker rv" style="margin-top:46px">How it works</p>
   <div class="panel ord rv" id="oMain" style="margin-top:12px">${loadingHTML}</div></div>`;
 }
+/* ---- wiki.gg Major Orders archive: one table per order (header = id + name; rows Faction, Reward, Date, Briefing, Overview, Events, Outcome, Notes) ---- */
+function parseGGOrderTable(tb){
+  if(tb.parentElement&&tb.parentElement.closest('table'))return null;
+  let hdr='';const kv=[];
+  [...tb.querySelectorAll('tr')].forEach(tr=>{
+    if(tr.closest('table')!==tb)return;
+    const c=[...tr.children].filter(x=>/^T[HD]$/.test(x.tagName));if(!c.length)return;
+    const tx=c.map(x=>clean(x.textContent));
+    if(c.length===1||(c[0].colSpan>1&&c.length<=2)){if(!hdr)hdr=tx[0];else if(tx[0])kv.push(['',tx[0]]);return}
+    const l=tx[0],v=tx.slice(1).filter(Boolean).join(' ');if(!l&&!v)return;
+    if(!hdr&&!kv.length&&/^[A-Z]\d+-\d+-\d+\b/.test(l)){hdr=(l+' '+v).trim();return}
+    kv.push([l,v]);
+  });
+  const L=k=>{const r=kv.find(x=>x[0].toLowerCase().replace(/:$/,'')===k);return r?r[1]:''};
+  if(!(L('outcome')||L('briefing')||L('overview')))return null;
+  const id=((hdr.match(/^([A-Z]\d+-\d+-\d+)\b/)||[])[1])||'';
+  let name=hdr.replace(/^[A-Z]\d+-\d+-\d+\b[\s:.\-–—]*/,'').trim();
+  const outc=L('outcome'),wm=(outc.match(/^(success(?:ful)?|failure|fail(?:ed)?|ongoing|active|in progress|partial\w*|cancel\w*)/i)||[''])[0];
+  const cls=/^succ/i.test(wm)?'ok':/^fail/i.test(wm)?'bad':/^(ongoing|active|in progress)/i.test(wm)?'on':'na';
+  const st=outc?{w:wm?wm.toUpperCase():'UNKNOWN',cls,pct:null,lab:'',rest:outc.replace(/^[A-Za-z ]+(\(\?\))?[.:\s\-–—]*/,'').trim()||''}:null;
+  const used=/^(outcome|briefing|overview|reward|rewards|faction|events|date)$/i;
+  const extras=[];
+  const dt=L('date');if(dt)extras.push({l:'Date',t:dt});
+  const ev=L('events');if(ev)extras.push({l:'Events',t:ev});
+  kv.forEach(([l,v])=>{if(v&&!used.test(l.replace(/:$/,''))&&l)extras.push({l:l.replace(/:$/,''),t:v})});
+  const all=hdr+' '+kv.map(x=>x.join(' ')).join(' ');
+  const fa=(L('faction')||all),b=(fa.match(/Terminid/gi)||[]).length,a=(fa.match(/Automaton|Cyborg/gi)||[]).length,il=(fa.match(/Illuminate/gi)||[]).length;
+  const fac=Math.max(b,a,il)===0?'superEarth':(b>=a&&b>=il?'bug':a>=il?'bot':'ill');
+  if(!name)name=cut(L('briefing')||L('overview'),70)||id||'Unnamed order';
+  return {id,name,briefing:L('briefing'),overview:L('overview'),phases:[],adv:[],extras,reward:L('reward'),status:outc,st,fac,raw:all};
+}
+function parseGGOrders(html,titleYear){
+  const doc=new DOMParser().parseFromString(html,'text/html');
+  doc.querySelectorAll('script,style,sup,.mw-editsection,.navbox,.toc,#toc').forEach(x=>x.remove());
+  const root=doc.querySelector('.mw-parser-output')||doc.body,out=[];let cur=null;
+  root.querySelectorAll('h1,h2,h3,h4,h5,table').forEach(el=>{
+    if(/^H\d$/.test(el.tagName)){
+      const h=clean(el.textContent),m=h.match(MONTH);
+      if(m){const y=(h.match(/\b(20\d\d)\b/)||h.match(/\b(21\d\d)\b/)||[,titleYear])[1]||titleYear;cur={label:h,mn:m[1],year:y,ops:[]};out.push(cur)}
+      return;
+    }
+    const op=parseGGOrderTable(el);
+    if(op){if(!cur){cur={label:'Archive',mn:'',year:titleYear,ops:[]};out.push(cur)}cur.ops.push(op)}
+  });
+  return out.filter(m=>m.ops.length);
+}
+function getMoGG(titles){
+  const list=[...new Set(['Major Orders','Major Orders of 2025','Major Orders of 2024',...titles.filter(t=>/^major orders/i.test(t))])];
+  return cached('mog1:'+list.join('|'),3*3600e3,async()=>{
+    const res=await Promise.all(list.map(async t=>{
+      try{const html=ggHtml(await ggApi({...PARSE,page:t}));if(!html)return [];const ty=((t.match(/\b(20\d\d)\b/)||[])[1])||'';return parseGGOrders(html,ty)}catch(e){return []}
+    }));
+    /* merge months that appear on more than one page (same month+year) */
+    const m=new Map();res.flat().forEach(x=>{const k=x.year+'|'+x.mn+'|'+x.label;if(m.has(k))m.get(k).ops.push(...x.ops);else m.set(k,x)});
+    return [...m.values()];
+  });
+}
 ordini.init=async()=>{
   opFilt='all';
   moCard('#moLive');
@@ -2361,6 +2475,13 @@ ordini.init=async()=>{
       }
     });
   });
+  /* wiki.gg archive format (one table per order) replaces the text parse when it yields real orders */
+  {let gg=[];try{gg=await getMoGG(ts)}catch(e){}
+   if(cur!=='ordini')return;
+   if(gg.reduce((n,m)=>n+m.ops.length,0)>=3){
+     years.length=0;flat.length=0;
+     gg.forEach(m=>{const key=m.year||'';const yr=years.find(y=>y.key===key)||(years.push({key,months:[]}),years[years.length-1]);yr.months.push({label:m.label,mn:m.mn,key,mi:MON_ABBR.indexOf((m.mn||'').toLowerCase()),ops:m.ops})});
+   }}
   years.sort((x,y)=>(+y.key||0)-(+x.key||0));
   years.forEach(y=>y.months.sort((a,b)=>b.mi-a.mi));
   OPS=[];let total=0;
@@ -4412,6 +4533,69 @@ const BOOT=[['> INITIALIZING SUPER EARTH TERMINAL...',''],['> VERIFYING USER LOY
   document.body.insertAdjacentHTML('beforeend','<div aria-hidden="true" style="position:fixed;right:4px;bottom:2px;font:8px monospace;color:#ffe81f;opacity:.05;z-index:30;user-select:all">THE CAKE IS A LIE · THE CAKE IS MANAGED DEMOCRACY</div>');
   /* tick-speed */
   window.tickSpeed=()=>$$('.ticker>div').forEach(d=>{if(d.offsetWidth>0)d.style.animationDuration=Math.max(80,d.scrollWidth/2/55)+'s'});
+})();
+
+
+/* ---------- EVEN MORE EASTER EGGS (v29) ---------- */
+(function(){
+  const ok=e=>!/INPUT|TEXTAREA|SELECT/.test((e.target&&e.target.tagName)||'');
+  let buf='';
+  const W={
+    bile:()=>{shout('BILE TITAN SPOTTED · DO NOT STAND IN THE GREEN');document.body.classList.add('shk');setTimeout(()=>document.body.classList.remove('shk'),700)},
+    hulk:()=>shout('SHOOT THE VENTS. NO, THE OTHER VENTS'),
+    napalm:()=>{shout('THE SMELL OF NAPALM: DEMOCRACY IN THE MORNING');fire('Eagle Napalm Airstrike')},
+    railgun:()=>{shout('RAILGUN SAFETY: OFF. COMMON SENSE: ALSO OFF')},
+    orbital:()=>{fire('Orbital Laser')},
+    resupply:()=>shout('RESUPPLY INBOUND · DO NOT CATCH IT WITH YOUR FACE'),
+    spear:()=>shout('LOCK ON. LOCK ON. LOCK ON. WHY WON\'T IT LOCK ON'),
+    taxes:()=>shout('TAXES ARE VOLUNTARY. VOLUNTEERING IS MANDATORY'),
+    coffee:()=>shout('THE MINISTRY RUNS ON COFFEE AND UNQUESTIONING LOYALTY'),
+    recoil:()=>{document.body.classList.add('shk');setTimeout(()=>document.body.classList.remove('shk'),400);shout('RECOIL IS JUST THE GUN HUGGING YOU')},
+    friendlyfire:()=>shout('FRIENDLY FIRE: A TEAM-BUILDING EXERCISE'),
+    loyalty:()=>shout('LOYALTY LEVEL: SUSPICIOUSLY HIGH'),
+    kneel:()=>shout('A HELLDIVER KNEELS ONLY TO RELOAD'),
+    fortress:()=>shout('THE FORTRESS HAS BEEN LIBERATED. THE FORTRESS WAS A MISUNDERSTANDING'),
+    jump:()=>shout('JUMP PACK ENGAGED · GRAVITY IS A SUGGESTION')
+  };
+  Object.keys(W).forEach(w=>{if(w in window)return;try{Object.defineProperty(window,w,{configurable:true,get(){W[w]();return '[ '+w.toUpperCase()+' ] executed. For Super Earth.'}})}catch(e){}});
+  addEventListener('keydown',e=>{
+    if($('#boot')||!ok(e)||e.ctrlKey||e.metaKey||e.altKey||e.key.length!==1)return;
+    buf=(buf+e.key.toLowerCase()).slice(-14);
+    for(const w in W){if(buf.endsWith(w)){buf='';W[w]();break}}
+  });
+  /* Konami code: stars rain over the archive */
+  const K=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];let kp=[];
+  addEventListener('keydown',e=>{
+    if($('#boot')||!ok(e))return;
+    kp.push(e.key.length===1?e.key.toLowerCase():e.key);kp=kp.slice(-10);
+    if(kp.join()===K.join()){kp=[];stars();shout('SUPER CITIZEN PREMIUM UNLOCKED · NOTHING CHANGED, BUT YOU FEEL BETTER')}
+  });
+  function stars(){for(let i=0;i<34;i++){const d=document.createElement('div');d.className='starR';d.textContent='★';d.style.left=(Math.random()*100)+'vw';d.style.fontSize=(14+Math.random()*26)+'px';d.style.animationDuration=(2.6+Math.random()*2.8)+'s';d.style.animationDelay=(Math.random()*1.6)+'s';document.body.appendChild(d);setTimeout(()=>d.remove(),7500)}}
+  const once=(k,fn)=>{try{if(sessionStorage.getItem('hdx:'+k))return;sessionStorage.setItem('hdx:'+k,'1')}catch(e){}fn()};
+  const cnt={};
+  const nth=(k,n,fn)=>{cnt[k]=(cnt[k]||0)+1;clearTimeout(cnt[k+'t']);cnt[k+'t']=setTimeout(()=>cnt[k]=0,2200);if(cnt[k]>=n){cnt[k]=0;fn()}};
+  /* taps and clicks (they work on a phone too) */
+  document.addEventListener('click',e=>{
+    const t=e.target;
+    if(t.closest('#toTop'))nth('top',5,()=>shout('THERE IS NO TOP. THERE IS ONLY UP'));
+    else if(t.closest('.ticker i'))nth('dia',5,()=>shout('THE DIAMONDS ARE NOT FOR EATING'));
+    else if(t.closest('.grade'))nth('gr',4,()=>shout('GRADE INFLATION HAS BEEN APPROVED'));
+    else if(t.closest('#mBurger'))nth('bg',6,()=>shout('YES, IT IS A MENU. NO, IT IS NOT A HAMBURGER'));
+    else if(t.closest('#blTwist'))nth('tw',3,()=>shout('HOUSE RULES ARE OPTIONAL. COMPLIANCE IS NOT'));
+    else if(t.closest('.radar'))nth('rd',3,()=>shout('THE RADAR SEES ALL. THE RADAR SAYS HELLO'));
+    else if(t.closest('#cmdBtn'))nth('cm',6,()=>shout('SEARCHING FOR MEANING? TRY THE ARMORY'));
+  });
+  /* long press on the brand (phones) */
+  let lp=null;
+  document.addEventListener('pointerdown',e=>{if(e.target.closest('.brand'))lp=setTimeout(()=>shout('LONG PRESS CONFIRMED. LOYALTY CONFIRMED'),1300)});
+  ['pointerup','pointercancel','pointerleave'].forEach(ev=>document.addEventListener(ev,()=>clearTimeout(lp)));
+  /* shake the phone */
+  try{let lx=0,ly=0,lz=0,lt=0;addEventListener('devicemotion',e=>{const a=e.accelerationIncludingGravity;if(!a)return;const d=Math.abs(a.x-lx)+Math.abs(a.y-ly)+Math.abs(a.z-lz);lx=a.x;ly=a.y;lz=a.z;if(d>55&&Date.now()-lt>4000){lt=Date.now();if(!$('#boot')){document.body.classList.add('shk');setTimeout(()=>document.body.classList.remove('shk'),500);shout('EASY ON THE HELLPOD, CITIZEN')}}},{passive:true})}catch(e){}
+  /* Friday */
+  setTimeout(()=>{if(new Date().getDay()===5&&!$('#boot'))once('fri',()=>shout('FRIDAY: LIBERTY HOUR HAS BEEN EXTENDED. WORK HOUR HAS NOT'))},12000);
+  /* copy */
+  document.addEventListener('copy',()=>once('copy',()=>shout('COPIED. THE MINISTRY HAS ALSO COPIED YOU')));
+  try{console.log('%cMORE WORDS','color:#ffe81f;font:bold 14px Impact','\nbile, hulk, napalm, railgun, orbital, resupply, spear, taxes, coffee, recoil, friendlyfire, loyalty, kneel, fortress, jump. And the old code from the arcade: ↑ ↑ ↓ ↓ ← → ← → B A.')}catch(e){}
 })();
 
 </script>
