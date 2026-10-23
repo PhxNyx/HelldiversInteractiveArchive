@@ -934,6 +934,76 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 @media(max-width:640px){footer{padding-bottom:max(24px,env(safe-area-inset-bottom))}}
 .starR{position:fixed;top:-30px;z-index:299;color:var(--y);pointer-events:none;animation:starF linear forwards}
 @keyframes starF{to{transform:translateY(112vh) rotate(540deg);opacity:.2}}
+
+/* ===== v31: Combat Record ===== */
+.rcGrid{display:grid;grid-template-columns:1.05fr 1fr;gap:24px;margin-top:26px;align-items:start}
+@media(max-width:900px){.rcGrid{grid-template-columns:1fr}}
+@media(min-width:901px){.rcSt{position:sticky;top:78px}}
+.rcGp{margin-top:20px}
+.rcFg{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0 14px}
+.rcHint{text-transform:none;letter-spacing:.02em;font-size:10px;opacity:.8}
+#rcForm textarea{display:block;width:100%;margin-top:6px;background:#000a;border:2px solid var(--line);color:var(--y);padding:10px 12px;font-family:var(--m);font-size:14px;outline:none;resize:vertical}
+#rcForm textarea:focus{border-color:var(--y)}
+.rcC .rcK{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0 10px}
+.rcC .rcK div{background:#0007;border:1px solid #ffffff14;padding:8px 10px;min-width:0}
+.rcC .rcK small{display:block;font-family:var(--m);font-size:9px;letter-spacing:.14em;color:var(--cy)}
+.rcC .rcK b{display:block;font-family:var(--h);font-weight:400;font-size:22px;color:#fff;letter-spacing:.04em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rcC .idt{padding-right:90px}
+.rcC .tIc.fb{position:absolute;right:20px;top:92px;width:84px;height:84px}
+.rcAg{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:900px){.rcAg{grid-template-columns:1fr}}
+.rcRt{display:flex;align-items:center;gap:10px;margin-top:6px}
+.rcRt .radar{flex:1;max-width:300px;margin:0}
+.rcGr{font-family:var(--h);font-size:96px;line-height:1;color:var(--y);text-align:center;min-width:96px}
+.rcGr.ok{color:var(--gr)}
+.rcGr small{display:block;font-family:var(--m);font-size:12px;letter-spacing:.1em;color:var(--mut)}
+.rcDo{font-family:var(--h);font-size:30px;letter-spacing:.06em;color:var(--y);text-transform:uppercase;margin-top:8px}
+.rcTx{font-size:14px;color:var(--tx);line-height:1.5;margin:6px 0 12px}
+.rcBd{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.rcBd span{font-family:var(--m);font-size:11px;letter-spacing:.06em;color:var(--y);border:1px solid var(--line);background:#ffe81f0d;padding:5px 9px}
+.rcBd em{font-family:var(--m);font-size:12px;color:var(--mut);font-style:normal}
+.rcM{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;margin-top:12px}
+.rcM div{background:#0006;border:1px solid #ffffff14;padding:10px 12px}
+.rcM small{display:block;font-family:var(--m);font-size:10px;letter-spacing:.14em;color:var(--mut);text-transform:uppercase}
+.rcM b{display:block;font-family:var(--h);font-weight:400;font-size:26px;color:#fff;letter-spacing:.04em;margin-top:2px}
+.rcB{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;margin-top:12px;font-family:var(--m);font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.rcB span{color:#cfe0ea;grid-row:1;grid-column:1}.rcB b{color:var(--y);font-weight:400;text-align:right;grid-row:1;grid-column:2}
+.rcB i{grid-row:2;grid-column:1/3;display:block;height:7px;background:#ffffff1a}
+.rcB u{display:block;height:100%;transition:width .5s}
+.rcFx{margin:10px 0 0;padding-left:18px;font-size:14px;line-height:1.5;color:var(--tx)}
+.rcFx li{margin-bottom:6px}
+@media(max-width:560px){.rcC .rcK b{font-size:19px}.rcGr{font-size:72px;min-width:72px}.rcRt{flex-direction:column}.rcRt .radar{max-width:340px;width:100%}.rcDo{font-size:25px}}
+
+/* ===== v32: form alignment + Duel ===== */
+.rcFg{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));align-items:end}
+.rcFg.rc2{grid-template-columns:1fr 1fr}
+.rcFg .fl{display:flex;flex-direction:column;justify-content:flex-end;min-width:0}
+.rcFg .fl input{width:100%}
+.rcVs{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;margin-top:10px}
+.rcVsX{font-family:var(--h);font-size:34px;color:var(--y);letter-spacing:.08em}
+.rcVp{border:2px solid var(--y);background:#0008;padding:10px 12px;min-width:0;text-align:center}
+.rcVp.b{border-color:var(--cy)}
+.rcVp b{display:block;font-family:var(--h);font-weight:400;font-size:24px;letter-spacing:.05em;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rcVp span{display:block;font-family:var(--m);font-size:11px;letter-spacing:.08em;color:var(--mut);margin-top:2px}
+.rcVp em{display:block;font-style:normal;font-family:var(--h);font-size:30px;color:var(--y);margin-top:4px}
+.rcVp.b em{color:var(--cy)}
+.rcVp small{display:block;font-family:var(--m);font-size:10px;letter-spacing:.1em;color:var(--mut);text-transform:uppercase}
+.rcTal{display:flex;align-items:center;justify-content:center;gap:14px;margin:16px 0 6px}
+.rcTal b{font-family:var(--h);font-weight:400;font-size:64px;line-height:1}
+.rcTal b.a,.rcLg .a,.rcCr b.a.w{color:var(--y)}
+.rcTal b.b,.rcLg .b,.rcCr b.b.w{color:var(--cy)}
+.rcTal span{font-family:var(--m);font-size:11px;letter-spacing:.2em;color:var(--mut);text-transform:uppercase}
+.rcLg{display:flex;justify-content:center;gap:22px;font-family:var(--m);font-size:11px;letter-spacing:.1em;margin-top:2px}
+.rcCt{margin-top:14px}
+.rcCr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr) minmax(0,1fr);gap:10px;align-items:center;padding:7px 0;border-bottom:1px solid #ffffff12}
+.rcCr b{font-family:var(--h);font-weight:400;font-size:20px;letter-spacing:.04em;color:#6e7b88;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rcCr b.b{text-align:right}
+.rcCr b.w{text-shadow:0 0 12px currentColor}
+.rcCm{text-align:center;min-width:0}
+.rcCm small{display:block;font-family:var(--m);font-size:10px;letter-spacing:.12em;color:#cfe0ea;text-transform:uppercase}
+.rcCm i{display:block;height:5px;margin-top:5px;background:var(--cy);opacity:.9}
+.rcCm u{display:block;height:100%;background:var(--y)}
+@media(max-width:560px){.rcFg{grid-template-columns:1fr 1fr}.rcVp b{font-size:18px}.rcVsX{font-size:24px}.rcTal b{font-size:48px}.rcCr b{font-size:16px}}
 </style>
 </head>
 <body>
@@ -1034,7 +1104,7 @@ const emb=k=>ASSETS[k]?`<img src="${ASSETS[k]}" alt="" referrerpolicy="no-referr
 const NAV=[
  ['hub','Headquarters'],['storia','Timeline'],['lore','Lore'],['fazioni','Factions'],['bestiary','Bestiary'],['mappa','Galaxy'],
  ['ordini','Major Orders'],['armi','Armory'],
- ['builder','Loadout Builder',1,'Build and rate a loadout'],['xp','XP Calculator',1,'XP between two levels'],['titles','Titles',1,'Ranks and Service Record'],['warbond','Warbonds',1,'Every Warbond and its contents'],['changelog','Changelog',1,'Patch notes and update report'],
+ ['builder','Loadout Builder',1,'Build and rate a loadout'],['xp','XP Calculator',1,'XP between two levels'],['titles','Titles',1,'Ranks and Service Record'],['record','Combat Record',1,'Your stats, rated and printed'],['warbond','Warbonds',1,'Every Warbond and its contents'],['changelog','Changelog',1,'Patch notes and update report'],
  ['strat','Stratagems',1,'Arrow-code simulator'],['gloss','Glossary',1,'A-Z of official language'],['quiz','Loyalty Exam',1,'Prove your devotion']
 ];
 const NOTICES=['The Ministry of Truth reminds you that reading is a civic duty. This notice has already been read on your behalf.','Please remain calm. Calm has been approved by High Command.','This archive is monitored for your safety, and for ours.','Any resemblance to freedom is entirely intentional.','Citizens are reminded that the exit is in the same place as the entrance, but with more paperwork.','Your session has been selected for a random loyalty audit. It will go well. It has already gone well.','The Ministry thanks you for your visit. Please do not take any of it personally.','Reading this notice earns you zero medals and one feeling of belonging.','Notice: this notice is a notice.'];
@@ -1144,7 +1214,7 @@ const RANKS=[[0,'Suspicious Civilian'],[3,'Cadet'],[5,'Helldiver'],[7,'Democracy
 
 /* ---------- ROUTER ---------- */
 let cur=null,busy=false;
-const SCREENS={changelog,warbond,hub,storia,lore,fazioni,bestiary,mappa,ordini,strat,armi,builder,xp,titles,gloss,quiz};
+const SCREENS={changelog,warbond,hub,storia,lore,fazioni,bestiary,mappa,ordini,strat,armi,builder,xp,titles,record,gloss,quiz};
 const io=new IntersectionObserver(es=>es.forEach(e=>{
   if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);
     const n=e.target.dataset.count;if(n)countUp(e.target,+n);}
@@ -1230,7 +1300,7 @@ function hub(){
       strat:'Learn the codes and use the simulator: press the arrows and call in help from the sky.',
       armi:'Every weapon of the arsenal, with real stats and images from the wiki.',
       gloss:'A searchable A-Z glossary: everything you need to understand a briefing without asking.',
-      quiz:'An official loyalty test. The result determines your rank.',warbond:'Every Warbond on file: cost, type and the full contents of each page.',changelog:'A report on every game update: how often they ship, what they changed and the full patch list.',xp:'How much XP stands between your level and the next title.'}[k];
+      quiz:'An official loyalty test. The result determines your rank.',warbond:'Every Warbond on file: cost, type and the full contents of each page.',changelog:'A report on every game update: how often they ship, what they changed and the full patch list.',xp:'How much XP stands between your level and the next title.',record:'Your in-game career statistics, analysed, rated and printed as a Combat Record card.'}[k];
     return `<div class="panel card tilt rv" data-go="${k}" style="--d:${i}"><span class="n">${String(i+1).padStart(2,"0")}</span><h3>${l}</h3><p>${ds}</p><div class="go">ACCESS ▸</div></div>`}).join('');
   return `<section class="hero">
     <div class="emb rv z" id="heroEmb">${emb('superEarth')}</div>
@@ -1270,7 +1340,7 @@ const wlink=t=>GGB+'/wiki/'+encodeURIComponent(String(t).replace(/ /g,'_')).repl
 const LS={
  get(k){try{return JSON.parse(localStorage.getItem('hdw:'+k))}catch(e){return null}},
  set(k,v){const j=JSON.stringify(v);try{localStorage.setItem('hdw:'+k,j)}catch(e){try{this.clear();localStorage.setItem('hdw:'+k,j)}catch(_){}}},
- clear(){try{Object.keys(localStorage).filter(x=>x.startsWith('hdw:')&&!/^hdw:(save|id|bl|bc|xpc)$/.test(x)).forEach(x=>localStorage.removeItem(x))}catch(e){}}
+ clear(){try{Object.keys(localStorage).filter(x=>x.startsWith('hdw:')&&!/^hdw:(save|id|bl|bc|xpc|rec2?)$/.test(x)).forEach(x=>localStorage.removeItem(x))}catch(e){}}
 };
 const mem=new Map();
 let wikiState='idle';
@@ -4129,6 +4199,505 @@ async function bcExport(){
     showModal();$('#mx').onclick=closeBrief;
   }catch(e){closeBrief();toast('Export failed. Try again.')}
   btns.forEach(b=>{b.disabled=false});
+}
+
+
+/* ---------- COMBAT RECORD (v31): the in-game career statistics, turned into analytics and a printable card ---------- */
+const RC_G=[
+ ['Kills',[['total','Enemies killed (total)'],['bug','Terminids killed'],['bot','Automatons killed'],['ill','Illuminate killed'],['ff','Allies killed'],['gren','Grenade kills'],['melee','Melee kills'],['eagle','Eagle kills']]],
+ ['Combat',[['deaths','Deaths'],['shots','Shots fired'],['hits','Shots hit']]],
+ ['Stratagems used',[['orb','Orbital strikes'],['def','Defensive stratagems'],['eag','Eagle stratagems'],['sup','Supply stratagems'],['rein','Reinforcements']]],
+ ['Missions',[['played','Missions played'],['won','Missions won'],['ext','Successful extractions'],['obj','Objectives completed'],['time','Time in mission'],['samples','Samples collected'],['xp','Total XP']]]
+];
+const RC_FR=[['bug','Terminids','#ffa94d'],['bot','Automatons','#ff3b30'],['ill','Illuminate','#c27bff']];
+const RC_SAMPLE={name:'Iron Vow',lv:'',v:{total:28450,bug:12800,bot:11250,ill:4400,ff:14,gren:1020,melee:260,eagle:3100,deaths:780,shots:310000,hits:98000,orb:2100,def:1400,eag:3900,sup:2600,rein:2900,played:640,won:585,ext:561,obj:1880,time:'412h 20m',samples:9400,xp:980000}};
+let RC=null;
+function rcLoad(){const s=LS.get('rec')||{};RC={name:String(s.name||'').slice(0,18),lv:s.lv?String(s.lv):'',v:Object.assign({},s.v||{})}}
+const rcNum=s=>{const d=String(s==null?'':s).replace(/[^\d]/g,'');return d?Math.min(9e12,+d):0};
+/* "412h 20m", "412:20", "1d 4h", "2g 3 ore", or a plain number of hours -> minutes */
+function rcDur(s){
+  s=String(s==null?'':s).toLowerCase().trim();if(!s)return 0;
+  let m=/^(\d+):(\d{1,2})(?::(\d{1,2}))?$/.exec(s);if(m)return +m[1]*60+ +m[2]+(m[3]?+m[3]/60:0);
+  let tot=0,hit=false;const re=/(\d+(?:[.,]\d+)?)\s*(giorn\w*|days?|d|g|ore|ora|hours?|hrs?|h|minut\w*|mins?|m|second\w*|secs?|s)\b/g;
+  while((m=re.exec(s))){hit=true;const x=parseFloat(m[1].replace(',','.')),u=m[2][0],w=/^(giorn|day)/.test(m[2])||u==='d'||u==='g'?1440:/^(ore|ora|hour|hr)/.test(m[2])||u==='h'?60:/^(min)/.test(m[2])||u==='m'?1:1/60;tot+=x*w}
+  if(hit)return tot;
+  const n=parseFloat(s.replace(',','.'));return isFinite(n)?n*60:0;
+}
+const rcFmtDur=m=>{if(!m||m<=0)return '—';const h=Math.floor(m/60),mm=Math.round(m%60);return h>=1?fmtN(h)+'h '+String(mm).padStart(2,'0')+'m':mm+'m'};
+function rcLevel(xp){const cu=xpCum();let L=1;for(let i=2;i<=XP_MAX;i++){if(cu[i]<=xp)L=i;else break}return L}
+const f1=x=>x==null||!isFinite(x)?'—':(Math.round(x*10)/10).toLocaleString('en-US');
+const f2=x=>x==null||!isFinite(x)?'—':(Math.round(x*100)/100).toLocaleString('en-US');
+const pctS=x=>x==null?'—':f1(x)+'%';
+const rcGrade=s=>s==null?'—':s>=90?'S':s>=80?'A':s>=68?'B':s>=55?'C':s>=40?'D':'F';
+const RC_ST={S:['EXEMPLARY','#7dff9b'],A:['APPROVED','#7dff9b'],B:['ADEQUATE','#7dff9b'],C:['TOLERATED','#ffe81f'],D:['MONITORED','#ff9a3c'],F:['RE-EDUCATE','#ff3b30'],'—':['AWAITING DATA','#8b98a5']};
+function rcData(P){
+  P=P||RC;const v=P.v,n=k=>+v[k]||0,tm=rcDur(v.time),div=(a,b)=>b>0?a/b:null,cap=x=>x==null?null:Math.min(100,x);
+  const fsum=n('bug')+n('bot')+n('ill'),total=n('total')||fsum,stT=n('orb')+n('def')+n('eag')+n('sup')+n('rein');
+  const D={n,tm,total,fsum,stT,any:total>0||n('played')>0||n('xp')>0||tm>0};
+  D.kd=total>0?(n('deaths')>0?total/n('deaths'):total):null;
+  D.acc=cap(div(n('hits'),n('shots'))==null?null:n('hits')/n('shots')*100);
+  D.wr=cap(div(n('won'),n('played'))==null?null:n('won')/n('played')*100);
+  D.er=cap(div(n('ext'),n('played'))==null?null:n('ext')/n('played')*100);
+  D.kpm=div(total,n('played'));D.dpm=div(n('deaths'),n('played'));D.kph=tm>0&&total>0?total/(tm/60):null;
+  D.xph=tm>0&&n('xp')>0?n('xp')/(tm/60):null;D.xpm=div(n('xp'),n('played'));D.spk=div(n('shots'),total);
+  D.opm=div(n('obj'),n('played'));D.spm=div(stT,n('played'));D.smp=div(n('samples'),n('played'));
+  D.ffk=total>0?n('ff')/total*1000:null;D.avgM=tm>0&&n('played')>0?tm/n('played'):null;
+  D.lv=(()=>{const o=Math.floor(+P.lv);if(o>=1)return Math.min(300,o);return n('xp')>0?rcLevel(n('xp')):1})();
+  const other=Math.max(0,total-n('gren')-n('melee')-n('eagle'));
+  D.mix=[['Guns, sentries and strikes',other,'#ffe81f'],['Grenades',n('gren'),'#ff9a3c'],['Melee',n('melee'),'#37d6ff'],['Eagle',n('eagle'),'#7dff9b']];
+  D.st=[['Orbital',n('orb'),'#ff3b30'],['Defensive',n('def'),'#37d6ff'],['Eagle',n('eag'),'#7dff9b'],['Supply',n('sup'),'#ffe81f'],['Reinforcement',n('rein'),'#c27bff']];
+  /* radar axes, 0 to 10; each reference value is "an excellent career" */
+  const cl=x=>x==null?null:Math.max(0,Math.min(10,x));
+  const mis=[D.wr,D.er].filter(x=>x!=null);
+  D.axes=[['Lethality',cl(D.kpm==null?null:D.kpm/120*10)],['Marksmanship',cl(D.acc==null?null:D.acc/45*10)],['Survival',cl(D.kd==null?null:Math.log10(1+D.kd)/Math.log10(41)*10)],['Missions',cl(mis.length?mis.reduce((a,b)=>a+b,0)/mis.length/10:null)],['Logistics',cl(D.spm==null?null:D.spm/30*10)],['Discipline',cl(D.ffk==null?null:10-D.ffk/3)]];
+  const av=D.axes.map(a=>a[1]).filter(x=>x!=null);
+  D.score=av.length>=2?av.reduce((a,b)=>a+b,0)/av.length*10:null;D.grade=rcGrade(D.score);
+  /* doctrine: the trait that stands furthest above its threshold wins */
+  const sh=a=>total>0?a/total:0,fs=k=>fsum>0?n(k)/fsum:0;
+  const C=[
+   ['Eagle Evangelist',sh(n('eagle'))/.08,'More of your kills fall from the sky than the average citizen would think healthy. The Air Force sends its regards.'],
+   ['Grenadier',sh(n('gren'))/.08,'Pin out, problem solved. Your hands have never been entirely empty.'],
+   ['Bayonet Fanatic',sh(n('melee'))/.03,'Ranged weapons are a suggestion. You prefer to meet the enemy personally.'],
+   ['Friendly-Fire Specialist',D.ffk==null?0:D.ffk/12,'Your allies fear you almost as much as the enemy does. Casualties are an administrative detail.'],
+   ['Reinforcement Enthusiast',D.dpm==null?0:D.dpm/3.5,'You die with passion and return with more. The reinforcement budget has a line item with your name.'],
+   ['Logistics Officer',stT>0?n('sup')/stT/.3:0,'Supply stratagems are your love language. Squadmates are well fed, and slightly armed.'],
+   ['Orbital Pyromaniac',stT>0?n('orb')/stT/.35:0,'If a problem cannot be solved from orbit, you have not waited long enough.'],
+   ['Sample Collector',D.smp==null?0:D.smp/10,'Every mission ends the same way: with your pockets full of science.'],
+   ['Precision Instrument',D.acc==null?0:D.acc/40,'You make every bullet count, which the Ministry of Ammunition finds deeply suspicious.'],
+   ['Terminid Hunter',fs('bug')/.6,'Chitin is your favourite texture. Bugs have started to file complaints.'],
+   ['Automaton Breaker',fs('bot')/.6,'You have turned more clankers into scrap metal than the recycling programme can handle.'],
+   ['Illuminate Dissector',fs('ill')/.5,'Squids are your business, and business is brain-shaped.']
+  ].filter(x=>x[1]>=1).sort((a,b)=>b[1]-a[1]);
+  D.arch=C.length?{name:C[0][0],txt:C[0][2]}:{name:D.any?'Balanced Citizen':'Unclassified Recruit',txt:D.any?'No extremes, no excuses. Perfectly average, perfectly loyal.':'Enter your numbers and High Command will decide what you are.'};
+  D.front=fsum>0?(fs('bug')>=.5?'Terminid Hunter':fs('bot')>=.5?'Automaton Breaker':fs('ill')>=.5?'Illuminate Dissector':'All-Front Generalist'):'—';
+  const wr=D.wr||0,er=D.er||0,pl=n('played');
+  D.badges=[
+   ['Thousand Club','1,000 enemies killed',total>=1e3],['Ten-Thousand Club','10,000 enemies killed',total>=1e4],['Hundred-Thousand Club','100,000 enemies killed',total>=1e5],
+   ['Reliable Citizen','Win rate 90%+ over 20+ missions',wr>=90&&pl>=20],['Always Extracted','Extraction rate 90%+ over 20+ missions',er>=90&&pl>=20],
+   ['Sharpshooter','Accuracy 40%+ over 10,000+ shots',(D.acc||0)>=40&&n('shots')>=1e4],['Martyr','1,000 deaths',n('deaths')>=1000],
+   ['Pyrotechnician','1,000 grenade kills',n('gren')>=1e3],['Close Quarters','500 melee kills',n('melee')>=500],['Sky Marshal','1,000 Eagle kills',n('eagle')>=1e3],
+   ['Supply Sergeant','500 supply stratagems',n('sup')>=500],['Sample Baron','1,000 samples collected',n('samples')>=1e3],
+   ['Veteran','100 hours in mission',tm>=6000],['Lifer','1,000 hours in mission',tm>=60000],
+   ['Friendly Fire Incident','25 allies killed',n('ff')>=25],['Spotless Record','No allies killed in 1,000+ kills',n('ff')===0&&total>=1e3]
+  ];
+  const fx=[],sec=s=>s<90?f1(s)+' seconds':f1(s/60)+' minutes';
+  if(tm>0&&total>0)fx.push(`One enemy falls every ${sec(tm*60/total)} of mission time.`);
+  if(tm>0&&n('deaths')>0)fx.push(`You die once every ${f1(tm/n('deaths'))} minutes. Reinforcements are, technically, free.`);
+  if(n('shots')>0&&total>0)fx.push(`It takes ${f1(D.spk)} shots to end an enemy${D.acc!=null?', and '+pctS(D.acc)+' of your bullets find someone':''}.`);
+  if(tm>0)fx.push(`${rcFmtDur(tm)} in mission: ${f1(tm/1440)} days of unbroken service to Super Earth.`);
+  if(n('ff')>0)fx.push(`${fmtN(n('ff'))} allied casualties on record. High Command calls them "unplanned recruitment drives".`);
+  else if(total>=1000)fx.push('No allied casualties on record. High Command is impressed, and slightly suspicious.');
+  if(pl>0&&n('won')>0&&pl>n('won'))fx.push(`${fmtN(pl-n('won'))} missions were not won. They have been reclassified as "strategic training".`);
+  if(D.smp!=null&&D.smp>0)fx.push(`${f1(D.smp)} samples carried home per mission. The Ministry of Science is almost grateful.`);
+  D.facts=fx;
+  return D;
+}
+function rcRadarSVG(ax){
+  const n=ax.length,c=100,R=70,pt=(i,k)=>{const a=-Math.PI/2+i*2*Math.PI/n;return [c+Math.cos(a)*R*k,c+Math.sin(a)*R*k]};
+  const ring=k=>ax.map((_,i)=>pt(i,k).join(',')).join(' ');
+  const poly=ax.map((a,i)=>pt(i,Math.max(.04,(a[1]||0)/10)).join(',')).join(' ');
+  return `<svg class="radar rcRad" viewBox="-44 -14 288 228" role="img" aria-label="Combat profile radar chart"><g fill="none" stroke="#ffffff22">${[.25,.5,.75,1].map(k=>`<polygon points="${ring(k)}"/>`).join('')}${ax.map((_,i)=>`<line x1="${c}" y1="${c}" x2="${pt(i,1)[0]}" y2="${pt(i,1)[1]}"/>`).join('')}</g><polygon points="${poly}" fill="#ffe81f33" stroke="#ffe81f" stroke-width="2" stroke-linejoin="round"/>${ax.map((a,i)=>{const p=pt(i,1.2);return `<text x="${p[0]}" y="${p[1]+3}" text-anchor="middle" font-size="9" font-family="Consolas,monospace" letter-spacing="1" fill="#cfe0ea">${a[0].toUpperCase()}</text>`}).join('')}</svg>`;
+}
+const rcBar=(l,val,fr,col)=>`<div class="rcB"><span>${esc(l)}</span><i><u style="width:${Math.max(0,Math.min(100,fr*100)).toFixed(1)}%;background:${col}"></u></i><b>${esc(val)}</b></div>`;
+function rcCardHTML(D){
+  const lv=D.lv,t=titleFor(lv),nm=(RC.name.trim()||'CITIZEN').toUpperCase(),st=RC_ST[D.grade];
+  const K=[['ENEMIES KILLED',D.total?fmtN(D.total):'—'],['K / D',D.kd==null?'—':f2(D.kd)],['ACCURACY',pctS(D.acc)],['WIN RATE',pctS(D.wr)],['EXTRACTION',pctS(D.er)],['IN MISSION',D.tm?rcFmtDur(D.tm):'—']];
+  return `<div class="idc rcC"><div class="idh"><div class="idE">${emb('superEarth')}</div><div><b>SUPER EARTH</b><span>HELLDIVER COMBAT RECORD</span></div></div>
+   <div class="idn">${esc(nm)}</div><div class="idt">${esc(t.name)}</div>
+   <div class="rcK">${K.map(([l,x])=>`<div><small>${l}</small><b>${esc(x)}</b></div>`).join('')}</div>
+   <div class="idr"><span>LEVEL</span><b>${lv}</b></div>
+   <div class="idr"><span>TOTAL XP</span><b>${D.n('xp')?fmtN(D.n('xp')):'—'}</b></div>
+   <div class="idr"><span>DOCTRINE</span><b>${esc(D.arch.name.toUpperCase())}</b></div>
+   <div class="idr"><span>DEMOCRACY RATING</span><b class="${/^[SAB]$/.test(D.grade)?'ok':''}">${D.grade}${D.score!=null?' · '+Math.round(D.score)+' / 100':''}</b></div>
+   <div class="bc"></div><div class="stamp" style="color:${st[1]};border-color:${st[1]}">${st[0]}</div>${titleImg(t,'idic')}</div>`;
+}
+function rcAnHTML(D){
+  if(!D.any)return `<div class="panel"><span class="kicker">Analysis</span><p class="lead" style="font-size:15px;margin-top:10px">Nothing to analyse yet. Type your numbers, paste them from the game, or load the sample record to see what this tool does.</p></div>`;
+  const M=[['K/D ratio',f2(D.kd),'Enemies killed for every death'],['Accuracy',pctS(D.acc),'Shots hit out of shots fired'],['Shots per kill',f1(D.spk),'Bullets spent to end one enemy'],['Kills per mission',f1(D.kpm),'Average per mission played'],['Deaths per mission',f1(D.dpm),'Average per mission played'],['Kills per hour',f1(D.kph),'In mission time'],['Win rate',pctS(D.wr),'Missions won out of played'],['Extraction rate',pctS(D.er),'Successful extractions out of missions'],['Objectives per mission',f1(D.opm),'Completed objectives'],['Stratagems per mission',f1(D.spm),'All five categories together'],['Samples per mission',f1(D.smp),'Collected on average'],['XP per hour',D.xph==null?'—':fmtN(Math.round(D.xph)),'Total XP over mission time'],['XP per mission',D.xpm==null?'—':fmtN(Math.round(D.xpm)),'Total XP over missions played'],['Average mission',D.avgM==null?'—':f1(D.avgM)+' min','Mission time over missions played'],['Friendly fire',D.ffk==null?'—':f1(D.ffk),'Allies killed per 1,000 kills']];
+  const fmax=Math.max(1,...RC_FR.map(f=>D.n(f[0]))),mx=Math.max(1,D.total),smx=Math.max(1,D.stT);
+  const earned=D.badges.filter(b=>b[2]);
+  return `<div class="rcAg">
+   <div class="panel"><span class="kicker">Democracy rating</span><div class="rcRt"><div class="rcGr ${/^[SAB]$/.test(D.grade)?'ok':''}">${D.grade}<small>${D.score==null?'':Math.round(D.score)+' / 100'}</small></div>${rcRadarSVG(D.axes)}</div>
+    <div class="attr">Unofficial rating: lethality, marksmanship, survival, mission success, logistics and discipline, each compared with an excellent career.</div></div>
+   <div class="panel"><span class="kicker">Doctrine</span><div class="rcDo">${esc(D.arch.name)}</div><p class="rcTx">${esc(D.arch.txt)}</p>
+    <div class="idr"><span>SPECIALISATION</span><b>${esc(D.front.toUpperCase())}</b></div><div class="idr"><span>COMMENDATIONS</span><b>${earned.length} / ${D.badges.length}</b></div>
+    <div class="rcBd">${earned.length?earned.map(b=>`<span title="${esc(b[1])}">★ ${esc(b[0])}</span>`).join(''):'<em>None yet. High Command is watching.</em>'}</div></div></div>
+   <div class="panel" style="margin-top:20px"><span class="kicker">Efficiency</span><div class="rcM">${M.map(([l,x,h])=>`<div title="${esc(h)}"><small>${l}</small><b>${esc(x)}</b></div>`).join('')}</div></div>
+   <div class="rcAg" style="margin-top:20px">
+    <div class="panel"><span class="kicker">Kills by front</span>${RC_FR.map(([k,l,c])=>rcBar(l,D.n(k)?fmtN(D.n(k))+(D.fsum?' · '+Math.round(D.n(k)/D.fsum*100)+'%':''):'—',D.n(k)/fmax,c)).join('')}
+     <span class="kicker" style="display:block;margin-top:18px">How the kills happen</span>${D.mix.map(([l,x,c])=>rcBar(l,x?fmtN(x)+' · '+Math.round(x/mx*100)+'%':'—',x/mx,c)).join('')}</div>
+    <div class="panel"><span class="kicker">Stratagem mix</span>${D.st.map(([l,x,c])=>rcBar(l,x?fmtN(x)+' · '+Math.round(x/smx*100)+'%':'—',x/smx,c)).join('')}
+     <span class="kicker" style="display:block;margin-top:18px">Field notes</span><ul class="rcFx">${D.facts.map(x=>`<li>${esc(x)}</li>`).join('')||'<li>Add mission time and kills to unlock the field notes.</li>'}</ul></div></div>
+   <div class="panel" style="margin-top:20px" id="rcGal"></div>`;
+}
+let rcGalTok=0;
+function rcGalaxy(D){
+  const box=$('#rcGal');if(!box)return;
+  if(!(D.n('bug')||D.n('bot')||D.n('ill'))){box.style.display='none';return}
+  box.style.display='';box.innerHTML='<span class="kicker">Your share of the galactic war</span><p class="rcTx">Asking High Command for the live war counters...</p>';
+  const tok=++rcGalTok;
+  getWarStats().then(w=>{
+    if(tok!==rcGalTok||cur!=='record'||!$('#rcGal'))return;
+    const row=(k,l,tot)=>{const x=D.n(k);if(!x||!tot)return '';const p=x/tot*100;return `<div class="idr"><span>${l.toUpperCase()}</span><b>${p<0.01?p.toFixed(5):p.toFixed(3)}% · ${fmtN(x)} of ${fmtBig(tot)}</b></div>`};
+    const h=row('bug','Terminids',w.bug)+row('bot','Automatons',w.bot)+row('ill','Illuminate',w.ill);
+    box.innerHTML='<span class="kicker">Your share of the galactic war</span>'+(h?'<p class="rcTx">Your career kills against the total kills on the live war counter (approximate: the counter and your profile do not always cover the same period).</p>'+h:'<p class="rcTx">No war counter available right now.</p>');
+  }).catch(()=>{if(tok===rcGalTok&&$('#rcGal'))$('#rcGal').style.display='none'});
+}
+let rcT=0;
+function rcRefresh(){
+  if(!$('#rcCard'))return;
+  const D=rcData();
+  $('#rcCard').innerHTML=rcCardHTML(D);
+  $('#rcAn').innerHTML=rcAnHTML(D);
+  LS.set('rec',{name:RC.name,lv:RC.lv,v:RC.v});
+  rcCmpRefresh();
+  clearTimeout(rcT);rcT=setTimeout(()=>rcGalaxy(D),400);
+}
+function rcSummary(D){
+  const t=titleFor(D.lv),nm=(RC.name.trim()||'Citizen');
+  const L=[`HELLDIVER COMBAT RECORD · ${nm.toUpperCase()}`,`Level ${D.lv} · ${t.name} · ${D.arch.name}`,`Rating ${D.grade}${D.score!=null?' ('+Math.round(D.score)+'/100)':''}`,''];
+  if(D.total)L.push(`Enemies killed: ${fmtN(D.total)}  (K/D ${f2(D.kd)})`);
+  RC_FR.forEach(([k,l])=>{if(D.n(k))L.push(`  ${l}: ${fmtN(D.n(k))}`)});
+  if(D.acc!=null)L.push(`Accuracy: ${pctS(D.acc)}`);
+  if(D.n('played'))L.push(`Missions: ${fmtN(D.n('played'))} played · ${pctS(D.wr)} won · ${pctS(D.er)} extracted`);
+  if(D.tm)L.push(`Time in mission: ${rcFmtDur(D.tm)}`);
+  if(D.n('xp'))L.push(`Total XP: ${fmtN(D.n('xp'))}`);
+  L.push('','Made with HelldiverInteractiveArchive by Phenix');
+  return L.join('\n');
+}
+function record(){
+  return `<div class="wrap"><p class="kicker rv">Personnel division · Analytics</p>
+  <h2 class="sec rv b">Combat Record<small>// your career numbers, finally given a meaning.</small></h2>
+  <p class="lead rv">The game keeps a pile of statistics on every Helldiver and shows them as plain lists. Enter yours and High Command will rate your career, name your doctrine, award commendations and print a Combat Record card you can save as an image.</p>
+  <div class="rcGrid"><div class="panel rv l" id="rcForm"><span class="kicker">Career statistics</span>
+    <div class="rcFg rc2"><label class="fl">Callsign<input id="rcName" maxlength="18" autocomplete="off" placeholder="CITIZEN"></label>
+    <label class="fl">Level <small class="rcHint">(empty = from total XP)</small><input id="rcLv" inputmode="numeric" autocomplete="off" placeholder="auto"></label></div>
+    ${RC_G.map(([g,fs])=>`<div class="rcGp"><span class="kicker">${g}</span><div class="rcFg">${fs.map(([k,l])=>`<label class="fl">${l}<input data-k="${k}" ${k==='time'?'placeholder="e.g. 312h 45m"':'inputmode="numeric" placeholder="0"'} autocomplete="off"></label>`).join('')}</div></div>`).join('')}
+    <div class="ctl"><button class="btn ghost sm" id="rcSmp">Load sample</button><button class="btn ghost sm" id="rcClr">Clear all</button></div>
+    <div class="attr">Everything stays in your browser.</div></div>
+   <div class="rv r rcSt"><div id="rcCard"></div>
+    <div class="ctl"><button class="btn" id="rcExp">⬇ Export PNG</button><button class="btn ghost sm" id="rcCpy">Copy text summary</button></div></div></div>
+  <div id="rcAn" style="margin-top:30px"></div>${rcCmpShell()}</div>`;
+}
+record.init=()=>{
+  rcLoad();resolveRanks();
+  $('#rcName').value=RC.name;$('#rcLv').value=RC.lv;
+  const fill=()=>$$('#rcForm [data-k]').forEach(i=>{const k=i.dataset.k,v=RC.v[k];i.value=k==='time'?(v||''):(v?fmtN(v):'')});
+  fill();rcRefresh();
+  const F=$('#rcForm');
+  F.addEventListener('input',e=>{const i=e.target;
+    if(i.id==='rcName')RC.name=i.value;
+    else if(i.id==='rcLv'){RC.lv=i.value.replace(/\D/g,'').slice(0,3)}
+    else if(i.dataset&&i.dataset.k)RC.v[i.dataset.k]=i.dataset.k==='time'?i.value:rcNum(i.value);
+    else return;
+    rcRefresh()});
+  F.addEventListener('focusout',e=>{const i=e.target,k=i.dataset&&i.dataset.k;if(k&&k!=='time'){const v=RC.v[k];i.value=v?fmtN(v):''}});
+  $('#rcSmp').onclick=()=>{RC.name=RC_SAMPLE.name;RC.lv='';RC.v=Object.assign({},RC_SAMPLE.v);$('#rcName').value=RC.name;$('#rcLv').value='';fill();rcRefresh()};
+  $('#rcClr').onclick=()=>{RC.name='';RC.lv='';RC.v={};$('#rcName').value='';$('#rcLv').value='';fill();rcRefresh()};
+  $('#rcCpy').onclick=async()=>{const s=rcSummary(rcData());try{await navigator.clipboard.writeText(s);toast('Summary copied')}catch(e){const t=document.createElement('textarea');t.value=s;document.body.appendChild(t);t.select();try{document.execCommand('copy');toast('Summary copied')}catch(_){toast('Copy failed')}t.remove()}};
+  $('#rcExp').onclick=rcExport;
+  rcCmpInit();
+};
+async function rcRender(noImg){
+  const S=2,W=1200,PAD=36,HDR=84,TOP=HDR+24;
+  const cs=getComputedStyle(document.documentElement),HF=cs.getPropertyValue('--h').trim()||'Impact,sans-serif',MF=cs.getPropertyValue('--m').trim()||'monospace';
+  const D=rcData(),lv=D.lv,nm=(RC.name.trim()||'CITIZEN').toUpperCase(),t=titleFor(lv),st=RC_ST[D.grade];
+  const IM={};
+  if(!noImg){
+    const jobs=[],eb=$('#brandEmb img');
+    jobs.push((eb&&eb.src?loadImg([eb.src]):Promise.resolve(null)).then(async im=>IM.emb=im||await svgImg(SVG.superEarth)));
+    const tu=[RANKU[t.lv],rankIconUrl(t),TICON[t.name]];
+    jobs.push(loadImg(tu).then(async im=>IM.title=im||await svgImg(tBadge({lv:t.lv||200,name:t.name}))));
+    await Promise.all(jobs);
+  }else{IM.emb=await svgImg(SVG.superEarth);IM.title=await svgImg(tBadge({lv:t.lv||200,name:t.name}))}
+  const n=D.n,cardH=392,KW=242,KG=16,KH=92,KRG=14,RX=PAD+340+28,RW=W-PAD-RX,HW=(RW-16)/2;
+  const earned=D.badges.filter(b=>b[2]),facts=D.facts.slice(0,4);
+  const y1=TOP+4*KH+3*KRG+16,H1=160,y2=y1+H1+16,H2=200,rightB=y2+H2;
+  const radH=300,leftTop=TOP+cardH+20,bdY=leftTop+radH+16,bdH=Math.max(150,rightB-bdY);
+  const H=Math.max(rightB,bdY+bdH)+78;
+  const cv=document.createElement('canvas');cv.width=W*S;cv.height=H*S;
+  const c=cv.getContext('2d');c.scale(S,S);
+  const panel=(x,y,w,h,k,fill,stroke,lw)=>{c.save();c.beginPath();c.moveTo(x,y);c.lineTo(x+w-k,y);c.lineTo(x+w,y+k);c.lineTo(x+w,y+h);c.lineTo(x+k,y+h);c.lineTo(x,y+h-k);c.closePath();if(fill){c.fillStyle=fill;c.fill()}if(stroke){c.lineWidth=lw||1;c.strokeStyle=stroke;c.stroke()}c.restore()};
+  const T=(s,x,y,o)=>{o=o||{};c.save();c.font=o.f;c.fillStyle=o.c||'#fff';c.textAlign=o.a||'left';c.textBaseline='alphabetic';try{c.letterSpacing=(o.ls||0)+'px'}catch(e){}let str=String(s);if(o.mw){const full=str;while(str.length>1&&c.measureText(str).width>o.mw)str=str.slice(0,-1);if(str!==full)str=str.slice(0,-1)+'…'}c.fillText(str,x,y);c.restore()};
+  const fit=(im,x,y,w,h)=>{if(!im)return false;const r=Math.min(w/im.width,h/im.height),dw=im.width*r,dh=im.height*r;c.drawImage(im,x+(w-dw)/2,y+(h-dh)/2,dw,dh);return true};
+  const wrap=(s,w,font,max)=>{c.save();c.font=font;const out=[];let cu='';String(s).split(/\s+/).forEach(wd=>{const tr=cu?cu+' '+wd:wd;if(c.measureText(tr).width>w&&cu){out.push(cu);cu=wd}else cu=tr});if(cu)out.push(cu);c.restore();if(out.length>max){out.length=max;out[max-1]=out[max-1].replace(/\s*\S*$/,'')+'…'}return out};
+  const PF='rgba(11,17,24,.92)',PS='rgba(255,232,31,.3)';
+  const bar=(x,y,w,l,val,fr,col)=>{T(l.toUpperCase(),x,y,{f:'11px '+MF,c:'#cfe0ea',ls:1,mw:w*.62});T(val,x+w,y,{f:'11px '+MF,c:'#ffe81f',a:'right',mw:w*.5});c.fillStyle='rgba(255,255,255,.1)';c.fillRect(x,y+7,w,7);c.fillStyle=col;c.fillRect(x,y+7,w*Math.max(0,Math.min(1,fr)),7)};
+  const sect=(x,y,w,h,title)=>{panel(x,y,w,h,14,PF,PS,1);c.fillStyle='#ffe81f';c.fillRect(x,y+14,4,h-28);T(title,x+20,y+26,{f:'11px '+MF,c:'#37d6ff',ls:2,mw:w-40})};
+  /* background */
+  c.fillStyle='#05070a';c.fillRect(0,0,W,H);
+  c.strokeStyle='rgba(255,232,31,.045)';c.lineWidth=1;
+  for(let x=0;x<W;x+=40){c.beginPath();c.moveTo(x+.5,0);c.lineTo(x+.5,H);c.stroke()}
+  for(let y=0;y<H;y+=40){c.beginPath();c.moveTo(0,y+.5);c.lineTo(W,y+.5);c.stroke()}
+  const g=c.createRadialGradient(W/2,H/2,H*.25,W/2,H/2,H*.8);g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(1,'rgba(0,0,0,.65)');c.fillStyle=g;c.fillRect(0,0,W,H);
+  /* top bar */
+  c.fillStyle='#000';c.fillRect(0,0,W,HDR);
+  c.fillStyle='#ffe81f';c.fillRect(0,HDR-6,W,3);c.fillStyle='#f5c400';c.fillRect(0,HDR,W,2);
+  fit(IM.emb,PAD,20,44,44);
+  T('DEMOCRACY ARCHIVE',PAD+60,50,{f:'28px '+HF,c:'#ffe81f',ls:3});
+  T('COMBAT RECORD · '+nm,W-PAD,50,{f:'16px '+MF,c:'#8b98a5',a:'right',ls:2,mw:520});
+  /* operator card */
+  const cx=PAD,cy=TOP,cw=340;
+  const gr=c.createLinearGradient(cx,cy,cx+cw,cy+cardH);gr.addColorStop(0,'#0f1a25');gr.addColorStop(1,'#0a1018');
+  c.fillStyle=gr;c.fillRect(cx,cy,cw,cardH);c.strokeStyle='#ffe81f';c.lineWidth=2;c.strokeRect(cx+1,cy+1,cw-2,cardH-2);
+  fit(IM.emb,cx+20,cy+18,50,50);
+  T('SUPER EARTH',cx+82,cy+46,{f:'26px '+HF,c:'#ffe81f',ls:3});
+  T('HELLDIVER COMBAT RECORD',cx+82,cy+64,{f:'10px '+MF,c:'#8b98a5',ls:2});
+  c.fillStyle='#ffe81f';c.fillRect(cx+20,cy+80,cw-40,2);
+  let fs=48;c.save();while(fs>20){c.font=fs+'px '+HF;if(c.measureText(nm).width<=cw-40)break;fs-=2}c.restore();
+  T(nm,cx+20,cy+138,{f:fs+'px '+HF,c:'#fff',ls:2});
+  wrap(t.name.toUpperCase(),cw-40-100,'22px '+HF,2).forEach((l,i)=>T(l,cx+20,cy+176+i*26,{f:'22px '+HF,c:'#37d6ff',ls:2}));
+  if(IM.title){c.save();c.shadowColor='rgba(255,232,31,.4)';c.shadowBlur=12;fit(IM.title,cx+cw-20-84,cy+150,84,84);c.restore()}
+  const rowsC=[['LEVEL',String(lv),'#fff'],['TOTAL XP',n('xp')?fmtN(n('xp')):'—','#fff'],['DOCTRINE',D.arch.name.toUpperCase(),'#fff'],['RATING',D.grade+(D.score!=null?' · '+Math.round(D.score)+' / 100':''),/^[SAB]$/.test(D.grade)?'#7dff9b':'#fff']];
+  rowsC.forEach(([l,v,col],i)=>{const y=cy+236+i*26;c.fillStyle='rgba(255,255,255,.08)';c.fillRect(cx+20,y+10,cw-40,1);T(l,cx+20,y+4,{f:'12px '+MF,c:'#8b98a5',ls:1.5});T(v,cx+cw-20,y+4,{f:'12px '+MF,c:col,a:'right',mw:cw-40-110})});
+  let hs=0;for(const ch of nm)hs=(hs*31+ch.charCodeAt(0))>>>0;
+  c.fillStyle='rgba(255,255,255,.75)';let bx=cx+20;const bw=cw-40;while(bx<cx+20+bw-2){hs=(hs*1103515245+12345)>>>0;const w1=1+(hs>>>16)%4,gp=2+(hs>>>20)%4;c.fillRect(bx,cy+cardH-42,Math.min(w1,cx+20+bw-bx),22);bx+=w1+gp}
+  c.save();c.translate(cx+cw-100,cy+cardH-22);c.rotate(-.21);c.strokeStyle=st[1];c.lineWidth=3;c.fillStyle='rgba(5,7,10,.8)';c.fillRect(-84,-22,168,40);c.strokeRect(-84,-22,168,40);T(st[0],0,6,{f:'22px '+HF,c:st[1],a:'center',ls:3});c.restore();
+  /* radar */
+  sect(cx,leftTop,cw,radH,'COMBAT PROFILE');
+  {const rx=cx+cw/2,ry=leftTop+radH/2+16,R=92,E=D.axes,m=E.length,P=(i,k)=>{const a=-Math.PI/2+i*2*Math.PI/m;return [rx+Math.cos(a)*R*k,ry+Math.sin(a)*R*k]};
+   c.lineWidth=1;c.strokeStyle='rgba(255,255,255,.14)';
+   [.25,.5,.75,1].forEach(k=>{c.beginPath();E.forEach((_,i)=>{const p=P(i,k);i?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1])});c.closePath();c.stroke()});
+   E.forEach((_,i)=>{const p=P(i,1);c.beginPath();c.moveTo(rx,ry);c.lineTo(p[0],p[1]);c.stroke()});
+   c.beginPath();E.forEach(([l,v],i)=>{const p=P(i,Math.max(.04,(v||0)/10));i?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1])});c.closePath();c.fillStyle='rgba(255,232,31,.22)';c.fill();c.strokeStyle='#ffe81f';c.lineWidth=2;c.stroke();
+   E.forEach(([l,v],i)=>{const p=P(i,1.22);T(l.toUpperCase(),p[0],p[1]+4,{f:'10px '+MF,c:'#cfe0ea',a:'center',ls:1})})}
+  /* commendations */
+  sect(cx,bdY,cw,bdH,'COMMENDATIONS · '+earned.length+' / '+D.badges.length);
+  {const col=2,cwid=(cw-40)/col,rows=Math.max(1,Math.floor((bdH-50)/20)),cap=rows*col,show=earned.slice(0,earned.length>cap?cap-1:cap);
+   if(!earned.length)T('NONE YET. HIGH COMMAND IS WATCHING.',cx+20,bdY+56,{f:'11px '+MF,c:'#8b98a5',ls:1,mw:cw-40});
+   show.forEach((b,i)=>T('★ '+b[0].toUpperCase(),cx+20+(i%col)*cwid,bdY+54+((i/col)|0)*20,{f:'11px '+MF,c:'#ffe81f',ls:.5,mw:cwid-8}));
+   if(earned.length>cap)T('+ '+(earned.length-cap+1)+' MORE',cx+20+((cap-1)%col)*cwid,bdY+54+(((cap-1)/col)|0)*20,{f:'11px '+MF,c:'#8b98a5',ls:1})}
+  /* KPI tiles */
+  const K=[['ENEMIES KILLED',D.total?fmtN(D.total):'—',D.kpm!=null?f1(D.kpm)+' per mission':''],['K / D RATIO',D.kd==null?'—':f2(D.kd),n('deaths')?'1 death per '+f1(D.total/n('deaths'))+' kills':''],['ACCURACY',pctS(D.acc),D.spk!=null?f1(D.spk)+' shots per kill':''],
+   ['MISSIONS WON',n('won')?fmtN(n('won')):'—',D.wr!=null?pctS(D.wr)+' of '+fmtN(n('played'))+' played':''],['EXTRACTIONS',n('ext')?fmtN(n('ext')):'—',D.er!=null?pctS(D.er)+' extraction rate':''],['TIME IN MISSION',D.tm?rcFmtDur(D.tm):'—',D.avgM!=null?f1(D.avgM)+' min average mission':''],
+   ['DEATHS',n('deaths')?fmtN(n('deaths')):'—',D.dpm!=null?f1(D.dpm)+' per mission':''],['SHOTS FIRED',n('shots')?fmtN(n('shots')):'—',n('hits')?fmtN(n('hits'))+' hit':''],['OBJECTIVES',n('obj')?fmtN(n('obj')):'—',D.opm!=null?f1(D.opm)+' per mission':''],
+   ['STRATAGEMS USED',D.stT?fmtN(D.stT):'—',D.spm!=null?f1(D.spm)+' per mission':''],['SAMPLES',n('samples')?fmtN(n('samples')):'—',D.smp!=null?f1(D.smp)+' per mission':''],['TOTAL XP',n('xp')?fmtN(n('xp')):'—',D.xph!=null?fmtN(Math.round(D.xph))+' XP per hour':'']];
+  K.forEach(([l,v,s],i)=>{
+    const x=RX+(i%3)*(KW+KG),y=TOP+((i/3)|0)*(KH+KRG);
+    panel(x,y,KW,KH,12,PF,PS,1);c.fillStyle='#ffe81f';c.fillRect(x,y+12,4,KH-24);
+    T(l,x+16,y+22,{f:'11px '+MF,c:'#37d6ff',ls:2,mw:KW-32});
+    let f=36;c.save();while(f>18){c.font=f+'px '+HF;if(c.measureText(v).width<=KW-32)break;f-=2}c.restore();
+    T(v,x+16,y+60,{f:f+'px '+HF,c:'#fff',ls:1});
+    T(s,x+16,y+80,{f:'11px '+MF,c:'#8b98a5',mw:KW-32});
+  });
+  /* kills by front + how the kills happen */
+  const fmax=Math.max(1,...RC_FR.map(f=>n(f[0]))),mx=Math.max(1,D.total),smx=Math.max(1,D.stT);
+  sect(RX,y1,HW,H1,'KILLS BY FRONT');
+  RC_FR.forEach(([k,l,col],i)=>bar(RX+20,y1+54+i*34,HW-40,l,n(k)?fmtN(n(k))+(D.fsum?' · '+Math.round(n(k)/D.fsum*100)+'%':''):'—',n(k)/fmax,col));
+  sect(RX+HW+16,y1,HW,H1,'HOW THE KILLS HAPPEN');
+  D.mix.forEach(([l,x,col],i)=>bar(RX+HW+36,y1+50+i*26,HW-40,l,x?fmtN(x)+' · '+Math.round(x/mx*100)+'%':'—',x/mx,col));
+  /* stratagem mix + field notes */
+  sect(RX,y2,HW,H2,'STRATAGEM MIX');
+  D.st.forEach(([l,x,col],i)=>bar(RX+20,y2+54+i*28,HW-40,l,x?fmtN(x)+' · '+Math.round(x/smx*100)+'%':'—',x/smx,col));
+  sect(RX+HW+16,y2,HW,H2,'FIELD NOTES');
+  {let yy=y2+54;(facts.length?facts:['Add mission time and kills to unlock the field notes.']).forEach(f=>{wrap(f,HW-40,'12px '+MF,2).forEach(l=>{T(l,RX+HW+36,yy,{f:'12px '+MF,c:'#cfe0ea'});yy+=16});yy+=8})}
+  /* footer */
+  c.fillStyle='rgba(255,232,31,.25)';c.fillRect(PAD,H-58,W-2*PAD,1);
+  T('Made with HelldiverInteractiveArchive by Phenix',W/2,H-32,{f:'12px '+MF,c:'#8b98a5',a:'center',ls:1.5});
+  c.save();c.beginPath();c.rect(0,H-10,W,10);c.clip();c.fillStyle='#ffe81f';c.fillRect(0,H-10,W,10);c.fillStyle='#05070a';for(let x=-20;x<W+20;x+=28){c.beginPath();c.moveTo(x,H);c.lineTo(x+14,H);c.lineTo(x+24,H-10);c.lineTo(x+10,H-10);c.closePath();c.fill()}c.restore();
+  return new Promise((res,rej)=>{try{cv.toBlob(b=>b?res(b):rej(new Error('blob')),'image/png')}catch(e){rej(e)}});
+}
+async function rcExport(){
+  if(!rcData().any){toast('Enter some statistics first');return}
+  const b=$('#rcExp');if(b)b.disabled=true;
+  $('#modalBox').classList.remove('wide');$('#modalBox').innerHTML='<button class="x" id="mx" aria-label="Close">✕</button><span class="kicker">Combat Record image · PNG</span><div style="text-align:center;padding:26px 0 10px"><i class="spin"></i><div class="attr" style="margin-top:12px">Printing your record... fetching the emblem and title icon, this takes a few seconds.</div></div>';showModal();$('#mx').onclick=closeBrief;
+  try{
+    let blob;
+    try{blob=await rcRender(false)}catch(e){blob=await rcRender(true)}
+    const url=URL.createObjectURL(blob),nm=(RC.name.trim()||'citizen').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'citizen';
+    $('#modalBox').innerHTML=`<button class="x" id="mx" aria-label="Close">✕</button><span class="kicker">Combat Record image · PNG</span>
+     <img id="rcImg" src="${url}" alt="Your Combat Record" style="width:100%;height:auto;display:block;margin:12px 0;border:1px solid var(--line)">
+     <div class="ctl"><a class="btn" id="rcDl" href="${url}" download="helldivers-combat-record-${nm}.png">⬇ Download PNG</a></div>
+     <div class="attr">On a phone, if the download does not start, press and hold the image to save it.</div>`;
+    showModal();$('#mx').onclick=closeBrief;
+  }catch(e){closeBrief();toast('Export failed. Try again.')}
+  if(b)b.disabled=false;
+}
+
+
+/* ---------- DUEL (v32): two Combat Records side by side ---------- */
+let RC2=null;
+function rcLoad2(){const s=LS.get('rec2')||{};RC2={name:String(s.name||'').slice(0,18),lv:s.lv?String(s.lv):'',v:Object.assign({},s.v||{}),open:!!s.open}}
+const RC_CM=[
+ ['Democracy rating',D=>D.score,v=>Math.round(v)+' / 100',1],
+ ['Level',D=>D.lv,v=>String(v),1],
+ ['Enemies killed',D=>D.total||null,fmtN,1],
+ ['K/D ratio',D=>D.kd,f2,1],
+ ['Accuracy',D=>D.acc,pctS,1],
+ ['Win rate',D=>D.wr,pctS,1],
+ ['Extraction rate',D=>D.er,pctS,1],
+ ['Kills per mission',D=>D.kpm,f1,1],
+ ['Deaths per mission',D=>D.dpm,f1,0],
+ ['Kills per hour',D=>D.kph,f1,1],
+ ['Stratagems per mission',D=>D.spm,f1,1],
+ ['Samples per mission',D=>D.smp,f1,1],
+ ['Friendly fire per 1,000 kills',D=>D.ffk,f1,0],
+ ['Missions played',D=>D.n('played')||null,fmtN,1],
+ ['Time in mission',D=>D.tm||null,rcFmtDur,1],
+ ['Total XP',D=>D.n('xp')||null,fmtN,1]
+];
+function rcDuel(A,B){
+  let wa=0,wb=0;
+  const rows=RC_CM.map(([l,g,f,hb])=>{const x=g(A),y=g(B);const sx0=x==null?'—':f(x),sy0=y==null?'—':f(y);let w=0;if(x!=null&&y!=null&&x!==y&&sx0!==sy0){w=((x>y)===!!hb)?1:2;w===1?wa++:wb++}
+    return {l,x,y,f,w,fr:x!=null&&y!=null&&x+y>0?x/(x+y):null,sx:x==null?'—':f(x),sy:y==null?'—':f(y)}});
+  return {rows,wa,wb,dec:wa+wb};
+}
+function rcVerdict(du,na,nb){
+  const {wa,wb,dec}=du;if(!dec)return 'Not enough shared numbers to settle this. High Command suggests more paperwork.';
+  const W=wa>=wb?na:nb,L=wa>=wb?nb:na,w=Math.max(wa,wb),l=Math.min(wa,wb);
+  if(wa===wb)return `A perfect tie, ${wa} categories each. High Command declares a draw of honour and orders both of you to the bar.`;
+  if(l===0)return `${W} wins every decided category (${w} of ${dec}). ${L} has been asked to review the training material, twice.`;
+  if(w-l>=Math.ceil(dec/3))return `${W} outclasses ${L}, ${w} categories to ${l}. ${L} remains loyal, which is the only category that really matters.`;
+  return `${W} edges out ${L}, ${w} to ${l}. A margin this thin is, officially, a bonding exercise.`;
+}
+function rcRadar2(a,b){
+  const n=a.length,c=100,R=70,pt=(i,k)=>{const t=-Math.PI/2+i*2*Math.PI/n;return [c+Math.cos(t)*R*k,c+Math.sin(t)*R*k]};
+  const ring=k=>a.map((_,i)=>pt(i,k).join(',')).join(' ');
+  const poly=ar=>ar.map((x,i)=>pt(i,Math.max(.04,(x[1]||0)/10)).join(',')).join(' ');
+  return `<svg class="radar rcRad" viewBox="-44 -14 288 228" role="img" aria-label="Radar comparison"><g fill="none" stroke="#ffffff22">${[.25,.5,.75,1].map(k=>`<polygon points="${ring(k)}"/>`).join('')}${a.map((_,i)=>`<line x1="${c}" y1="${c}" x2="${pt(i,1)[0]}" y2="${pt(i,1)[1]}"/>`).join('')}</g><polygon points="${poly(b)}" fill="#37d6ff33" stroke="#37d6ff" stroke-width="2" stroke-linejoin="round"/><polygon points="${poly(a)}" fill="#ffe81f33" stroke="#ffe81f" stroke-width="2" stroke-linejoin="round"/>${a.map((x,i)=>{const p=pt(i,1.2);return `<text x="${p[0]}" y="${p[1]+3}" text-anchor="middle" font-size="9" font-family="Consolas,monospace" letter-spacing="1" fill="#cfe0ea">${x[0].toUpperCase()}</text>`}).join('')}</svg>`;
+}
+const rcNames=()=>[(RC.name.trim()||'CITIZEN').toUpperCase(),(RC2.name.trim()||'RIVAL').toUpperCase()];
+function rcCmpHTML(){
+  const A=rcData(),B=rcData(RC2),[na,nb]=rcNames();
+  if(!A.any||!B.any)return `<div class="panel"><span class="kicker">Duel</span><p class="lead" style="font-size:15px;margin-top:10px">${!A.any?'Your own record is empty.':'The second record is empty.'} Fill in both Helldivers (or load the samples) and High Command will settle it.</p></div>`;
+  const du=rcDuel(A,B),ta=titleFor(A.lv),tb=titleFor(B.lv);
+  const side=(D,n,t,cls)=>`<div class="rcVp ${cls}"><b>${esc(n)}</b><span>${esc(t.name)} · LV ${D.lv}</span><em>${D.grade}${D.score!=null?' · '+Math.round(D.score):''}</em><small>${esc(D.arch.name)}</small></div>`;
+  return `<div class="panel rcDu"><span class="kicker">Duel</span>
+   <div class="rcVs">${side(A,na,ta,'a')}<div class="rcVsX">VS</div>${side(B,nb,tb,'b')}</div>
+   <div class="rcTal"><b class="a">${du.wa}</b><span>categories won</span><b class="b">${du.wb}</b></div>
+   <p class="rcTx" style="text-align:center">${esc(rcVerdict(du,na,nb))}</p>
+   <div class="rcRt" style="justify-content:center">${rcRadar2(A.axes,B.axes)}</div>
+   <div class="rcLg"><span class="a">■ ${esc(na)}</span><span class="b">■ ${esc(nb)}</span></div>
+   <div class="rcCt">${du.rows.map(r=>`<div class="rcCr"><b class="a ${r.w===1?'w':''}">${esc(r.sx)}</b><div class="rcCm"><small>${esc(r.l)}</small><i>${r.fr==null?'':`<u style="width:${(r.fr*100).toFixed(1)}%"></u>`}</i></div><b class="b ${r.w===2?'w':''}">${esc(r.sy)}</b></div>`).join('')}</div></div>`;
+}
+function rcCmpRefresh(){
+  const o=$('#rcCmpOut');if(!o||!RC2)return;
+  o.innerHTML=rcCmpHTML();
+  LS.set('rec2',{name:RC2.name,lv:RC2.lv,v:RC2.v,open:RC2.open});
+}
+function rcCmpShell(){
+  return `<div id="rcCmpWrap" style="margin-top:44px"><p class="kicker rv">Squad analytics</p>
+  <h2 class="sec rv b">Duel<small>// two records enter. One citizen leaves slightly more loyal.</small></h2>
+  <div class="ctl"><button class="btn ghost" id="rcCmpT">⚔ Compare with another Helldiver</button></div>
+  <div id="rcCmpBox" style="display:none"><div class="rcGrid" style="margin-top:20px">
+   <div class="panel" id="rcForm2"><span class="kicker">Second Helldiver</span>
+    <div class="rcFg rc2"><label class="fl">Callsign<input id="rcName2" maxlength="18" autocomplete="off" placeholder="RIVAL"></label>
+    <label class="fl">Level <small class="rcHint">(empty = from total XP)</small><input id="rcLv2" inputmode="numeric" autocomplete="off" placeholder="auto"></label></div>
+    ${RC_G.map(([g,fs])=>`<div class="rcGp"><span class="kicker">${g}</span><div class="rcFg">${fs.map(([k,l])=>`<label class="fl">${l}<input data-k="${k}" ${k==='time'?'placeholder="e.g. 312h 45m"':'inputmode="numeric" placeholder="0"'} autocomplete="off"></label>`).join('')}</div></div>`).join('')}
+    <div class="ctl"><button class="btn ghost sm" id="rcSmp2">Load sample</button><button class="btn ghost sm" id="rcClr2">Clear all</button></div></div>
+   <div id="rcCmpOut"></div></div>
+   <div class="ctl"><button class="btn" id="rcCmpExp">⬇ Export duel PNG</button></div></div></div>`;
+}
+function rcCmpInit(){
+  rcLoad2();
+  const box=$('#rcCmpBox');if(!box)return;
+  const show=on=>{RC2.open=on;box.style.display=on?'':'none';$('#rcCmpT').textContent=on?'Hide the duel':'⚔ Compare with another Helldiver';if(on)rcCmpRefresh()};
+  $('#rcName2').value=RC2.name;$('#rcLv2').value=RC2.lv;
+  const fill=()=>$$('#rcForm2 [data-k]').forEach(i=>{const k=i.dataset.k,v=RC2.v[k];i.value=k==='time'?(v||''):(v?fmtN(v):'')});
+  fill();show(RC2.open);
+  $('#rcCmpT').onclick=()=>show(!RC2.open);
+  const F=$('#rcForm2');
+  F.addEventListener('input',e=>{const i=e.target;
+    if(i.id==='rcName2')RC2.name=i.value;
+    else if(i.id==='rcLv2')RC2.lv=i.value.replace(/\D/g,'').slice(0,3);
+    else if(i.dataset&&i.dataset.k)RC2.v[i.dataset.k]=i.dataset.k==='time'?i.value:rcNum(i.value);
+    else return;
+    rcCmpRefresh()});
+  F.addEventListener('focusout',e=>{const i=e.target,k=i.dataset&&i.dataset.k;if(k&&k!=='time'){const v=RC2.v[k];i.value=v?fmtN(v):''}});
+  $('#rcSmp2').onclick=()=>{RC2.name='Liberty Fang';RC2.lv='';RC2.v={total:31200,bug:15000,bot:9200,ill:7000,ff:3,gren:640,melee:410,eagle:5200,deaths:1450,shots:280000,hits:112000,orb:3100,def:600,eag:5200,sup:1700,rein:3300,played:720,won:560,ext:520,obj:2100,time:'455h 05m',samples:7100,xp:1120000};$('#rcName2').value=RC2.name;$('#rcLv2').value='';fill();rcCmpRefresh()};
+  $('#rcClr2').onclick=()=>{RC2.name='';RC2.lv='';RC2.v={};$('#rcName2').value='';$('#rcLv2').value='';fill();rcCmpRefresh()};
+  $('#rcCmpExp').onclick=rcCmpExport;
+}
+async function rcCmpRender(noImg){
+  const S=2,W=1200,PAD=36,HDR=84,TOP=HDR+24;
+  const cs=getComputedStyle(document.documentElement),HF=cs.getPropertyValue('--h').trim()||'Impact,sans-serif',MF=cs.getPropertyValue('--m').trim()||'monospace';
+  const A=rcData(),B=rcData(RC2),[na,nb]=rcNames(),du=rcDuel(A,B),ta=titleFor(A.lv),tb=titleFor(B.lv),IM={};
+  const tIcon=async t=>{const im=await loadImg([RANKU[t.lv],rankIconUrl(t),TICON[t.name]]);return im||await svgImg(tBadge({lv:t.lv||200,name:t.name}))};
+  if(!noImg){const eb=$('#brandEmb img');await Promise.all([(eb&&eb.src?loadImg([eb.src]):Promise.resolve(null)).then(async im=>IM.emb=im||await svgImg(SVG.superEarth)),tIcon(ta).then(im=>IM.ta=im),tIcon(tb).then(im=>IM.tb=im)])}
+  else{IM.emb=await svgImg(SVG.superEarth);IM.ta=await svgImg(tBadge({lv:ta.lv||200,name:ta.name}));IM.tb=await svgImg(tBadge({lv:tb.lv||200,name:tb.name}))}
+  const CH=190,CW=500,y1=TOP+CH+16,PH=300,y2=y1+PH+16,RH=34,TH=64+du.rows.length*RH,H=y2+TH+78;
+  const cv=document.createElement('canvas');cv.width=W*S;cv.height=H*S;
+  const c=cv.getContext('2d');c.scale(S,S);
+  const panel=(x,y,w,h,k,fill,stroke,lw)=>{c.save();c.beginPath();c.moveTo(x,y);c.lineTo(x+w-k,y);c.lineTo(x+w,y+k);c.lineTo(x+w,y+h);c.lineTo(x+k,y+h);c.lineTo(x,y+h-k);c.closePath();if(fill){c.fillStyle=fill;c.fill()}if(stroke){c.lineWidth=lw||1;c.strokeStyle=stroke;c.stroke()}c.restore()};
+  const T=(s,x,y,o)=>{o=o||{};c.save();c.font=o.f;c.fillStyle=o.c||'#fff';c.textAlign=o.a||'left';c.textBaseline='alphabetic';try{c.letterSpacing=(o.ls||0)+'px'}catch(e){}let str=String(s);if(o.mw){const full=str;while(str.length>1&&c.measureText(str).width>o.mw)str=str.slice(0,-1);if(str!==full)str=str.slice(0,-1)+'…'}c.fillText(str,x,y);c.restore()};
+  const fit=(im,x,y,w,h)=>{if(!im)return false;const r=Math.min(w/im.width,h/im.height),dw=im.width*r,dh=im.height*r;c.drawImage(im,x+(w-dw)/2,y+(h-dh)/2,dw,dh);return true};
+  const wrap=(s,w,font,max)=>{c.save();c.font=font;const out=[];let cu='';String(s).split(/\s+/).forEach(wd=>{const tr=cu?cu+' '+wd:wd;if(c.measureText(tr).width>w&&cu){out.push(cu);cu=wd}else cu=tr});if(cu)out.push(cu);c.restore();if(out.length>max){out.length=max;out[max-1]=out[max-1].replace(/\s*\S*$/,'')+'…'}return out};
+  const PF='rgba(11,17,24,.92)',PS='rgba(255,232,31,.3)',CA='#ffe81f',CB='#37d6ff';
+  c.fillStyle='#05070a';c.fillRect(0,0,W,H);
+  c.strokeStyle='rgba(255,232,31,.045)';c.lineWidth=1;
+  for(let x=0;x<W;x+=40){c.beginPath();c.moveTo(x+.5,0);c.lineTo(x+.5,H);c.stroke()}
+  for(let y=0;y<H;y+=40){c.beginPath();c.moveTo(0,y+.5);c.lineTo(W,y+.5);c.stroke()}
+  const g=c.createRadialGradient(W/2,H/2,H*.25,W/2,H/2,H*.8);g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(1,'rgba(0,0,0,.65)');c.fillStyle=g;c.fillRect(0,0,W,H);
+  c.fillStyle='#000';c.fillRect(0,0,W,HDR);c.fillStyle='#ffe81f';c.fillRect(0,HDR-6,W,3);c.fillStyle='#f5c400';c.fillRect(0,HDR,W,2);
+  fit(IM.emb,PAD,20,44,44);
+  T('DEMOCRACY ARCHIVE',PAD+60,50,{f:'28px '+HF,c:'#ffe81f',ls:3});
+  T('DUEL · '+na+' VS '+nb,W-PAD,50,{f:'16px '+MF,c:'#8b98a5',a:'right',ls:2,mw:620});
+  /* the two operators */
+  const op=(x,D,n,t,im,col,al)=>{
+    panel(x,TOP,CW,CH,14,'#0c141d',col,2);
+    T(n,x+20,TOP+54,{f:'44px '+HF,c:'#fff',ls:2,mw:CW-150});
+    wrap(t.name.toUpperCase(),CW-170,'20px '+HF,2).forEach((l,i)=>T(l,x+20,TOP+86+i*24,{f:'20px '+HF,c:col,ls:2}));
+    T('LEVEL '+D.lv+' · '+D.arch.name.toUpperCase(),x+20,TOP+146,{f:'12px '+MF,c:'#cfe0ea',ls:1.5,mw:CW-40});
+    T('RATING '+D.grade+(D.score!=null?' · '+Math.round(D.score)+' / 100':''),x+20,TOP+170,{f:'12px '+MF,c:/^[SAB]$/.test(D.grade)?'#7dff9b':'#8b98a5',ls:1.5});
+    c.save();c.shadowColor=col+'66';c.shadowBlur=12;fit(im,x+CW-110,TOP+30,84,84);c.restore();
+    T(D.grade,x+CW-68,TOP+172,{f:'56px '+HF,c:col,a:'center'});
+  };
+  op(PAD,A,na,ta,IM.ta,CA);op(W-PAD-CW,B,nb,tb,IM.tb,CB);
+  T('VS',W/2,TOP+CH/2+22,{f:'64px '+HF,c:'#ffe81f',a:'center',ls:2});
+  /* radar + verdict */
+  const rw=420;
+  panel(PAD,y1,rw,PH,14,PF,PS,1);c.fillStyle='#ffe81f';c.fillRect(PAD,y1+14,4,PH-28);
+  T('COMBAT PROFILES',PAD+20,y1+26,{f:'11px '+MF,c:'#37d6ff',ls:2});
+  {const rx=PAD+rw/2,ry=y1+PH/2+16,R=92,E=A.axes,m=E.length,P=(i,k)=>{const a=-Math.PI/2+i*2*Math.PI/m;return [rx+Math.cos(a)*R*k,ry+Math.sin(a)*R*k]};
+   c.lineWidth=1;c.strokeStyle='rgba(255,255,255,.14)';
+   [.25,.5,.75,1].forEach(k=>{c.beginPath();E.forEach((_,i)=>{const p=P(i,k);i?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1])});c.closePath();c.stroke()});
+   E.forEach((_,i)=>{const p=P(i,1);c.beginPath();c.moveTo(rx,ry);c.lineTo(p[0],p[1]);c.stroke()});
+   [[B.axes,CB],[A.axes,CA]].forEach(([ax,col])=>{c.beginPath();ax.forEach(([l,v],i)=>{const p=P(i,Math.max(.04,(v||0)/10));i?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1])});c.closePath();c.globalAlpha=.2;c.fillStyle=col;c.fill();c.globalAlpha=1;c.strokeStyle=col;c.lineWidth=2;c.stroke()});
+   E.forEach(([l],i)=>{const p=P(i,1.22);T(l.toUpperCase(),p[0],p[1]+4,{f:'10px '+MF,c:'#cfe0ea',a:'center',ls:1})})}
+  const vx=PAD+rw+16,vw=W-PAD-vx;
+  panel(vx,y1,vw,PH,14,PF,PS,1);c.fillStyle='#ffe81f';c.fillRect(vx,y1+14,4,PH-28);
+  T('VERDICT OF HIGH COMMAND',vx+20,y1+26,{f:'11px '+MF,c:'#37d6ff',ls:2});
+  T(String(du.wa),vx+vw/2-90,y1+130,{f:'104px '+HF,c:CA,a:'center'});
+  T('–',vx+vw/2,y1+118,{f:'56px '+HF,c:'#8b98a5',a:'center'});
+  T(String(du.wb),vx+vw/2+90,y1+130,{f:'104px '+HF,c:CB,a:'center'});
+  T('CATEGORIES WON',vx+vw/2,y1+158,{f:'12px '+MF,c:'#8b98a5',a:'center',ls:3});
+  wrap(rcVerdict(du,na,nb),vw-60,'14px '+MF,4).forEach((l,i)=>T(l,vx+vw/2,y1+198+i*22,{f:'14px '+MF,c:'#cfe0ea',a:'center'}));
+  T('■ '+na,vx+30,y1+PH-18,{f:'11px '+MF,c:CA,ls:1,mw:vw/2-40});T('■ '+nb,vx+vw-30,y1+PH-18,{f:'11px '+MF,c:CB,a:'right',ls:1,mw:vw/2-40});
+  /* comparison table */
+  const tx=PAD,tw=W-2*PAD;
+  panel(tx,y2,tw,TH,14,PF,PS,1);c.fillStyle='#ffe81f';c.fillRect(tx,y2+14,4,TH-28);
+  T('HEAD TO HEAD',tx+20,y2+26,{f:'11px '+MF,c:'#37d6ff',ls:2});
+  T(na,tx+30,y2+52,{f:'13px '+MF,c:CA,ls:1,mw:300});T(nb,tx+tw-30,y2+52,{f:'13px '+MF,c:CB,a:'right',ls:1,mw:300});
+  du.rows.forEach((r,i)=>{
+    const y=y2+64+i*RH,mid=tx+tw/2;
+    if(i%2===0){c.fillStyle='rgba(255,255,255,.035)';c.fillRect(tx+14,y,tw-28,RH)}
+    T(r.sx,tx+30,y+23,{f:'20px '+HF,c:r.w===1?CA:r.w===2?'#6e7b88':'#cfe0ea',ls:1,mw:300});
+    T(r.sy,tx+tw-30,y+23,{f:'20px '+HF,c:r.w===2?CB:r.w===1?'#6e7b88':'#cfe0ea',a:'right',ls:1,mw:300});
+    T(r.l.toUpperCase(),mid,y+15,{f:'11px '+MF,c:'#cfe0ea',a:'center',ls:1.5});
+    const bw=260;c.fillStyle=CB;c.globalAlpha=r.fr==null?.12:.85;c.fillRect(mid-bw/2,y+21,bw,5);c.globalAlpha=1;
+    if(r.fr!=null){c.fillStyle=CA;c.fillRect(mid-bw/2,y+21,bw*r.fr,5)}
+    if(r.w===1)T('◀',mid-bw/2-18,y+27,{f:'12px '+MF,c:CA});if(r.w===2)T('▶',mid+bw/2+18,y+27,{f:'12px '+MF,c:CB,a:'right'});
+  });
+  c.fillStyle='rgba(255,232,31,.25)';c.fillRect(PAD,H-58,W-2*PAD,1);
+  T('Made with HelldiverInteractiveArchive by Phenix',W/2,H-32,{f:'12px '+MF,c:'#8b98a5',a:'center',ls:1.5});
+  c.save();c.beginPath();c.rect(0,H-10,W,10);c.clip();c.fillStyle='#ffe81f';c.fillRect(0,H-10,W,10);c.fillStyle='#05070a';for(let x=-20;x<W+20;x+=28){c.beginPath();c.moveTo(x,H);c.lineTo(x+14,H);c.lineTo(x+24,H-10);c.lineTo(x+10,H-10);c.closePath();c.fill()}c.restore();
+  return new Promise((res,rej)=>{try{cv.toBlob(b=>b?res(b):rej(new Error('blob')),'image/png')}catch(e){rej(e)}});
+}
+async function rcCmpExport(){
+  if(!rcData().any||!rcData(RC2).any){toast('Fill in both records first');return}
+  const b=$('#rcCmpExp');if(b)b.disabled=true;
+  $('#modalBox').classList.remove('wide');$('#modalBox').innerHTML='<button class="x" id="mx" aria-label="Close">✕</button><span class="kicker">Duel image · PNG</span><div style="text-align:center;padding:26px 0 10px"><i class="spin"></i><div class="attr" style="margin-top:12px">Printing the duel... fetching emblems and title icons, this takes a few seconds.</div></div>';showModal();$('#mx').onclick=closeBrief;
+  try{
+    let blob;
+    try{blob=await rcCmpRender(false)}catch(e){blob=await rcCmpRender(true)}
+    const url=URL.createObjectURL(blob),sl=s=>s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'x',[na,nb]=rcNames();
+    $('#modalBox').innerHTML=`<button class="x" id="mx" aria-label="Close">✕</button><span class="kicker">Duel image · PNG</span>
+     <img id="rcCmpImg" src="${url}" alt="Duel" style="width:100%;height:auto;display:block;margin:12px 0;border:1px solid var(--line)">
+     <div class="ctl"><a class="btn" id="rcCmpDl" href="${url}" download="helldivers-duel-${sl(na)}-vs-${sl(nb)}.png">⬇ Download PNG</a></div>
+     <div class="attr">On a phone, if the download does not start, press and hold the image to save it.</div>`;
+    showModal();$('#mx').onclick=closeBrief;
+  }catch(e){closeBrief();toast('Export failed. Try again.')}
+  if(b)b.disabled=false;
 }
 
 
