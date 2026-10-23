@@ -78,11 +78,6 @@ All game information comes from the community. Thank you to everyone who maintai
 - Hash-based routing, so every section has its own shareable URL (`#builder`, `#record`, and so on) and works on static hosting.
 - Image export uses the Canvas API; no server is involved.
 
-### Hosting on GitHub Pages
-
-1. Name the file `index.html` and commit it to the root of the repository (or to `/docs`).
-2. In **Settings → Pages**, choose the branch and folder to publish.
-3. Open the URL GitHub shows you. Because the app is a single static file, no further configuration is needed.
 
 ---
 
