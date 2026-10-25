@@ -18,6 +18,7 @@ Democracy Archive recreates the community wiki as a single, fast, installation-f
 | **Timeline · Lore · Factions** | The history of Super Earth, its factions and its universe, with a briefing for each entry. |
 | **Bestiary** | Every Terminid, Automaton and Illuminate unit, with data read from the wiki. |
 | **Galaxy** | An interactive map of the galaxy. |
+| **War Room** | The whole galactic war, refreshed live every few seconds: fronts, campaigns, defence timers, measured speed and ETA, sector control, galaxy statistics, and a detailed widget for every planet. |
 | **Major Orders** | The complete history of Major Orders, with outcomes and statistics. |
 | **Armory** | Weapons, armor and equipment, with their wiki stats. |
 | **Loadout Builder** | Pick or roll a full loadout, lock your favourites, get an evaluation by front (Terminids, Automatons, Illuminate) and export it as an image. |
@@ -44,6 +45,18 @@ The game records a lot of career statistics but shows them as plain lists. Comba
 
 Statistics are entered by hand. The game does not expose them through a public interface.
 
+### War Room
+
+A live view of the galactic war, organised in five tabs:
+
+- **Overview**: Helldivers online, planets held, the next defence deadline, galaxy-wide combat totals, the three fronts, defence watch, where Helldivers are fighting, the active Major Order and the fastest and slowest campaigns.
+- **Campaigns**: every active liberation and defence campaign, with progress, Helldivers, measured speed, ETA or time left, filters and sorting.
+- **Planets**: all planets with search and filters, and a detailed widget for each one: progress, HP, enemy regeneration, rank, hazards, supply lines, attacks, a trend graph and the planet's mission and combat statistics.
+- **Sectors**: who controls each sector; one click lists its planets.
+- **Dispatches**: the latest messages from Super Earth.
+
+Numbers refresh every few seconds and keep moving smoothly between refreshes. Speed and ETA come from the liberation history provided by the war API; when it is not available, the site falls back to readings taken in your own browser.
+
 ---
 
 ## Using it
@@ -55,7 +68,7 @@ The app works best with an internet connection, because most of the content is r
 ### Privacy
 
 - No account, no tracking, no analytics, no cookies.
-- Everything you enter (callsign, statistics, loadouts, preferences) is stored **only in your browser** (`localStorage`) and never leaves your device.
+- Everything you enter (callsign, statistics, loadouts, preferences) is stored **only in your browser** (`localStorage`) and never leaves your device. The War Room also keeps a few recent war readings there to estimate campaign speed.
 - Exported images are generated locally in your browser. If the wiki's own images cannot be read directly, the public image proxy [wsrv.nl](https://wsrv.nl) may be used to fetch those wiki images; none of your data is sent along.
 
 ---
@@ -67,7 +80,7 @@ All game information comes from the community. Thank you to everyone who maintai
 - **[Helldivers Wiki](https://helldivers.wiki.gg)** (wiki.gg): primary source for enemies, weapons, armor, stratagems, Warbonds, titles and levels. Text and images are available under [CC BY-SA](https://creativecommons.org/licenses/by-sa/4.0/) unless otherwise noted; every entry in the app links back to its wiki page.
 - **[Helldivers Wiki on Fandom](https://helldivers.fandom.com)**: secondary source, used when the primary one is not available.
 - **[Shacknews](https://www.shacknews.com)**: community-verified level table, used as a cross-reference for the XP Calculator.
-- **[Helldivers Training Manual API](https://helldiverstrainingmanual.com)**: community-run public API for the live war counters and planet data.
+- **[Helldivers Training Manual API](https://helldiverstrainingmanual.com/api)**: community-run API behind the live war data (war status, campaigns, statistics, liberation history, dispatches, Major Orders). It is not an official or guaranteed service and may change or stop at any time; the app queries it politely and degrades gracefully when it is unreachable.
 
 ---
 
@@ -78,6 +91,11 @@ All game information comes from the community. Thank you to everyone who maintai
 - Hash-based routing, so every section has its own shareable URL (`#builder`, `#record`, and so on) and works on static hosting.
 - Image export uses the Canvas API; no server is involved.
 
+### Hosting on GitHub Pages
+
+1. Name the file `index.html` and commit it to the root of the repository (or to `/docs`).
+2. In **Settings → Pages**, choose the branch and folder to publish.
+3. Open the URL GitHub shows you. Because the app is a single static file, no further configuration is needed.
 
 ---
 
