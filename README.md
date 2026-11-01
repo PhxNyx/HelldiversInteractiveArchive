@@ -21,7 +21,8 @@ Democracy Archive recreates the community wiki as a single, fast, installation-f
 | **War Room** | The whole galactic war, refreshed live every few seconds: fronts, campaigns, defence timers, measured speed and ETA, sector control, galaxy statistics, and a detailed widget for every planet. |
 | **Major Orders** | The complete history of Major Orders, with outcomes and statistics. |
 | **Armory** | Weapons, armor and equipment, with their wiki stats. |
-| **Loadout Builder** | Pick or roll a full loadout, lock your favourites, get an evaluation by front (Terminids, Automatons, Illuminate) and export it as an image. |
+| **Loadout Builder** | Pick or roll a full loadout, lock your favourites, get an evaluation by front (Terminids, Automatons, Illuminate), check which enemies of each front it can actually pierce, and export it as an image. |
+| **Armor Matrix** | Which weapon or stratagem pierces which enemy: every enemy's armor class against every item's penetration tier, read from the wiki, with the enemy's armored parts and weak spots one click away. |
 | **Stratagems** | An arrow-code simulator to practise stratagem inputs. |
 | **XP Calculator** | How much XP separates two levels, with a progression chart. |
 | **Titles** | The full rank ladder, every Warbond and special title, and a printable Service Record. |
@@ -31,7 +32,7 @@ Democracy Archive recreates the community wiki as a single, fast, installation-f
 | **Changelog** | Patch notes and an update report. |
 | **Glossary · Loyalty Exam** | The official vocabulary, and a quiz to test your devotion. |
 
-Also included: archive-wide search, a mobile-friendly navigation drawer, and PNG export for loadouts, Combat Records and Duels.
+Also included: archive-wide search, a mobile-friendly navigation drawer, four colour themes (Super Earth, Automaton, Terminid, Illuminate) that only change the accent colours, and PNG export for loadouts, Combat Records and Duels.
 
 ### Combat Record
 
