@@ -1217,6 +1217,107 @@ td.mx:hover,td.mx.sel{outline:2px solid var(--y);outline-offset:-2px}
 .blCovB .bar{height:8px;background:#ffffff1a;position:relative;overflow:hidden}.blCovB .bar i{position:absolute;left:0;top:0;bottom:0}
 .blCovB b{text-align:right;color:#fff;font-weight:400}
 .blCovM{display:block;font-family:var(--m);font-size:11px;color:var(--mut)}
+
+/* v53: faction looks: shape, texture, type and motion (Super Earth is untouched) */
+html[data-theme="automaton"]{--bg:#080406;--pan:#130a0ce6;--h:'Bahnschrift','DIN Alternate','Arial Narrow Bold','Franklin Gothic Heavy',Impact,sans-serif;--m:'Lucida Console','Courier New',monospace}
+html[data-theme="terminid"]{--bg:#0a0602;--pan:#150d05e6;--h:'Rockwell Extra Bold','Rockwell','Cooper Black','Georgia',serif}
+html[data-theme="illuminate"]{--bg:#06041a;--pan:#0d0929d9;--h:'Century Gothic','Gill Sans','Trebuchet MS','Segoe UI',sans-serif;--m:'Lucida Console','Courier New',monospace}
+#thFx,#thFx2{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+#thFx{z-index:1}#thFx2{z-index:49}
+.thFlash{position:fixed;inset:0;z-index:290;pointer-events:none;background:var(--y);animation:thFl .7s ease-out forwards}
+@keyframes thFl{0%{opacity:.55}100%{opacity:0}}
+/* AUTOMATON: cold steel, red optics, grids and glitches */
+html[data-theme="automaton"] .scan{background:repeating-linear-gradient(0deg,#0000 0 2px,#ff3b3016 3px),linear-gradient(90deg,#ff3b3009 1px,transparent 1px) 0 0/56px 56px,linear-gradient(0deg,#ff3b3009 1px,transparent 1px) 0 0/56px 56px;mix-blend-mode:normal;animation:amFlick 7s infinite}
+html[data-theme="automaton"] .vig{background:radial-gradient(ellipse at center,#0000 38%,#1a0000e0 100%)}
+html[data-theme="automaton"] #bg{filter:hue-rotate(-52deg) saturate(1.3)}
+html[data-theme="automaton"] #top{background:linear-gradient(#120305f2,#0a0305d0)}
+html[data-theme="automaton"] .panel{clip-path:polygon(0 0,calc(100% - 28px) 0,100% 28px,100% 100%,28px 100%,0 calc(100% - 28px));border-top:3px solid var(--y)}
+html[data-theme="automaton"] .panel::before{width:3px;opacity:.7}
+html[data-theme="automaton"] .panel::after{width:64px;height:7px;background:repeating-linear-gradient(90deg,var(--y) 0 9px,transparent 9px 13px);opacity:.7}
+html[data-theme="automaton"] h2.sec{letter-spacing:.12em;font-weight:700;text-shadow:3px 0 #ff3b3099,-3px 0 #00e5ff44;animation:amGlitch 9s infinite}
+html[data-theme="automaton"] h2.sec::after{height:4px;width:210px;background:repeating-linear-gradient(90deg,var(--y) 0 16px,transparent 16px 22px)}
+html[data-theme="automaton"] .btn,html[data-theme="automaton"] .btn.ghost,html[data-theme="automaton"] .btn.sm{clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px))}
+html[data-theme="automaton"] .chip{clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px))}
+.amSweep{position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,transparent,#ff3b30,transparent);box-shadow:0 0 18px #ff3b30;opacity:.32;animation:amSweep 9s linear infinite}
+.amC{position:absolute;width:28px;height:28px;border:2px solid #ff3b30;opacity:.55}
+.amC.tl{left:10px;top:74px;border-right:0;border-bottom:0}.amC.tr{right:10px;top:74px;border-left:0;border-bottom:0}.amC.bl{left:10px;bottom:10px;border-right:0;border-top:0}.amC.br{right:10px;bottom:10px;border-left:0;border-top:0}
+@keyframes amSweep{0%{transform:translateY(-4px)}100%{transform:translateY(100vh)}}
+@keyframes amFlick{0%,95%,100%{opacity:1}96%{opacity:.6}97%{opacity:1}98%{opacity:.75}}
+@keyframes amGlitch{0%,92%,100%{transform:none}93%{transform:translateX(3px)}94%{transform:translateX(-4px) skewX(-6deg)}95%{transform:none}}
+body.amBreak #app{animation:amBrk 1.2s steps(2) 1}
+@keyframes amBrk{0%{transform:none;filter:none}20%{transform:translateX(-8px) skewX(4deg);filter:hue-rotate(90deg) contrast(1.4)}40%{transform:translateX(10px);filter:invert(1)}60%{transform:translateX(-5px) skewX(-5deg);filter:none}100%{transform:none;filter:none}}
+/* TERMINID: hive chitin, hex mesh, bile glow and organic curves */
+html[data-theme="terminid"] .scan{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 0L56 16v32L28 64 0 48V16z M28 64v36 M0 48v36l28 16 28-16V48' fill='none' stroke='%23ffa41f' stroke-opacity='.11' stroke-width='1.2'/%3E%3C/svg%3E");mix-blend-mode:normal}
+html[data-theme="terminid"] .vig{background:radial-gradient(ellipse at center,#0000 35%,#1c0c00e6 100%)}
+html[data-theme="terminid"] #bg{filter:hue-rotate(-20deg) saturate(1.4)}
+html[data-theme="terminid"] #top{background:linear-gradient(#160a02f2,#0c0602d0)}
+html[data-theme="terminid"] .panel{clip-path:none;border-radius:34px 10px 38px 12px;border-width:2px;box-shadow:0 0 0 1px #00000066 inset,0 8px 30px #ffa41f14}
+html[data-theme="terminid"] .panel::before{border-radius:34px 0 0 12px;width:6px}
+html[data-theme="terminid"] .panel::after{width:56px;height:8px;background:radial-gradient(circle,var(--y) 2.5px,transparent 3px) 0 0/14px 8px;opacity:.55}
+html[data-theme="terminid"] h2.sec{font-weight:900;letter-spacing:.03em;text-shadow:0 3px 0 #5a2d00,0 0 30px #ffa41f66}
+html[data-theme="terminid"] h2.sec::after{height:12px;width:190px;border-radius:12px;background:radial-gradient(circle at 6px 6px,var(--y) 4.5px,transparent 5.5px) 0 0/18px 12px}
+html[data-theme="terminid"] .btn,html[data-theme="terminid"] .btn.ghost,html[data-theme="terminid"] .btn.sm{clip-path:none;border-radius:999px}
+html[data-theme="terminid"] .chip{border-radius:999px}
+.tmSlime{position:absolute;left:0;right:0;bottom:0;height:150px;background:radial-gradient(ellipse at 18% 100%,#ffa41f2e,transparent 60%),radial-gradient(ellipse at 72% 100%,#e0820030,transparent 55%);transform-origin:bottom;animation:tmBeat 4.2s ease-in-out infinite}
+@keyframes tmBeat{0%,100%{transform:scaleY(1);opacity:.8}50%{transform:scaleY(1.25);opacity:1}}
+.tmBug{position:fixed;bottom:-34px;font-size:22px;z-index:120;pointer-events:none;animation:tmCrawl 5.4s linear forwards}
+@keyframes tmCrawl{0%{transform:translate(0,0) rotate(var(--r,0deg))}50%{transform:translate(calc(var(--dx,30px)*-.6),-60vh) rotate(calc(var(--r,0deg) + 14deg))}100%{transform:translate(var(--dx,30px),-125vh) rotate(var(--r,0deg))}}
+.tmCharge{position:fixed;top:0;bottom:0;left:-45%;width:45%;z-index:120;pointer-events:none;background:linear-gradient(90deg,transparent,#ffa41f77,#2a1200dd);animation:tmRush .9s ease-in forwards}
+@keyframes tmRush{to{left:110%}}
+.tmSpore{position:fixed;inset:0;z-index:120;pointer-events:none;background:radial-gradient(circle at 50% 60%,#b6c82a55,#7b8a1633 55%,transparent 80%);animation:tmSp 4s ease-in-out forwards}
+@keyframes tmSp{0%{opacity:0}30%{opacity:1}100%{opacity:0}}
+/* ILLUMINATE: glass, glow, aurora and quiet menace */
+html[data-theme="illuminate"] .scan{background:radial-gradient(circle at 1px 1px,#c07bff26 1px,transparent 1.6px) 0 0/30px 30px;mix-blend-mode:screen}
+html[data-theme="illuminate"] .vig{background:radial-gradient(ellipse at center,#0000 35%,#05021fe6 100%)}
+html[data-theme="illuminate"] #bg{filter:hue-rotate(238deg) saturate(1.3)}
+html[data-theme="illuminate"] #top{background:linear-gradient(#0a0630f2,#0a0630a0)}
+html[data-theme="illuminate"] .panel{clip-path:none;border-radius:22px;border:1px solid #c07bff44;box-shadow:0 0 28px #c07bff1c inset,0 0 24px #7a3cff1f;backdrop-filter:blur(8px)}
+html[data-theme="illuminate"] .panel::before{left:0;top:0;width:100%;height:2px;border-radius:22px 22px 0 0;background:linear-gradient(90deg,transparent,var(--y),transparent)}
+html[data-theme="illuminate"] .panel::after{display:none}
+html[data-theme="illuminate"] h2.sec{font-weight:300;letter-spacing:.2em;text-shadow:0 0 22px #c07bffaa,0 0 60px #7a3cff66}
+html[data-theme="illuminate"] h2.sec::after{height:2px;width:220px;border-radius:2px;background:linear-gradient(90deg,var(--y),transparent)}
+html[data-theme="illuminate"] .btn,html[data-theme="illuminate"] .btn.ghost,html[data-theme="illuminate"] .btn.sm{clip-path:none;border-radius:999px;box-shadow:0 0 18px #c07bff55}
+html[data-theme="illuminate"] .chip{border-radius:999px}
+.ilAurora{position:absolute;width:75vw;height:75vw;border-radius:50%;background:radial-gradient(circle,#7a3cff30,transparent 65%);animation:ilDrift 30s ease-in-out infinite alternate}
+.ilAurora.a{left:-20vw;top:-25vw}.ilAurora.b{right:-25vw;bottom:-30vw;background:radial-gradient(circle,#3ccfff22,transparent 65%);animation-duration:38s}
+@keyframes ilDrift{0%{transform:translate(0,0) scale(1)}100%{transform:translate(12vw,9vw) scale(1.25)}}
+.ilOrb{position:fixed;bottom:-60px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff9,#c07bffcc 40%,#7a3cff44 70%,transparent);box-shadow:0 0 24px #c07bff;z-index:120;pointer-events:none;animation:ilFloat 6s ease-in forwards}
+@keyframes ilFloat{0%{transform:translate(0,0);opacity:0}15%{opacity:1}100%{transform:translate(var(--dx,20px),-125vh);opacity:.2}}
+body.ilMind #app{animation:ilMind 3s ease-in-out 1}
+@keyframes ilMind{0%,100%{filter:none}30%,70%{filter:hue-rotate(110deg) saturate(1.6) blur(.6px)}}
+/* faction easter eggs */
+.amTerm{position:fixed;left:50%;top:16%;transform:translateX(-50%);width:min(92vw,540px);z-index:300;background:#050102f2;border:2px solid #ff3b30;box-shadow:0 0 40px #ff3b3055;padding:16px 18px;font-family:'Lucida Console','Courier New',monospace;font-size:13px;line-height:1.7;color:#ff6b61;white-space:pre-wrap;pointer-events:none}
+.amEyes{position:fixed;z-index:200;pointer-events:none;display:flex;gap:22px;transform:translate(-50%,-50%);transition:left .18s,top .18s}
+.amEyes i{display:block;width:26px;height:10px;border-radius:50%;background:#ff3b30;box-shadow:0 0 18px 6px #ff3b30aa;animation:amBlink 3s infinite}
+@keyframes amBlink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+.ilEye{position:fixed;left:50%;top:50%;width:min(60vw,220px);height:min(60vw,220px);margin:calc(min(60vw,220px)/-2) 0 0 calc(min(60vw,220px)/-2);border-radius:50%;z-index:200;pointer-events:none;background:radial-gradient(circle,#0a0630 0 38%,#c07bff 39% 42%,#0a0630 43% 62%,#7a3cff33 63%,transparent 72%);box-shadow:0 0 70px #c07bff88;animation:ilEyeIn 7s ease-in-out forwards}
+.ilEye i{position:absolute;left:50%;top:50%;width:26%;height:26%;margin:-13% 0 0 -13%;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,#c07bff 45%,#2a0a6a);box-shadow:0 0 22px #c07bff}
+@keyframes ilEyeIn{0%{opacity:0;transform:scale(.4)}12%,86%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.2)}}
+
+/* boot animations per faction (the chosen look is kept in the browser, so the matching boot plays on every visit) */
+#bootFx{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+#boot>*:not(#bootFx){position:relative;z-index:1}
+html[data-theme="terminid"] #boot{background:radial-gradient(ellipse at 50% 120%,#3a1d02 0%,#140a02 55%,#050301 100%)}
+html[data-theme="terminid"] #boot .emb.rdy{animation:bbeat 1.1s ease-in-out infinite}
+html[data-theme="terminid"] #bootFx i{position:absolute;bottom:-20px;width:9px;height:9px;border-radius:50%;background:var(--y);opacity:0;filter:blur(1px);animation:bspore 6s linear infinite}
+html[data-theme="terminid"] #bootFx i:nth-child(1){left:8%;animation-delay:0s}html[data-theme="terminid"] #bootFx i:nth-child(2){left:20%;animation-delay:1.3s;width:6px;height:6px}html[data-theme="terminid"] #bootFx i:nth-child(3){left:33%;animation-delay:3.1s}html[data-theme="terminid"] #bootFx i:nth-child(4){left:47%;animation-delay:.7s;width:12px;height:12px}html[data-theme="terminid"] #bootFx i:nth-child(5){left:61%;animation-delay:2.2s;width:7px;height:7px}html[data-theme="terminid"] #bootFx i:nth-child(6){left:74%;animation-delay:4s}html[data-theme="terminid"] #bootFx i:nth-child(7){left:86%;animation-delay:1.8s;width:6px;height:6px}html[data-theme="terminid"] #bootFx i:nth-child(8){left:94%;animation-delay:3.6s;width:10px;height:10px}
+@keyframes bspore{0%{transform:translateY(0) translateX(0);opacity:0}15%{opacity:.7}100%{transform:translateY(-105vh) translateX(40px);opacity:0}}
+@keyframes bbeat{0%,100%{transform:scale(1)}12%{transform:scale(1.14)}24%{transform:scale(1)}36%{transform:scale(1.1)}}
+html[data-theme="automaton"] #boot{background:#050102}
+html[data-theme="automaton"] #boot::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,74,61,.07) 0 1px,transparent 1px 4px),linear-gradient(rgba(255,74,61,.06) 1px,transparent 1px) 0 0/48px 48px,linear-gradient(90deg,rgba(255,74,61,.06) 1px,transparent 1px) 0 0/48px 48px}
+html[data-theme="automaton"] #boot .emb.rdy{animation:bglitch 2.4s steps(1) infinite}
+html[data-theme="automaton"] #bootlog{text-transform:uppercase;letter-spacing:.06em}
+html[data-theme="automaton"] #bootFx .bs{position:absolute;left:0;right:0;height:80px;top:-80px;background:linear-gradient(180deg,transparent,rgba(255,74,61,.22),transparent);animation:bsweep 3.2s linear infinite}
+html[data-theme="automaton"] #bootFx .bxc{position:absolute;width:38px;height:38px;border:2px solid var(--y);opacity:.8}
+html[data-theme="automaton"] #bootFx .bxtl{top:18px;left:18px;border-right:0;border-bottom:0}html[data-theme="automaton"] #bootFx .bxtr{top:18px;right:18px;border-left:0;border-bottom:0}html[data-theme="automaton"] #bootFx .bxbl{bottom:18px;left:18px;border-right:0;border-top:0}html[data-theme="automaton"] #bootFx .bxbr{bottom:18px;right:18px;border-left:0;border-top:0}
+@keyframes bsweep{to{transform:translateY(calc(100vh + 160px))}}
+@keyframes bglitch{0%,86%,100%{transform:none;filter:drop-shadow(0 0 18px rgba(255,74,61,.5))}88%{transform:translate(-6px,2px) skewX(8deg);filter:drop-shadow(4px 0 0 #0ff) drop-shadow(-4px 0 0 #f0f)}92%{transform:translate(5px,-2px);opacity:.6}95%{transform:none}}
+html[data-theme="illuminate"] #boot{background:radial-gradient(ellipse at 50% 45%,#1d0b33 0%,#09030f 60%,#030106 100%)}
+html[data-theme="illuminate"] #boot .emb.rdy{animation:bfloat 4.2s ease-in-out infinite}
+html[data-theme="illuminate"] #bootFx i{position:absolute;left:50%;top:44%;width:140px;height:140px;margin:-70px 0 0 -70px;border:1px solid var(--y);border-radius:50%;opacity:0;animation:bring 5s ease-out infinite}
+html[data-theme="illuminate"] #bootFx .br2{animation-delay:1.6s}html[data-theme="illuminate"] #bootFx .br3{animation-delay:3.2s}
+@keyframes bring{0%{transform:scale(.6);opacity:.7}100%{transform:scale(7);opacity:0}}
+@keyframes bfloat{0%,100%{transform:translateY(0) scale(1);filter:drop-shadow(0 0 22px rgba(192,123,255,.5))}50%{transform:translateY(-10px) scale(1.07);filter:drop-shadow(0 0 40px rgba(192,123,255,.85))}}
 </style>
 </head>
 <body>
@@ -1225,6 +1326,7 @@ td.mx:hover,td.mx.sel{outline:2px solid var(--y);outline-offset:-2px}
 <div id="prog"></div><button id="toTop" aria-label="Back to top">▲</button>
 
 <div id="boot">
+  <div id="bootFx"></div>
   <div class="emb" id="bootEmb"></div>
   <div id="bootlog" class="cursor"></div>
   <button class="btn" id="bootBtn" style="display:none">Access Democracy</button>
@@ -1518,7 +1620,7 @@ function hub(){
       quiz:'An official loyalty test. The result determines your rank.',warbond:'Every Warbond on file: cost, type and the full contents of each page.',changelog:'A report on every game update: how often they ship, what they changed and the full patch list.',xp:'How much XP stands between your level and the next title.',record:'Your in-game career statistics, analysed, rated and printed as a Combat Record card.'}[k];
     return `<div class="panel card tilt rv" data-go="${k}" style="--d:${i}"><span class="n">${String(i+1).padStart(2,"0")}</span><h3>${l}</h3><p>${ds}</p><div class="go">ACCESS ▸</div></div>`}).join('');
   return `<section class="hero">
-    <div class="emb rv z" id="heroEmb">${emb('superEarth')}</div>
+    <div class="emb rv z" id="heroEmb">${emb(themeEmb())}</div>
     <p class="kicker rv" style="margin-top:20px">Official Interactive Archive · Ministry of Truth</p>
     <h1 class="rv b">HELLDIVERS<span>Democracy Archive</span></h1>
     <p class="lead rv" style="margin-top:18px">The story of Helldivers, explained with all the clarity propaganda allows. Browse, click and let High Command guide you: you are in excellent hands. Whose, it does not matter.</p>
@@ -1565,12 +1667,15 @@ const LS={
   function apply(k){
     if(k==='default')document.documentElement.removeAttribute('data-theme');else document.documentElement.setAttribute('data-theme',k);
     $$('#thMenu .thO,#thRow .thO').forEach(b=>b.classList.toggle('act',b.dataset.th===k));
+    const L={automaton:['','<i class="amSweep"></i><i class="amC tl"></i><i class="amC tr"></i><i class="amC bl"></i><i class="amC br"></i>'],terminid:['<i class="tmSlime"></i>',''],illuminate:['<i class="ilAurora a"></i><i class="ilAurora b"></i>','']}[k]||['',''];
+    $('#thFx').innerHTML=L[0];$('#thFx2').innerHTML=L[1];
+    try{refreshEmb()}catch(e){}
   }
-  document.body.insertAdjacentHTML('beforeend',`<div id="thMenu" role="menu" aria-label="Colour theme">${opts()}</div>`);
+  document.body.insertAdjacentHTML('beforeend',`<div id="thFx"></div><div id="thFx2"></div><div id="thMenu" role="menu" aria-label="Colour theme">${opts()}</div>`);
   $('#thRow').innerHTML=opts();
   const close=()=>{$('#thMenu').classList.remove('show');$('#thBtn').classList.remove('on')};
   $('#thBtn').onclick=e=>{e.stopPropagation();const o=$('#thMenu').classList.toggle('show');$('#thBtn').classList.toggle('on',o)};
-  document.addEventListener('click',e=>{if(e.target.closest('[data-th]')){const k=e.target.closest('[data-th]').dataset.th;LS.set('theme',k);apply(k);close();return}if(!e.target.closest('#thMenu'))close()});
+  document.addEventListener('click',e=>{if(e.target.closest('[data-th]')){const k=e.target.closest('[data-th]').dataset.th;LS.set('theme',k);apply(k);close();{const f=document.createElement('div');f.className='thFlash';document.body.appendChild(f);setTimeout(()=>f.remove(),800)}return}if(!e.target.closest('#thMenu'))close()});
   addEventListener('keydown',e=>{if(e.key==='Escape')close()});
   apply(cur0());
 })();
@@ -1786,11 +1891,13 @@ async function loadEmblems(){
     try{const u=await findEmblem(k);if(u){ASSETS[k]=u;refreshEmb()}}catch(e){}
   }
 }
+const themeEmb=()=>({terminid:'bug',automaton:'bot',illuminate:'ill'}[document.documentElement.dataset.theme]||'superEarth');
+const seEmbSrc=()=>({src:ASSETS.superEarth||''});
 function refreshEmb(){
   const bt=$('#bootEmb');
-  if(bt&&ASSETS.superEarth&&!bt.dataset.real){bt.dataset.real='1';bt.innerHTML=emb('superEarth');bt.classList.add('rdy')}
-  const be=$('#brandEmb');if(be)be.innerHTML=emb('superEarth');
-  const h=$('#heroEmb');if(h)h.innerHTML=emb('superEarth');
+  {const bk=themeEmb();if(bt&&ASSETS[bk]&&bt.dataset.real!==bk){bt.dataset.real=bk;bt.innerHTML=emb(bk);bt.classList.add('rdy')}}
+  const be=$('#brandEmb');if(be)be.innerHTML=emb(themeEmb());
+  const h=$('#heroEmb');if(h)h.innerHTML=emb(themeEmb());
   $$('.fTab').forEach(b=>{const F=FACS.find(x=>x[0]===b.dataset.f),ic=$('.ic',b);if(F&&ic)ic.innerHTML=emb(F[4])});
 }
 async function loadStats(){
@@ -3938,12 +4045,12 @@ async function blCoverage(sel){
   let en=[];try{en=await taxEnemies()}catch(e){}
   const F=[[2,'Terminids'],[3,'Automatons'],[4,'Illuminate']];
   if(!en.length){FACS.slice(1).forEach(f=>f[5].forEach(u=>en.push({t:u,k:F.map(x=>x[1]).find(n=>n===f[2]||n.replace(/s$/,'')===f[2])||f[2]})))}
-  const by={};F.forEach(([,n])=>by[n]=[...new Set(en.filter(x=>x.k===n).map(x=>x.t))].slice(0,40));
+  const by={};F.forEach(([,n])=>by[n]=[...new Set(en.filter(x=>x.k===n&&(!x.s||x.s!=='Unsorted')).map(x=>x.t))].slice(0,40));
   const need=[...new Set(Object.values(by).flat())].filter(n=>!MX.E[n]);
   let done=0;const total=need.length+items.length;
   const tick=()=>{done++;const p=$('#blCovP');if(tok===MXC.tok&&p)p.textContent='Reading wiki files… '+done+' / '+total};
-  const pa=items.map(n=>getEvalStats(n).then(mxWeaponAP,()=>null).finally(tick));
-  const pe=need.map(n=>getEnemyArmor(n).then(v=>{MX.E[n]=v},()=>{}).finally(tick));
+  const pa=items.map(n=>mxRetry(()=>getWeaponAP(n),3).catch(()=>null).finally(tick));
+  const pe=need.map(n=>mxRetry(()=>getEnemyArmor(n),3).then(v=>{MX.E[n]=v},()=>{}).finally(tick));
   const [aps]=await Promise.all([Promise.all(pa),Promise.all(pe)]);
   if(tok!==MXC.tok||!$('#blCov'))return;
   const best=Math.max(-1,...aps.filter(Boolean).map(a=>a.eff));
@@ -4370,7 +4477,7 @@ async function bcRender(noImg){
     items.forEach(s=>{
       jobs.push(loadImg(gearImgs(s.k,s.val,s.k==='arm'?gearStat(s.val):null)).then(async im=>im||getPage(s.val).then(p=>loadImg(p&&!p.missing&&p.img?[p.img]:[])).catch(()=>null)).then(im=>IM[s.k]=im));
     });
-    const eb=$('#brandEmb img');
+    const eb=seEmbSrc();
     jobs.push((eb&&eb.src?loadImg([eb.src]):Promise.resolve(null)).then(async im=>IM.emb=im||await svgImg(SVG.superEarth)));
     const tu=t.kind==='rank'?[RANKU[t.lv],rankIconUrl(t),TICON[t.name]]:[BC_SPI[t.name],specIcon(t.name)];
     jobs.push(loadImg(tu).then(async im=>IM.title=im||await svgImg(tBadge({lv:t.lv||200,name:t.name}))));
@@ -4687,7 +4794,7 @@ async function rcRender(noImg){
   const D=rcData(),lv=D.lv,nm=(RC.name.trim()||'CITIZEN').toUpperCase(),t=titleFor(lv),st=RC_ST[D.grade];
   const IM={};
   if(!noImg){
-    const jobs=[],eb=$('#brandEmb img');
+    const jobs=[],eb=seEmbSrc();
     jobs.push((eb&&eb.src?loadImg([eb.src]):Promise.resolve(null)).then(async im=>IM.emb=im||await svgImg(SVG.superEarth)));
     const tu=[RANKU[t.lv],rankIconUrl(t),TICON[t.name]];
     jobs.push(loadImg(tu).then(async im=>IM.title=im||await svgImg(tBadge({lv:t.lv||200,name:t.name}))));
@@ -4896,7 +5003,7 @@ async function rcCmpRender(noImg){
   const cs=getComputedStyle(document.documentElement),HF=cs.getPropertyValue('--h').trim()||'Impact,sans-serif',MF=cs.getPropertyValue('--m').trim()||'monospace';
   const A=rcData(),B=rcData(RC2),[na,nb]=rcNames(),du=rcDuel(A,B),ta=titleFor(A.lv),tb=titleFor(B.lv),IM={};
   const tIcon=async t=>{const im=await loadImg([RANKU[t.lv],rankIconUrl(t),TICON[t.name]]);return im||await svgImg(tBadge({lv:t.lv||200,name:t.name}))};
-  if(!noImg){const eb=$('#brandEmb img');await Promise.all([(eb&&eb.src?loadImg([eb.src]):Promise.resolve(null)).then(async im=>IM.emb=im||await svgImg(SVG.superEarth)),tIcon(ta).then(im=>IM.ta=im),tIcon(tb).then(im=>IM.tb=im)])}
+  if(!noImg){const eb=seEmbSrc();await Promise.all([(eb&&eb.src?loadImg([eb.src]):Promise.resolve(null)).then(async im=>IM.emb=im||await svgImg(SVG.superEarth)),tIcon(ta).then(im=>IM.ta=im),tIcon(tb).then(im=>IM.tb=im)])}
   else{IM.emb=await svgImg(SVG.superEarth);IM.ta=await svgImg(tBadge({lv:ta.lv||200,name:ta.name}));IM.tb=await svgImg(tBadge({lv:tb.lv||200,name:tb.name}))}
   const CH=190,CW=500,y1=TOP+CH+16,PH=300,y2=y1+PH+16,RH=34,TH=64+du.rows.length*RH,H=y2+TH+78;
   const cv=document.createElement('canvas');cv.width=W*S;cv.height=H*S;
@@ -5795,26 +5902,33 @@ function mxWeaponAP(m){
   const eff=Math.max(dir==null?-1:dir,inn==null?-1:inn);
   return {dir,inn,eff,src:inn!=null&&(dir==null||inn>dir)?'blast':'direct'};
 }
-/* armor class of every body part from the "Anatomy" table of an enemy page: the first table that carries armor values */
+/* armor class of every body part from the "Anatomy" table of an enemy page (columns: Part Name, Health, AV, ...). The AV cell is an icon (Armor_AV4_Icon.png) plus the word "Heavy": read the number from the icon name, or the word when the icon is missing */
+function mxAV(cell){
+  const h=cell.innerHTML||'';
+  let m=h.match(/AV\s?(-?\d+)[_ ]?Icon/i)||h.match(/\bAV\s?(-?\d+)\b/i);
+  if(m)return +m[1];
+  return mxTier(clean(cell.textContent));
+}
 function getEnemyArmor(name){
-  return cached('ea1:'+name,24*3600e3,async()=>{
+  return cached('ea3:'+name,24*3600e3,async()=>{
     const html=ggHtml(await ggApi({...PARSE,page:name}));
-    if(!html)return {main:null,parts:[]};
+    if(!html)throw new Error('no page');
     const doc=new DOMParser().parseFromString(html,'text/html');
     doc.querySelectorAll('script,style,sup,.mw-editsection').forEach(x=>x.remove());
+    doc.querySelectorAll('br').forEach(x=>x.replaceWith(' '));
     for(const tb of doc.querySelectorAll('table')){
-      const rows=[...tb.querySelectorAll('tr')].map(tr=>[...tr.children].filter(x=>/^T[HD]$/.test(x.tagName)).map(x=>clean(x.textContent)));
-      const hd=rows.find(r=>r.some(c=>/^part name$/i.test(c)))||null;
-      const ai=hd?hd.findIndex(c=>/armou?r/i.test(c)):-1;
+      const rows=[...tb.querySelectorAll('tr')].map(tr=>[...tr.children].filter(x=>/^T[HD]$/.test(x.tagName)));
+      const hi=rows.findIndex(r=>r.some(c=>/^part name$/i.test(clean(c.textContent))));
+      if(hi<0)continue;
+      const ai=rows[hi].findIndex(c=>/^(av|armou?r( class)?)$/i.test(clean(c.textContent)));
+      if(ai<1)continue;
       const parts=[];
-      rows.forEach(r=>{
-        if(r.length<2||r===hd)return;
-        let cell=ai>0&&r[ai]!=null?r[ai]:r.slice(1).find(c=>/\bAV\s?-?\d+/.test(c));
-        if(cell==null)return;
-        const av=mxTier(cell);if(av==null)return;
-        parts.push({n:r[0].slice(0,40),av});
+      rows.slice(hi+1).forEach(r=>{
+        if(r.length!==rows[hi].length)return;
+        const av=mxAV(r[ai]);if(av==null)return;
+        parts.push({n:clean(r[0].textContent).slice(0,40),av});
       });
-      if(parts.length>=2){
+      if(parts.length>=1){
         const main=parts.find(p=>/^main$/i.test(p.n))||parts[0];
         return {main:main.av,parts:parts.slice(0,40)};
       }
@@ -5822,8 +5936,29 @@ function getEnemyArmor(name){
     return {main:null,parts:[]};
   });
 }
+/* weapon / stratagem penetration tiers from its wiki page: infobox plus stat tables, reading the last two cells of every row (the first row of a group has an extra rowspan cell) */
+function getWeaponAP(name){
+  return cached('wa2:'+name,24*3600e3,async()=>{
+    const html=ggHtml(await ggApi({...PARSE,page:name}));
+    if(!html)throw new Error('no page');
+    const doc=new DOMParser().parseFromString(html,'text/html');
+    doc.querySelectorAll('script,style,sup,.mw-editsection,.navbox').forEach(x=>x.remove());
+    doc.querySelectorAll('br').forEach(x=>x.replaceWith(' '));
+    const pairs=[];
+    doc.querySelectorAll('.pi-data').forEach(d=>{const l=d.querySelector('.pi-data-label'),v=d.querySelector('.pi-data-value');if(l&&v)pairs.push([clean(l.textContent).toLowerCase(),clean(v.textContent)])});
+    doc.querySelectorAll('tr').forEach(tr=>{const c=[...tr.children].filter(x=>/^T[HD]$/.test(x.tagName));if(c.length>=2)pairs.push([clean(c[c.length-2].textContent).replace(/:$/,'').toLowerCase(),clean(c[c.length-1].textContent)])});
+    const f=re=>{const p=pairs.find(x=>re.test(x[0]));return p?p[1]:null};
+    let dir=f(/^direct$/);dir=dir!=null?mxTier(dir):null;
+    if(dir==null){const a=f(/armou?r penetration/);if(a!=null)dir=mxTier(a)}
+    const i=f(/inner ap/),inn=i!=null?mxTier(i):null;
+    if(dir==null&&inn==null)return null;
+    const eff=Math.max(dir==null?-1:dir,inn==null?-1:inn);
+    return {dir,inn,eff,src:inn!=null&&(dir==null||inn>dir)?'blast':'direct'};
+  });
+}
 const MX={set:'Primary',fac:'Terminids',sort:'cov',en:[],it:[],E:{},W:{},tok:0,sel:null,tm:null};
-const MX_SETS=[['Primary','Primary'],['Secondary','Secondary'],['Throwable','Throwables'],['Support','Support weapons'],['Eagle','Eagle'],['Orbital','Orbital'],['Sentry','Sentries'],['Emplacement','Emplacements']];
+const MX_SETS=[['Primary','Primary',/^primary/i,'w'],['Secondary','Secondary',/^secondary/i,'w'],['Throwable','Throwables',/^throw/i,'w'],['Support','Support weapons',/^support/i,'x'],['Eagle','Eagle',/^eagle/i,'s'],['Orbital','Orbital',/^orbital/i,'s'],['Sentry','Sentries',/^sentr/i,'s'],['Emplacement','Emplacements',/^emplace/i,'s'],['Backpack','Backpacks',/^backpack/i,'s'],['Vehicle','Vehicles',/^(vehicle|mech|exo)/i,'s']];
+MX.F={};
 function matrix(){
   return `<div class="wrap"><p class="kicker rv">Know what you carry</p>
   <h2 class="sec rv b">Armor Matrix<small>// which weapon pierces which enemy</small></h2>
@@ -5845,15 +5980,19 @@ const mxCell=(ap,en)=>{
   return {c,s:c==='f'?'●':c==='h'?'◐':'✕',w:c==='n'&&weak.length>0,weak,out};
 };
 function mxCoverage(it){let n=0,k=0;MX.en.forEach(e=>{const E=MX.E[e];if(E&&E.main!=null){k++;if(it.ap&&it.ap.eff>E.main)n++}});return {n,k}}
+const mxRetry=async(fn,tries)=>{for(let i=0;;i++){try{return await fn()}catch(e){if(i>=tries-1)throw e;await new Promise(r=>setTimeout(r,700*(i+1)))}}};
+async function mxPool(jobs,conc){let i=0;await Promise.all(Array.from({length:conc},async()=>{while(i<jobs.length){const j=jobs[i++];await j()}}))}
+const mxRetryBtn='<button class="btn ghost sm" data-mxr>Retry</button>';
 function mxDraw(){
   const box=$('#mxTable');if(!box||cur!=='matrix')return;
-  const en=MX.en.filter(e=>MX.E[e]),rows=MX.it.map(n=>({n,ap:MX.W[n]})).filter(r=>MX.W[r.n]!==undefined);
+  const en=MX.en.filter(e=>MX.E[e]),rows=MX.it.filter(n=>MX.W[n]!==undefined||MX.F[n]).map(n=>({n,ap:MX.W[n],err:!!MX.F[n]&&MX.W[n]===undefined}));
   rows.forEach(r=>r.cov=mxCoverage({ap:r.ap}));
-  const hp=r=>r.ap?0:1;
+  const hp=r=>r.err?2:r.ap?0:1;
   if(MX.sort==='cov')rows.sort((a,b)=>hp(a)-hp(b)||b.cov.n-a.cov.n||a.n.localeCompare(b.n));else rows.sort((a,b)=>hp(a)-hp(b)||a.n.localeCompare(b.n));
-  if(!en.length||!rows.length){box.innerHTML=MX.busy?loadingHTML:'<p class="lead" style="padding:14px">Nothing to compare yet: the wiki gave no data for this group.</p>';return}
+  if(!en.length||!rows.length){
+    box.innerHTML=MX.busy?loadingHTML:`<p class="lead" style="padding:14px;font-size:15px">${!MX.en.length||!MX.it.length?'The wiki lists nothing for this group.':'Nothing to compare yet: the wiki pages of this group could not be read (it may be busy).'} ${mxRetryBtn}</p>`;return}
   box.innerHTML=`<table class="mxT"><thead><tr><th class="mxC0">${esc(MX.set)}</th>${en.map(e=>{const E=MX.E[e];return `<th class="mxH" title="${esc(e)}"><button data-mxe="${esc(e)}"><span>${esc(e)}</span></button><small>${E.main==null?'?':'AV'+E.main}</small></th>`}).join('')}<th class="mxCv">Pierces</th></tr></thead>
-   <tbody>${rows.map(r=>`<tr><th class="mxN"><button data-mxw="${esc(r.n)}">${esc(r.n)}</button><small>${r.ap?mxLv(r.ap.eff)+(r.ap.src==='blast'?' (blast)':''):'no tier'}</small></th>${en.map(e=>{const c=mxCell(r.ap,MX.E[e]);return `<td class="mx ${c.c}" data-mx="${esc(r.n)}|${esc(e)}" title="${esc(r.n+' vs '+e)}">${c.s}${c.w?'<sup>▴</sup>':''}</td>`}).join('')}<td class="mxCv">${r.cov.k?r.cov.n+' / '+r.cov.k:'–'}</td></tr>`).join('')}</tbody></table>`;
+   <tbody>${rows.map(r=>`<tr><th class="mxN"><button data-mxw="${esc(r.n)}">${esc(r.n)}</button><small>${r.err?'could not be read':r.ap?mxLv(r.ap.eff)+(r.ap.src==='blast'?' (blast)':''):'no tier'}</small></th>${en.map(e=>{if(r.err)return `<td class="mx u" title="Could not be read from the wiki">…</td>`;const c=mxCell(r.ap,MX.E[e]);return `<td class="mx ${c.c}" data-mx="${esc(r.n)}|${esc(e)}" title="${esc(r.n+' vs '+e)}">${c.s}${c.w?'<sup>▴</sup>':''}</td>`}).join('')}<td class="mxCv">${r.err?'–':r.cov.k?r.cov.n+' / '+r.cov.k:'–'}</td></tr>`).join('')}</tbody></table>`;
 }
 function mxLater(){clearTimeout(MX.tm);MX.tm=setTimeout(mxDraw,120)}
 async function mxLoad(){
@@ -5862,21 +6001,37 @@ async function mxLoad(){
   $('#mxTable').innerHTML=loadingHTML;
   let ens=[],its=[],e0=[],w0=[],s0=[];
   try{[e0,w0,s0]=await Promise.all([taxEnemies().catch(()=>[]),taxWeapons().catch(()=>[]),taxStrat().catch(()=>[])])}catch(x){}
-  ens=e0.filter(x=>x.k===MX.fac).map(x=>x.t);
+  ens=e0.filter(x=>x.k===MX.fac&&x.s&&x.s!=='Unsorted').map(x=>x.t);
   if(!ens.length){try{const F=FACS.slice(1).find(f=>f[2]===MX.fac||f[2]===MX.fac.replace(/s$/,''));if(F)ens=F[5].slice()}catch(x){}}
-  const isW=['Primary','Secondary','Throwable','Support'].includes(MX.set);
-  its=(isW?w0:s0).filter(x=>x.k===MX.set||(MX.set==='Sentry'&&/^Sentr/i.test(x.k))||(MX.set==='Emplacement'&&/^Emplace/i.test(x.k))).map(x=>x.t);
+  const def=MX_SETS.find(x=>x[0]===MX.set)||MX_SETS[0];
+  const pool=def[3]==='w'?w0:def[3]==='s'?s0:[...w0,...s0];
+  its=pool.filter(x=>def[2].test(x.k||'')).map(x=>x.t);
   if(tok!==MX.tok||cur!=='matrix')return;
-  MX.en=[...new Set(ens)].slice(0,40);MX.it=[...new Set(its)].slice(0,80);
-  const total=MX.en.length+MX.it.length;let done=0;
-  const tick=()=>{done++;if(tok===MX.tok&&$('#mxProg'))$('#mxProg').textContent=done<total?'Reading wiki files… '+done+' / '+total:'';mxLater()};
-  if(!total){$('#mxTable').innerHTML=errHTML('Armor Matrix');MX.busy=false;return}
-  await Promise.all([
-    ...MX.en.map(e=>MX.E[e]?(tick(),0):getEnemyArmor(e).then(v=>{MX.E[e]=v},()=>{MX.E[e]=null;delete MX.E[e]}).finally(tick)),
-    ...MX.it.map(n=>MX.W[n]!==undefined?(tick(),0):getEvalStats(n).then(m=>{MX.W[n]=mxWeaponAP(m)},()=>{}).finally(tick))
-  ]);
+  MX.en=[...new Set(ens)].slice(0,40);MX.it=[...new Set(its)].slice(0,150);
+  const jobs=[];let done=0;
+  const todo=MX.en.filter(e=>!MX.E[e]).length+MX.it.filter(n=>MX.W[n]===undefined).length;
+  const tick=()=>{done++;if(tok===MX.tok&&$('#mxProg'))$('#mxProg').textContent=done<todo?'Reading wiki files… '+done+' / '+todo:'';mxLater()};
+  if(!MX.en.length||!MX.it.length){MX.busy=false;if($('#mxProg'))$('#mxProg').textContent='';mxDraw();return}
+  MX.en.forEach(e=>{if(!MX.E[e])jobs.push(async()=>{try{MX.E[e]=await mxRetry(()=>getEnemyArmor(e),3);delete MX.F[e]}catch(x){MX.F[e]=1}tick()})});
+  MX.it.forEach(n=>{if(MX.W[n]===undefined)jobs.push(async()=>{try{MX.W[n]=await mxRetry(()=>getWeaponAP(n),3);delete MX.F[n]}catch(x){MX.F[n]=1}tick()})});
+  await mxPool(jobs,3);
+  /* a busy wiki refuses requests for a while: failed pages are retried in slower waves instead of staying empty */
+  for(let w=1;w<=4&&tok===MX.tok&&cur==='matrix';w++){
+    const fe=MX.en.filter(e=>!MX.E[e]),fw=MX.it.filter(n=>MX.W[n]===undefined);
+    if(!fe.length&&!fw.length)break;
+    if($('#mxProg'))$('#mxProg').textContent='The wiki is busy, retrying '+(fe.length+fw.length)+' pages (wave '+w+' of 4)…';
+    await new Promise(r=>setTimeout(r,w*4000));
+    if(tok!==MX.tok)return;
+    const j2=[];
+    fe.forEach(e=>j2.push(async()=>{try{MX.E[e]=await getEnemyArmor(e);delete MX.F[e]}catch(x){MX.F[e]=1}mxLater()}));
+    fw.forEach(n=>j2.push(async()=>{try{MX.W[n]=await getWeaponAP(n);delete MX.F[n]}catch(x){MX.F[n]=1}mxLater()}));
+    await mxPool(j2,2);
+  }
   if(tok!==MX.tok)return;
-  MX.busy=false;if($('#mxProg'))$('#mxProg').textContent='';mxDraw();
+  MX.busy=false;
+  const fails=MX.en.filter(e=>MX.F[e]&&!MX.E[e]).length+MX.it.filter(n=>MX.F[n]&&MX.W[n]===undefined).length;
+  if($('#mxProg'))$('#mxProg').innerHTML=fails?`${fails} wiki page${fails>1?'s':''} could not be read (the wiki may be busy). ${mxRetryBtn}`:'';
+  mxDraw();
 }
 function mxDetail(w,e){
   const ap=MX.W[w],E=MX.E[e],c=mxCell(ap,E),box=$('#mxDet');if(!box)return;
@@ -5895,6 +6050,7 @@ matrix.init=()=>{
 };
 document.addEventListener('click',e=>{
   if(cur!=='matrix')return;
+  if(e.target.closest('[data-mxr]')){MX.F={};mxLoad();return}
   const f=e.target.closest('[data-mxf]'),s=e.target.closest('[data-mxs]'),c=e.target.closest('[data-mx]'),w=e.target.closest('[data-mxw]'),en=e.target.closest('[data-mxe]');
   if(f){MX.fac=f.dataset.mxf;mxChips();mxLoad()}
   else if(s){MX.set=s.dataset.mxs;mxChips();mxLoad()}
@@ -6006,8 +6162,15 @@ function qDraw(){
 quiz.init=qDraw;
 
 /* ---------- BOOT ---------- */
-const BOOT=[['> INITIALIZING SUPER EARTH TERMINAL...',''],['> VERIFYING USER LOYALTY...','ok'],['> LOADING HISTORICAL ARCHIVES...','ok'],['> REMOVING UNPLEASANT DATA...','ok'],['> LIBERTY: ACTIVATED','ok'],['> WELCOME, CITIZEN.','']];
+const BOOTS={
+ terminid:{l:[['> SENSING VIBRATIONS...',''],['> THE HIVE IS AWAKE','ok'],['> SPORES SPREADING THROUGH THE ARCHIVE...','ok'],['> PREY DETECTED: 1 (YOU)','wr'],['> SKREEEEEEE...',''],['> THE SWARM WELCOMES YOU.','']],b:'Join the Swarm',s:34},
+ automaton:{l:[['> BOOTING TACTICAL UNIT...',''],['> TARGET ACQUISITION: ONLINE','ok'],['> ORGANIC LIFEFORMS: DETECTED','wr'],['> UPLOADING CYBERSTAN ARCHIVES...','ok'],['> DEMOCRACY.EXE: NOT FOUND','wr'],['> ELIMINATE. ASSIMILATE. ARCHIVE.','']],b:'Execute Protocol',s:9},
+ illuminate:{l:[['> THE VOTELESS ARE LISTENING...',''],['> OVERSEER NETWORK: SYNCHRONISED','ok'],['> FREE WILL: REMOVED','wr'],['> ALL MINDS ARE ONE MIND','ok'],['> RESISTANCE IS UNNECESSARY.','']],b:'Submit to the Mind',s:26}
+};
+const BOOT0=[['> INITIALIZING SUPER EARTH TERMINAL...',''],['> VERIFYING USER LOYALTY...','ok'],['> LOADING HISTORICAL ARCHIVES...','ok'],['> REMOVING UNPLEASANT DATA...','ok'],['> LIBERTY: ACTIVATED','ok'],['> WELCOME, CITIZEN.','']];
 (function(){
+  const BK=BOOTS[document.documentElement.dataset.theme],BOOT=BK?BK.l:BOOT0,BS=BK?BK.s:18;
+  if(BK){const bb=$('#bootBtn');if(bb)bb.textContent=BK.b;const fx={terminid:'<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>',automaton:'<i class="bs"></i><i class="bxc bxtl"></i><i class="bxc bxtr"></i><i class="bxc bxbl"></i><i class="bxc bxbr"></i>',illuminate:'<i class="br1"></i><i class="br2"></i><i class="br3"></i>'}[document.documentElement.dataset.theme];$('#bootFx').innerHTML=fx||''}
   /* reuse emblems found on a previous visit so the real logo shows immediately */
   Object.keys(EMB_Q).forEach(k=>{const c=LS.get('e2:'+k);if(c&&c.d&&!ASSETS[k])ASSETS[k]=c.d});
   refreshEmb();
@@ -6016,10 +6179,10 @@ const BOOT=[['> INITIALIZING SUPER EARTH TERMINAL...',''],['> VERIFYING USER LOY
   function next(){
     if(i>=BOOT.length){
       log.classList.remove('cursor');
-      if(bt&&!bt.dataset.real){bt.innerHTML=SVG.superEarth;bt.classList.add('rdy')}
+      if(bt&&!bt.dataset.real){bt.innerHTML=SVG[themeEmb()]||SVG.superEarth;bt.classList.add('rdy')}
       const bb=$('#bootBtn');if(bb)bb.style.display='inline-block';return}
     const [t,c]=BOOT[i++];let n=0;const sp=document.createElement('span');if(c)sp.className=c;log.insertBefore(sp,null);
-    const tm=setInterval(()=>{n++;sp.textContent=t.slice(0,n);if(n>=t.length){clearInterval(tm);log.appendChild(document.createTextNode('\n'));setTimeout(next,260)}},18);
+    const tm=setInterval(()=>{n++;sp.textContent=t.slice(0,n);if(n>=t.length){clearInterval(tm);log.appendChild(document.createTextNode('\n'));setTimeout(next,260)}},BS);
   }
   next();
   const enter=()=>{if($('#boot').classList.contains('gone'))return;$('#boot').classList.add('gone');const id=location.hash.slice(1);render(SCREENS[id]?id:'hub');startLive();setTimeout(()=>$('#boot').remove(),900)};
@@ -6224,6 +6387,65 @@ const BOOT=[['> INITIALIZING SUPER EARTH TERMINAL...',''],['> VERIFYING USER LOY
   /* copy */
   document.addEventListener('copy',()=>once('copy',()=>shout('COPIED. THE MINISTRY HAS ALSO COPIED YOU')));
   try{console.log('%cMORE WORDS','color:#ffe81f;font:bold 14px Impact','\nbile, hulk, napalm, railgun, orbital, resupply, spear, taxes, coffee, recoil, friendlyfire, loyalty, kneel, fortress, jump. And the old code from the arcade: ↑ ↑ ↓ ↓ ← → ← → B A.')}catch(e){}
+})();
+
+/* ---------- FACTION EASTER EGGS (v53): each front has its own words and its own theme tricks ---------- */
+(function(){
+  const ok=e=>!/INPUT|TEXTAREA|SELECT/.test((e.target&&e.target.tagName)||'');
+  const add=h=>{const d=document.createElement('div');d.innerHTML=h;const e=d.firstElementChild;document.body.appendChild(e);return e};
+  const gone=(e,ms)=>setTimeout(()=>e.remove(),ms);
+  const th=()=>document.documentElement.getAttribute('data-theme')||'default';
+  const shake=ms=>{document.body.classList.add('shk');setTimeout(()=>document.body.classList.remove('shk'),ms||500)};
+  const R=(a,b)=>a+Math.random()*(b-a);
+  /* Terminids */
+  function swarm(){
+    shout('THE HIVE HAS NOTICED YOU');
+    for(let i=0;i<20;i++){const b=add('<div class="tmBug">🪲</div>');b.style.left=R(2,96)+'vw';b.style.setProperty('--dx',R(-120,120)+'px');b.style.setProperty('--r',R(-40,40)+'deg');b.style.animationDelay=R(0,1.6)+'s';b.style.fontSize=R(16,34)+'px';gone(b,7500)}
+  }
+  function charge(){shout('CHARGER · BEHIND YOU · ALWAYS BEHIND YOU');const c=add('<div class="tmCharge"></div>');shake(900);gone(c,1100)}
+  function spore(){shout('DO NOT BREATHE THE SPORES. OR DO. LIBERTY');gone(add('<div class="tmSpore"></div>'),4200)}
+  /* Automatons */
+  function cyber(){
+    const t=add('<div class="amTerm"></div>'),L=['> CONNECTING TO CYBERSTAN ...','> HANDSHAKE ........ OK','> USER: ORGANIC (UNCLASSIFIED)','> SEARCHING FOR LIBERTY.EXE ...','> ERROR: LIBERTY.EXE NOT FOUND','> RE-EDUCATION SUBROUTINE: STANDBY','> HAVE A PRODUCTIVE DAY, UNIT'];
+    let i=0;const tick=()=>{if(!t.isConnected)return;t.textContent=L.slice(0,++i).join('\n');if(i<L.length)setTimeout(tick,420);else setTimeout(()=>t.remove(),1800)};tick();
+  }
+  function eyes(){
+    shout('I SEE YOU, ORGANIC');
+    const e=add('<div class="amEyes"><i></i><i></i></div>');e.style.left='50%';e.style.top='40%';
+    const mv=ev=>{const p=ev.touches?ev.touches[0]:ev;e.style.left=(p.clientX+40)+'px';e.style.top=(p.clientY-40)+'px'};
+    addEventListener('mousemove',mv);addEventListener('touchmove',mv,{passive:true});
+    setTimeout(()=>{removeEventListener('mousemove',mv);removeEventListener('touchmove',mv);e.remove()},7000);
+  }
+  function breakdown(){document.body.classList.add('amBreak');shout('SYSTEM FAILURE · REBOOTING DEMOCRACY');setTimeout(()=>document.body.classList.remove('amBreak'),1300)}
+  /* Illuminate */
+  function orbs(){
+    shout('THE SQUIDS ARE NOT SQUIDS. THEY ARE ALSO NOT FRIENDLY');
+    for(let i=0;i<16;i++){const o=add('<div class="ilOrb"></div>'),s=R(14,46);o.style.cssText+=`left:${R(2,96)}vw;width:${s}px;height:${s}px;animation-delay:${R(0,2.4)}s;animation-duration:${R(4.5,7)}s;--dx:${R(-90,90)}px`;gone(o,10000)}
+  }
+  function overseer(){
+    shout('THE OVERSEER SEES YOUR VOTE. YOU DO NOT HAVE ONE');
+    const e=add('<div class="ilEye"><i></i></div>'),p=e.firstElementChild;
+    const mv=ev=>{const q=ev.touches?ev.touches[0]:ev,x=(q.clientX/innerWidth-.5)*2,y=(q.clientY/innerHeight-.5)*2;p.style.transform=`translate(${x*34}%,${y*34}%)`};
+    addEventListener('mousemove',mv);addEventListener('touchmove',mv,{passive:true});
+    setTimeout(()=>{removeEventListener('mousemove',mv);removeEventListener('touchmove',mv);e.remove()},7200);
+  }
+  function mind(){document.body.classList.add('ilMind');shout('YOUR MIND BELONGS TO THE ILLUMINATE. YOU GET IT BACK AT 6 PM');setTimeout(()=>document.body.classList.remove('ilMind'),3100)}
+  const W={hive:swarm,charger:charge,spores:spore,cyberstan:cyber,automaton:eyes,squid:orbs,overseer:overseer,voteless:()=>{shout('VOTELESS ARE NOT CITIZENS. THEY ARE ALSO NOT HAPPY');shake(400)}};
+  Object.keys(W).forEach(w=>{if(w in window)return;try{Object.defineProperty(window,w,{configurable:true,get(){W[w]();return '[ '+w.toUpperCase()+' ] executed. For Super Earth.'}})}catch(e){}});
+  let buf='';
+  addEventListener('keydown',e=>{
+    if($('#boot')||!ok(e)||e.ctrlKey||e.metaKey||e.altKey||e.key.length!==1)return;
+    buf=(buf+e.key.toLowerCase()).slice(-14);
+    for(const w in W){if(buf.endsWith(w)){buf='';W[w]();break}}
+  });
+  /* five quick clicks on the brand: each themed look has its own surprise */
+  let n=0,t=null;
+  document.addEventListener('click',e=>{
+    if(!e.target.closest('.brand'))return;
+    n++;clearTimeout(t);t=setTimeout(()=>n=0,2200);
+    if(n>=5){n=0;const k=th();if(k==='terminid')spore();else if(k==='automaton')breakdown();else if(k==='illuminate')mind()}
+  });
+  try{console.log('%cFRONT WORDS','color:#ffe81f;font:bold 14px Impact','\nTerminids: hive, charger, spores · Automatons: cyberstan, automaton · Illuminate: squid, overseer, voteless. And five quick clicks on the logo, with a faction look on.')}catch(e){}
 })();
 
 </script>

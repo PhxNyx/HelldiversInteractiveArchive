@@ -22,7 +22,7 @@ Democracy Archive recreates the community wiki as a single, fast, installation-f
 | **Major Orders** | The complete history of Major Orders, with outcomes and statistics. |
 | **Armory** | Weapons, armor and equipment, with their wiki stats. |
 | **Loadout Builder** | Pick or roll a full loadout, lock your favourites, get an evaluation by front (Terminids, Automatons, Illuminate), check which enemies of each front it can actually pierce, and export it as an image. |
-| **Armor Matrix** | Which weapon or stratagem pierces which enemy: every enemy's armor class against every item's penetration tier, read from the wiki, with the enemy's armored parts and weak spots one click away. |
+| **Armor Matrix** | Which weapon or stratagem pierces which enemy: every enemy's armor class against every item's penetration tier, read from the wiki, with the enemy's armored parts and weak spots one click away. If the wiki is busy, unread pages are retried automatically and can be reloaded with a Retry button. |
 | **Stratagems** | An arrow-code simulator to practise stratagem inputs. |
 | **XP Calculator** | How much XP separates two levels, with a progression chart. |
 | **Titles** | The full rank ladder, every Warbond and special title, and a printable Service Record. |
@@ -32,7 +32,7 @@ Democracy Archive recreates the community wiki as a single, fast, installation-f
 | **Changelog** | Patch notes and an update report. |
 | **Glossary · Loyalty Exam** | The official vocabulary, and a quiz to test your devotion. |
 
-Also included: archive-wide search, a mobile-friendly navigation drawer, four colour themes (Super Earth, Automaton, Terminid, Illuminate) that only change the accent colours, and PNG export for loadouts, Combat Records and Duels.
+Also included: archive-wide search, a mobile-friendly navigation drawer, four looks (Super Earth, Automaton, Terminid, Illuminate): the three faction looks change shapes, textures, type and motion as well as colour, swap the site emblem for the faction's, play their own boot animation (the chosen look is remembered in your browser, so it greets you on every visit), and each has its own hidden surprises, and PNG export for loadouts, Combat Records and Duels.
 
 ### Combat Record
 
